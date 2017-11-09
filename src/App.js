@@ -9,6 +9,8 @@ import Switch from 'material-ui/Switch';
 import {FormControlLabel, FormGroup, FormControl} from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
+import styled,{injectGlobal} from 'styled-components'
+
 class App extends Component {
 
     constructor() {
@@ -171,4 +173,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default App
