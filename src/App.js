@@ -297,53 +297,77 @@ class App extends Component {
             <div className="login-wrap">
                 <div className="login-html">
                     <input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1"
-                                                                                                  className="tab">Sign
-                    In</label>
+                                                                                                  className="tab">上班</label>
                     <input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2"
-                                                                                          className="tab">Sign
-                    Up</label>
+                                                                                          className="tab">下班</label>
                     <div className="login-form">
                         <div className="sign-in-htm">
                             <div className="group">
-                                <label for="user" className="label">Username</label>
-                                <input id="user" type="text" className="input"/>
+                                <label htmlFor="uid" className="label">帳號</label>
+                                {/*<input id="user" type="text" className="input"/>*/}
+                                {/*<InputLabel htmlFor="uid" className="label">帳號</InputLabel>*/}
+                                <input
+                                    id="uid"
+                                    disabled={this.state.locked}
+                                    value={this.state.uid}
+                                    onChange={this.handleChange('uid')}
+                                    className="input"
+                                />
                             </div>
                             <div className="group">
-                                <label for="pass" className="label">Password</label>
-                                <input id="pass" type="password" className="input" data-type="password"/>
+                                <label htmlFor="pwd" className="label">密碼</label>
+                                {/*<input id="pass" type="password" className="input" data-type="password"/>*/}
+                                {/*<InputLabel htmlFor="pwd">密碼</InputLabel>*/}
+                                <input
+                                    id="pwd"
+                                    disabled={this.state.locked}
+                                    type="password"
+                                    value={this.state.pwd}
+                                    onChange={this.handleChange('pwd')}
+                                    className='input'
+                                />
                             </div>
                             <div className="group">
-                                <input id="check" type="checkbox" className="check" checked/>
-                                <label for="check"><span className="icon"></span> Keep me Signed
-                                    in</label>
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={this.state.locked}
+                                            onChange={this.handleBool('locked')}
+                                            aria-label="locked"
+                                        />
+                                    }
+                                    label="鎖定帳密"
+                                />
+                                <FormControlLabel
+                                    style={{color: 'white'}}
+                                    control={
+                                        <Checkbox
+                                            checked={this.state.emergency}
+                                            onChange={this.handleBool('emergency')}
+                                            value="emergency"
+                                        />
+                                    }
+                                    label="緊急狀態"
+                                />
                             </div>
                             <div className="group">
-                                <input type="submit" className="button" value="Sign In"/>
+                                <button
+                                    className='button'
+                                    onClick={this.onBoard.bind(this)}
+                                >
+                                    上班
+                                </button>
                             </div>
                             <div className="hr"/>
                         </div>
                         <div className="sign-up-htm">
-                            <div className="group">
-                                <label for="user" className="label">Username</label>
-                                <input id="user" type="text" className="input"/>
-                            </div>
-                            <div className="group">
-                                <label for="pass" className="label">Password</label>
-                                <input id="pass" type="password" className="input" data-type="password"/>
-                            </div>
-                            <div className="group">
-                                <label for="pass" className="label">Repeat Password</label>
-                                <input id="pass" type="password" className="input" data-type="password"/>
-                            </div>
-                            <div className="group">
-                                <label for="pass" className="label">Email Address</label>
-                                <input id="pass" type="text" className="input"/>
-                            </div>
+
                             <div className="group">
                                 <input type="submit" className="button" value="Sign Up"/>
                             </div>
                             <div className="hr"/>
                             <div className="foot-lnk">
+                                <div>{msg}</div>
                             </div>
                         </div>
                     </div>
