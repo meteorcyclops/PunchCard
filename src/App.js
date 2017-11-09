@@ -361,9 +361,61 @@ class App extends Component {
                             <div className="hr"/>
                         </div>
                         <div className="sign-up-htm">
-
                             <div className="group">
-                                <input type="submit" className="button" value="Sign Up"/>
+                                <label htmlFor="uid" className="label">帳號</label>
+                                {/*<input id="user" type="text" className="input"/>*/}
+                                {/*<InputLabel htmlFor="uid" className="label">帳號</InputLabel>*/}
+                                <input
+                                    id="uid"
+                                    disabled={this.state.locked}
+                                    value={this.state.uid}
+                                    onChange={this.handleChange('uid')}
+                                    className="input"
+                                />
+                            </div>
+                            <div className="group">
+                                <label htmlFor="pwd" className="label">密碼</label>
+                                {/*<input id="pass" type="password" className="input" data-type="password"/>*/}
+                                {/*<InputLabel htmlFor="pwd">密碼</InputLabel>*/}
+                                <input
+                                    id="pwd"
+                                    disabled={this.state.locked}
+                                    type="password"
+                                    value={this.state.pwd}
+                                    onChange={this.handleChange('pwd')}
+                                    className='input'
+                                />
+                            </div>
+                            <div className="group">
+                                <FormControlLabel
+                                    control={
+                                        <Switch
+                                            checked={this.state.locked}
+                                            onChange={this.handleBool('locked')}
+                                            aria-label="locked"
+                                        />
+                                    }
+                                    label="鎖定帳密"
+                                />
+                                <FormControlLabel
+                                    style={{color: 'white'}}
+                                    control={
+                                        <Checkbox
+                                            checked={this.state.emergency}
+                                            onChange={this.handleBool('emergency')}
+                                            value="emergency"
+                                        />
+                                    }
+                                    label="緊急狀態"
+                                />
+                            </div>
+                            <div className="group">
+                                <button
+                                    className='button'
+                                    onClick={this.offBoard.bind(this)}
+                                    raised>
+                                    下班
+                                </button>
                             </div>
                             <div className="hr"/>
                             <div className="foot-lnk">
