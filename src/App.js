@@ -7,6 +7,7 @@ import Input, {InputLabel} from 'material-ui/Input';
 import moment from 'moment';
 import Switch from 'material-ui/Switch';
 import {FormControlLabel, FormGroup, FormControl} from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 
 class App extends Component {
 
@@ -28,19 +29,31 @@ class App extends Component {
             uid: uid,
             pwd: pwd,
             status: "",
-            locked: locked
+            locked: locked,
+            emergency: false
         };
     }
 
-
-    onBoard() {
-        validation(1, this.state.uid, this.state.pwd).then((res) => {
+    check(type) {
+        validation(type, this.state.uid, this.state.pwd).then((res) => {
             let status = res.ErrorMessage;
             if (status === "") {
                 let ts = res.TimeStamp;
                 let dt = moment(ts).format("YYYY/MM/DD hh:mm:ss");
                 let username = res.UserName;
-                status = `${username} 上班打卡成功(${dt})`;
+                if (type === 1) {
+                    status = `${username} 上班打卡成功(${dt})`;
+                }
+                if (type === 2) {
+                    status = `${username} 緊急上班打卡成功(${dt})`;
+                }
+                if (type === 3) {
+                    status = `${username} 緊急下班打卡成功(${dt})`;
+                }
+                if (type === 9) {
+                    status = `${username} 下班打卡成功(${dt})`;
+                }
+
                 localStorage.setItem('uid', this.state.uid);
                 localStorage.setItem('pwd', this.state.pwd);
                 localStorage.setItem('locked', this.state.locked);
@@ -51,29 +64,27 @@ class App extends Component {
         });
     }
 
+    onBoard() {
+        if (this.state.emergency) {
+            this.check(2);
+        } else {
+            this.check(1);
+        }
+    }
+
     offBoard() {
-        validation(9, this.state.uid, this.state.pwd).then((res) => {
-            let status = res.ErrorMessage;
-            if (status === "") {
-                let ts = res.TimeStamp;
-                let dt = moment(ts).format("YYYY/MM/DD hh:mm:ss");
-                let username = res.UserName;
-                status = `${username} 下班打卡成功(${dt})`;
-                localStorage.setItem('uid', this.state.uid);
-                localStorage.setItem('pwd', this.state.pwd);
-                localStorage.setItem('locked', this.state.locked);
-            }
-            this.setState({
-                status: status
-            });
-        });
+        if (this.state.emergency) {
+            this.check(3);
+        } else {
+            this.check(9);
+        }
     }
 
     handleChange = prop => event => {
         this.setState({[prop]: event.target.value});
     };
 
-    setLocked = prop => (event, checked) => {
+    handleBool = prop => (event, checked) => {
         this.setState({[prop]: checked});
     };
 
@@ -120,12 +131,25 @@ class App extends Component {
                         control={
                             <Switch
                                 checked={this.state.locked}
-                                onChange={this.setLocked('locked')}
+                                onChange={this.handleBool('locked')}
                                 aria-label="locked"
                             />
                         }
                         label="鎖定帳密"
                     />
+                </Grid>
+                <Grid item xs={12}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={this.state.emergency}
+                                onChange={this.handleBool('emergency')}
+                                value="emergency"
+                            />
+                        }
+                        label="緊急狀態"
+                    />
+
                 </Grid>
                 <Grid item xs={6}>
                     <Button
