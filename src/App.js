@@ -15,6 +15,7 @@ import {withStyles} from 'material-ui/styles';
 import green from 'material-ui/colors/green';
 
 import kfsysccBackground from "./20090618Home.jpg";
+import bodyBackground from "./BLACK_VIII_desktop-1.jpg"
 
 const styles = {
     checked: {
@@ -112,7 +113,8 @@ class App extends Component {
             body {
               margin: 0;
               color: #6a6f8c;
-              background: #c8c8c8;
+              background: url('${bodyBackground}') no-repeat center;
+              background-size: cover;
               font: 600 16px/18px 'Open Sans', sans-serif;
             }
 
