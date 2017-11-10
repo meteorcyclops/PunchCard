@@ -11,6 +11,8 @@ import Checkbox from 'material-ui/Checkbox';
 
 import styled, {injectGlobal} from 'styled-components'
 
+import kfsysccBackground from "./20090618Home.jpg";
+
 class App extends Component {
 
     constructor() {
@@ -94,6 +96,10 @@ class App extends Component {
 
         injectGlobal`
 
+            html, body, #root, .login-wrap {
+              height: 100%;
+            }
+
             body {
               margin: 0;
               color: #6a6f8c;
@@ -126,7 +132,8 @@ class App extends Component {
               max-width: 525px;
               min-height: 670px;
               position: relative;
-              background: url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+              background: url('${kfsysccBackground}') no-repeat center;
+              background-size: cover;
               box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
             }
 
@@ -136,6 +143,7 @@ class App extends Component {
               position: absolute;
               padding: 90px 70px 50px 70px;
               background: rgba(40, 57, 101, .9);
+              //background: rgba(72, 29, 101, 0.9);
             }
 
             .login-html .sign-in-htm,
@@ -174,6 +182,7 @@ class App extends Component {
             .login-html .sign-in:checked + .tab,
             .login-html .sign-up:checked + .tab {
               color: #fff;
+              //border-color: #1161ee;
               border-color: #1161ee;
             }
 
@@ -288,7 +297,7 @@ class App extends Component {
         let msg = "";
         if (this.state.status !== "") {
             msg = (
-                <Grid item xs={12} style={{color: "darkred"}}>
+                <Grid item xs={12} style={{color: "#fff"}}>
                     <h3>{this.state.status}</h3>
                 </Grid>
             )
@@ -304,8 +313,6 @@ class App extends Component {
                         <div className="sign-in-htm">
                             <div className="group">
                                 <label htmlFor="uid" className="label">帳號</label>
-                                {/*<input id="user" type="text" className="input"/>*/}
-                                {/*<InputLabel htmlFor="uid" className="label">帳號</InputLabel>*/}
                                 <input
                                     id="uid"
                                     disabled={this.state.locked}
@@ -316,8 +323,6 @@ class App extends Component {
                             </div>
                             <div className="group">
                                 <label htmlFor="pwd" className="label">密碼</label>
-                                {/*<input id="pass" type="password" className="input" data-type="password"/>*/}
-                                {/*<InputLabel htmlFor="pwd">密碼</InputLabel>*/}
                                 <input
                                     id="pwd"
                                     disabled={this.state.locked}
@@ -359,12 +364,13 @@ class App extends Component {
                                 </button>
                             </div>
                             <div className="hr"/>
+                            <div className="foot-lnk">
+                                <div style={{color:'#fff'}}>{msg}</div>
+                            </div>
                         </div>
                         <div className="sign-up-htm">
                             <div className="group">
                                 <label htmlFor="uid" className="label">帳號</label>
-                                {/*<input id="user" type="text" className="input"/>*/}
-                                {/*<InputLabel htmlFor="uid" className="label">帳號</InputLabel>*/}
                                 <input
                                     id="uid"
                                     disabled={this.state.locked}
@@ -375,8 +381,6 @@ class App extends Component {
                             </div>
                             <div className="group">
                                 <label htmlFor="pwd" className="label">密碼</label>
-                                {/*<input id="pass" type="password" className="input" data-type="password"/>*/}
-                                {/*<InputLabel htmlFor="pwd">密碼</InputLabel>*/}
                                 <input
                                     id="pwd"
                                     disabled={this.state.locked}
@@ -412,14 +416,13 @@ class App extends Component {
                             <div className="group">
                                 <button
                                     className='button'
-                                    onClick={this.offBoard.bind(this)}
-                                    raised>
+                                    onClick={this.offBoard.bind(this)}>
                                     下班
                                 </button>
                             </div>
                             <div className="hr"/>
                             <div className="foot-lnk">
-                                <div>{msg}</div>
+                                <div style={{color:'#fff'}}>{msg}</div>
                             </div>
                         </div>
                     </div>
