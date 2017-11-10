@@ -10,8 +10,17 @@ import {FormControlLabel, FormGroup, FormControl} from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
 import styled, {injectGlobal} from 'styled-components'
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+import green from 'material-ui/colors/green';
 
 import kfsysccBackground from "./20090618Home.jpg";
+
+const styles = {
+    checked: {
+        color: green[500],
+    },
+};
 
 class App extends Component {
 
@@ -305,11 +314,11 @@ class App extends Component {
         return (
             <div className="login-wrap">
                 <div className="login-html">
-                    <input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1"
+                    <input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label htmlFor="tab-1"
                                                                                                   className="tab">上班</label>
-                    <input id="tab-2" type="radio" name="tab" className="sign-up"/><label for="tab-2"
+                    <input id="tab-2" type="radio" name="tab" className="sign-up"/><label htmlFor="tab-2"
                                                                                           className="tab">下班</label>
-                    <div className="login-form">
+                    <div className="login-form" style={{marginTop: '8%'}}>
                         <div className="sign-in-htm">
                             <div className="group">
                                 <label htmlFor="uid" className="label">帳號</label>
@@ -333,27 +342,47 @@ class App extends Component {
                                 />
                             </div>
                             <div className="group">
-                                <FormControlLabel
-                                    control={
-                                        <Switch
-                                            checked={this.state.locked}
-                                            onChange={this.handleBool('locked')}
-                                            aria-label="locked"
-                                        />
-                                    }
-                                    label="鎖定帳密"
-                                />
-                                <FormControlLabel
-                                    style={{color: 'white'}}
-                                    control={
-                                        <Checkbox
-                                            checked={this.state.emergency}
-                                            onChange={this.handleBool('emergency')}
-                                            value="emergency"
-                                        />
-                                    }
-                                    label="緊急狀態"
-                                />
+                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <FormControlLabel
+                                        style={{margin: '0'}}
+                                        control={
+                                            <Switch
+                                                checked={this.state.locked}
+                                                onChange={this.handleBool('locked')}
+                                                aria-label="locked"
+                                            />
+                                        }
+                                    />
+                                    <div style={{
+                                        color: '#d8d8d8',
+                                        left: '-6px',
+                                        top: '1px',
+                                        position: 'relative',
+                                        fontWeight: 'normal',
+                                        fontSize: '15px'
+                                    }}>鎖定帳密
+                                    </div>
+
+                                    <FormControlLabel
+                                        style={{margin: '0'}}
+                                        control={
+                                            <Checkbox
+                                                checked={this.state.emergency}
+                                                onChange={this.handleBool('emergency')}
+                                                value="emergency"
+                                            />
+                                        }
+                                    />
+                                    <div style={{
+                                        color: '#d8d8d8',
+                                        left: '-6px',
+                                        top: '1px',
+                                        position: 'relative',
+                                        fontWeight: 'normal',
+                                        fontSize: '15px'
+                                    }}>緊急狀態
+                                    </div>
+                                </div>
                             </div>
                             <div className="group">
                                 <button
@@ -365,7 +394,7 @@ class App extends Component {
                             </div>
                             <div className="hr"/>
                             <div className="foot-lnk">
-                                <div style={{color:'#fff'}}>{msg}</div>
+                                <div style={{color: '#fff'}}>{msg}</div>
                             </div>
                         </div>
                         <div className="sign-up-htm">
@@ -391,27 +420,47 @@ class App extends Component {
                                 />
                             </div>
                             <div className="group">
-                                <FormControlLabel
-                                    control={
-                                        <Switch
-                                            checked={this.state.locked}
-                                            onChange={this.handleBool('locked')}
-                                            aria-label="locked"
-                                        />
-                                    }
-                                    label="鎖定帳密"
-                                />
-                                <FormControlLabel
-                                    style={{color: 'white'}}
-                                    control={
-                                        <Checkbox
-                                            checked={this.state.emergency}
-                                            onChange={this.handleBool('emergency')}
-                                            value="emergency"
-                                        />
-                                    }
-                                    label="緊急狀態"
-                                />
+                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <FormControlLabel
+                                        style={{margin: '0'}}
+                                        control={
+                                            <Switch
+                                                checked={this.state.locked}
+                                                onChange={this.handleBool('locked')}
+                                                aria-label="locked"
+                                            />
+                                        }
+                                    />
+                                    <div style={{
+                                        color: '#d8d8d8',
+                                        left: '-6px',
+                                        top: '1px',
+                                        position: 'relative',
+                                        fontWeight: 'normal',
+                                        fontSize: '15px'
+                                    }}>鎖定帳密
+                                    </div>
+
+                                    <FormControlLabel
+                                        style={{margin: '0'}}
+                                        control={
+                                            <Checkbox
+                                                checked={this.state.emergency}
+                                                onChange={this.handleBool('emergency')}
+                                                value="emergency"
+                                            />
+                                        }
+                                    />
+                                    <div style={{
+                                        color: '#d8d8d8',
+                                        left: '-6px',
+                                        top: '1px',
+                                        position: 'relative',
+                                        fontWeight: 'normal',
+                                        fontSize: '15px'
+                                    }}>緊急狀態
+                                    </div>
+                                </div>
                             </div>
                             <div className="group">
                                 <button
@@ -422,7 +471,7 @@ class App extends Component {
                             </div>
                             <div className="hr"/>
                             <div className="foot-lnk">
-                                <div style={{color:'#fff'}}>{msg}</div>
+                                <div style={{color: '#fff'}}>{msg}</div>
                             </div>
                         </div>
                     </div>
