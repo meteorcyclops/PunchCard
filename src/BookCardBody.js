@@ -97,12 +97,12 @@ class BookCardBody extends React.Component {
             left: -6px;
             top: 1px;
             position: relative;
-            fontWeight: normal;
-            fontSize: '15px'
+            font-weight: normal;
+            font-size: '15px'
         `,
         flexRowDiv: styled.div`
             display: flex; 
-            flexDirection: row; 
+            flex-direction: row; 
             align-items: center
         `,
     }
