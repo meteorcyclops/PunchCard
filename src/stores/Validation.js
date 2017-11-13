@@ -13,8 +13,8 @@ MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMTFn+dyIjvI31GnD12D8zgueC8fwgRt
 xL/sETU8CDMaUlYygVH4jLwRc3UNr5minj8TgMnfDXocSoPKN3n28N8CAwEAAQ==
 -----END PUBLIC KEY-----`;
     crypt.setPublicKey(pubkey);
-    return encodeURIComponent(crypt.encrypt(pwd));
-};
+    return encodeURIComponent(crypt.encrypt(pwd))
+}
 
 
 const validation = (cardtype, username, password) => {
