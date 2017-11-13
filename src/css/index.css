@@ -5,8 +5,9 @@ html, body, #root, .login-wrap {
 body {
   margin: 0px;
   color: #6a6f8c;
-  background: url('../pictures/BLACK_VIII_desktop-1.jpg') no-repeat center;
-  background-size: cover;
+  /*background: url('../pictures/BLACK_VIII_desktop-1.jpg') no-repeat center;*/
+  background: url('../pictures/pixel_weave_@2X.png');
+  /*background-size: cover;*/
   font: 600 16px/18px 'Open Sans', sans-serif;
   padding: 0px;
   font-family: sans-serif;

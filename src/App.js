@@ -25,7 +25,7 @@ class App extends Component {
         const uid = localStorage.getItem('uid') || ""
         const pwd = localStorage.getItem('pwd') || ""
         const locked = localStorage.getItem('locked') || ""
-        
+
         this.state = {
             uid: uid,
             pwd: pwd,
