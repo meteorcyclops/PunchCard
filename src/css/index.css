@@ -6,7 +6,7 @@ body {
   margin: 0px;
   color: #6a6f8c;
   /*background: url('../pictures/BLACK_VIII_desktop-1.jpg') no-repeat center;*/
-  background: url('../pictures/pixel_weave_@2X.png');
+  background: url('../pictures/pixel_weave.png');
   /*background-size: cover;*/
   font: 600 16px/18px 'Open Sans', sans-serif;
   padding: 0px;
@@ -38,7 +38,7 @@ a {
   max-width: 525px;
   min-height: 670px;
   position: relative;
-  background: url('../pictures/20090618Home.jpg') no-repeat center;
+  background: url('../pictures/kfsyscc_logo_big.jpg') no-repeat center;
   background-size: cover;
   box-shadow: 0px 12px 15px 0px rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
 }
