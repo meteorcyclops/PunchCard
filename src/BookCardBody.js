@@ -1,8 +1,7 @@
 import React from 'react' 
 import {observer} from 'mobx-react' 
 import * as mobx from 'mobx' 
-import _ from 'lodash' 
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 import Switch from 'material-ui/Switch';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -39,15 +38,15 @@ class BookCardBody extends React.Component {
         const locked = bookStore.locked
         const pwd =    bookStore.pwd
         const msg =    bookStore.status
-
+        
         return (
             <div className={className}>
                 <div className="group">
                     <label htmlFor="uid" className="label">帳號</label>
                     <input
                         id="uid"
-                        disabled={bookStore.locked}
-                        value={bookStore.uid}
+                        disabled={locked}
+                        value={uid}
                         onChange={this.handleChange('uid')}
                         className="input"
                     />
@@ -56,9 +55,9 @@ class BookCardBody extends React.Component {
                     <label htmlFor="pwd" className="label">密碼</label>
                     <input
                         id="pwd"
-                        disabled={bookStore.locked}
+                        disabled={locked}
                         type="password"
-                        value={bookStore.pwd}
+                        value={pwd}
                         onChange={this.handleChange('pwd')}
                         className='input'
                     />
@@ -84,7 +83,7 @@ class BookCardBody extends React.Component {
                 <div className="hr" />
                 <div className="foot-lnk">
                     <div style={{ color: "#fff" }}>
-                        <h3>{mobx.toJS(bookStore.status)}</h3>
+                        <h3>{mobx.toJS(msg)}</h3>
                     </div>
                 </div>
             </div>
