@@ -1,10 +1,10 @@
-import React from 'react' 
-import {observer} from 'mobx-react' 
-import * as mobx from 'mobx' 
-import styled from 'styled-components'
+import React from 'react'
+import {observer} from 'mobx-react'
+import * as mobx from 'mobx'
+import styled, {keyframes} from 'styled-components'
 import Switch from 'material-ui/Switch'
 import Checkbox from 'material-ui/Checkbox'
-import { FormGroup, FormControlLabel } from 'material-ui/Form'
+import {FormGroup, FormControlLabel} from 'material-ui/Form'
 
 import bookStore from './stores/book'
 
@@ -17,13 +17,13 @@ class BookCardBody extends React.Component {
     }
 
     handleChange(prop) {
-        return (event)=>{
+        return (event) => {
             bookStore.setObs(prop, event.target.value)
         }
     }
 
     handleBool(prop) {
-        return (event, checked)=>{
+        return (event, checked) => {
             bookStore.setObs(prop, checked)
         }
     }
@@ -33,18 +33,39 @@ class BookCardBody extends React.Component {
         const bookFunction = this.props.onClick
         const inOrOut = this.props.in
 
-        const uid =    bookStore.uid
+        const uid = bookStore.uid
         const locked = bookStore.locked
-        const pwd =    bookStore.pwd
-        const msg =    bookStore.status   
+        const pwd = bookStore.pwd
+        const msg = bookStore.status
 
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
-        
+
+        console.log(mobx.toJS(locked));
+
+        const bouncedUp = keyframes`
+            from{
+            height:120px;
+            }
+            to{
+            height:0;
+            }
+`
+
+        const bouncedDown = keyframes`
+            from{
+            height:0;
+            }
+            to{
+            height:120px;
+            }
+`
         const InputDiv = styled.div`
-            height: ${locked?'0px':'120px'}; 
-            transition: all 2s ;
+            background-color: #ffffff;
+            animation: ${locked?bouncedDown:bouncedUp} .5s linear 1;
+            height:${locked?'120px':'0px'}
         `
+
         return (
             <div className={className}>
                 <InputDiv>
@@ -72,36 +93,36 @@ class BookCardBody extends React.Component {
                 </InputDiv>
                 <div className="group">
                     <FlexRowDiv>
-                    <FormControlLabel
-                        control={
-                            <Switch 
-                                onChange={this.handleBool('locked')} 
-                                aria-label="locked" 
-                                checked={locked}
-                            />
-                        }
-                        label={<BoxLabel>鎖定帳密</BoxLabel>}
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox 
-                                onChange={this.handleBool('emergency')} 
-                                value="emergency" 
-                                style = {{margin:'0px 7px'}}
-                            />
-                        }
-                        label={<BoxLabel>緊急狀態</BoxLabel>}
-                    />
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    onChange={this.handleBool('locked')}
+                                    aria-label="locked"
+                                    checked={locked}
+                                />
+                            }
+                            label={<BoxLabel>鎖定帳密</BoxLabel>}
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    onChange={this.handleBool('emergency')}
+                                    value="emergency"
+                                    style={{margin: '0px 7px'}}
+                                />
+                            }
+                            label={<BoxLabel>緊急狀態</BoxLabel>}
+                        />
                     </FlexRowDiv>
                 </div>
                 <div className="group">
-                    <button className='button' onClick={bookFunction} >
-                        {inOrOut?'上班':'下班'}
+                    <button className='button' onClick={bookFunction}>
+                        {inOrOut ? '上班' : '下班'}
                     </button>
                 </div>
-                <div className="hr" />
+                <div className="hr"/>
                 <div className="foot-lnk">
-                    <div style={{ color: "#fff" }}>
+                    <div style={{color: "#fff"}}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
                 </div>
@@ -119,8 +140,8 @@ class BookCardBody extends React.Component {
             font-size: '15px'
         `,
         flexRowDiv: styled.div`
-            display: flex; 
-            flex-flow: row; 
+            display: flex;
+            flex-flow: row;
             align-items: center;
         `
     }
