@@ -53,26 +53,15 @@ class BookCardBody extends React.Component {
         const FlexRowDiv = this.styledDiv.flexRowDiv
 
         const isFirst = this.state.first
-        console.log(mobx.toJS(locked));
-
-        const bouncedUp = keyframes`
-            from { height:120px; }
-            to { height:0; }
-        `
-
-        const bouncedDown = keyframes`
-            from{ height:0; }
-            to{ height:120px; }
-        `
 
         let InputDiv = styled.div`
-            background-color: #ffffff;
+            overflow: hidden;
             height:${locked?'120px':'0px'};
         `
 
         if (!isFirst){
             InputDiv = InputDiv.extend`
-                animation: ${locked?bouncedDown:bouncedUp} .5s;
+                animation: ${locked?this.styledDiv.bouncedDown:this.styledDiv.bouncedUp} .5s;
             `
         }
 
@@ -153,6 +142,14 @@ class BookCardBody extends React.Component {
             display: flex;
             flex-flow: row;
             align-items: center;
+        `,
+        bouncedUp: keyframes`
+            from { height:120px; }
+            to { height:0; }
+        `,
+        bouncedDown: keyframes`
+            from{ height:0; }
+            to{ height:120px; }
         `
     }
 }
