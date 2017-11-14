@@ -9,11 +9,22 @@ import {FormGroup, FormControlLabel} from 'material-ui/Form'
 import bookStore from './stores/book'
 
 class BookCardBody extends React.Component {
-
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleBool = this.handleBool.bind(this);
+        this.state = {
+            first: true
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleBool = this.handleBool.bind(this)
+    }
+
+    componentDidUpdate(){
+        console.log('upd')
+        if(this.state.first){
+            this.setState({
+                first:false
+            })
+        }
     }
 
     handleChange(prop) {
@@ -41,30 +52,29 @@ class BookCardBody extends React.Component {
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
 
+        const isFirst = this.state.first
         console.log(mobx.toJS(locked));
 
         const bouncedUp = keyframes`
-            from{
-            height:120px;
-            }
-            to{
-            height:0;
-            }
-`
+            from { height:120px; }
+            to { height:0; }
+        `
 
         const bouncedDown = keyframes`
-            from{
-            height:0;
-            }
-            to{
-            height:120px;
-            }
-`
-        const InputDiv = styled.div`
-            background-color: #ffffff;
-            animation: ${locked?bouncedDown:bouncedUp} .5s linear 1;
-            height:${locked?'120px':'0px'}
+            from{ height:0; }
+            to{ height:120px; }
         `
+
+        let InputDiv = styled.div`
+            background-color: #ffffff;
+            height:${locked?'120px':'0px'};
+        `
+
+        if (!isFirst){
+            InputDiv = InputDiv.extend`
+                animation: ${locked?bouncedDown:bouncedUp} .5s;
+            `
+        }
 
         return (
             <div className={className}>
