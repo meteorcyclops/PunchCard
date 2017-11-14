@@ -51,7 +51,7 @@ a {
   height: 100%;
   position: absolute;
   padding: 90px 50px 50px 50px;
-  background: rgba(40, 57, 101, .9);
+  background: transparent;
 }
 
 .login-html .sign-in-htm,
