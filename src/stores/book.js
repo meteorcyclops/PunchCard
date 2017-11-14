@@ -18,7 +18,7 @@ const bookStore = observable({
 
     check: (type) => {
         writeBook(type, bookStore.uid, bookStore.pwd).then((res) => {
-            let status = res.ErrorMessage;
+            let status = res.ErrorMessage
             if (status === "") {
                 let ts = res.TimeStamp;
                 let dt = moment(ts).format("YYYY/MM/DD hh:mm:ss")
@@ -40,7 +40,7 @@ const bookStore = observable({
                 localStorage.setItem('pwd', bookStore.pwd)
                 localStorage.setItem('locked', bookStore.locked)
             }   
-            bookStore.setObs = ('status', status)
+            bookStore.setObs('status', status)
         })
     },
     onBoard: () => {

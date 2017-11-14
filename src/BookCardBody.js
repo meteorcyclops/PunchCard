@@ -2,12 +2,14 @@ import React from 'react'
 import {observer} from 'mobx-react' 
 import * as mobx from 'mobx' 
 import styled from 'styled-components'
-import Switch from 'material-ui/Switch';
-import Checkbox from 'material-ui/Checkbox';
+import Switch from 'material-ui/Switch'
+import Checkbox from 'material-ui/Checkbox'
+import { FormGroup, FormControlLabel } from 'material-ui/Form'
 
 import bookStore from './stores/book'
 
 class BookCardBody extends React.Component {
+
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -30,49 +32,69 @@ class BookCardBody extends React.Component {
         const className = this.props.className
         const bookFunction = this.props.onClick
         const inOrOut = this.props.in
-    
-        const BoxLabel = this.styledDiv.boxLabel
-        const FlexRowDiv = this.styledDiv.flexRowDiv
 
         const uid =    bookStore.uid
         const locked = bookStore.locked
         const pwd =    bookStore.pwd
-        const msg =    bookStore.status
+        const msg =    bookStore.status   
+
+        const BoxLabel = this.styledDiv.boxLabel
+        const FlexRowDiv = this.styledDiv.flexRowDiv
+        
+        console.log(mobx.toJS(locked));
+
+        const InputDiv = styled.div`
+            height: ${mobx.toJS(locked)?'0px':'120px'}; 
+            transition: all 2s ;
+        `
         
         return (
             <div className={className}>
-                <div className="group">
-                    <label htmlFor="uid" className="label">帳號</label>
-                    <input
-                        id="uid"
-                        disabled={locked}
-                        value={uid}
-                        onChange={this.handleChange('uid')}
-                        className="input"
-                    />
-                </div>
-                <div className="group">
-                    <label htmlFor="pwd" className="label">密碼</label>
-                    <input
-                        id="pwd"
-                        disabled={locked}
-                        type="password"
-                        value={pwd}
-                        onChange={this.handleChange('pwd')}
-                        className='input'
-                    />
-                </div>
-    
+                <InputDiv>
+                    <div className="group">
+                        <label htmlFor="uid" className="label">帳號</label>
+                        <input
+                            id="uid"
+                            disabled={locked}
+                            value={uid}
+                            onChange={this.handleChange('uid')}
+                            className="input"
+                        />
+                    </div>
+                    <div className="group">
+                        <label htmlFor="pwd" className="label">密碼</label>
+                        <input
+                            id="pwd"
+                            disabled={locked}
+                            type="password"
+                            value={pwd}
+                            onChange={this.handleChange('pwd')}
+                            className='input'
+                        />
+                    </div>
+                </InputDiv>
                 <div className="group">
                     <FlexRowDiv>
-                        <FlexRowDiv>
-                            <Switch onChange={this.handleBool('locked')} aria-label="locked" />
-                            <BoxLabel>鎖定帳密</BoxLabel>
-                        </FlexRowDiv>
-                        <FlexRowDiv>
-                            <Checkbox onChange={this.handleBool('emergency')} value="emergency" />
-                            <BoxLabel>緊急狀態</BoxLabel>
-                        </FlexRowDiv>
+                    <FormControlLabel
+                        control={
+                            <Switch 
+                                onChange={this.handleBool('locked')} 
+                                aria-label="locked" 
+                                checked={locked}
+                            />
+                        }
+                        label={<BoxLabel>鎖定帳密</BoxLabel>}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox 
+                                onChange={this.handleBool('emergency')} 
+                                value="emergency" 
+                                style = {{margin:'0px 7px'}}
+                            />
+                        }
+                        label={<BoxLabel>緊急狀態</BoxLabel>}
+                    />
                     </FlexRowDiv>
                 </div>
                 <div className="group">
@@ -91,7 +113,7 @@ class BookCardBody extends React.Component {
     }
 
     styledDiv = {
-        boxLabel: styled.div`
+        boxLabel: styled.span`
             color: #d8d8d8;
             left: -6px;
             top: 1px;
@@ -101,9 +123,9 @@ class BookCardBody extends React.Component {
         `,
         flexRowDiv: styled.div`
             display: flex; 
-            flex-direction: row; 
-            align-items: center
-        `,
+            flex-flow: row; 
+            align-items: center;
+        `
     }
 }
 
