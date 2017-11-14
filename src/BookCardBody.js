@@ -41,13 +41,10 @@ class BookCardBody extends React.Component {
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
         
-        console.log(mobx.toJS(locked));
-
         const InputDiv = styled.div`
-            height: ${mobx.toJS(locked)?'0px':'120px'}; 
+            height: ${locked?'0px':'120px'}; 
             transition: all 2s ;
         `
-        
         return (
             <div className={className}>
                 <InputDiv>

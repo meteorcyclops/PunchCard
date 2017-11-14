@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 // import green from 'material-ui/colors/green'
 
+import TitleTime    from './TitleTime'
 import BookCardBody from './BookCardBody'
 
 import bookStore from './stores/book'
@@ -11,6 +12,7 @@ class App extends Component {
     render() {
         return (
             <div className="for-the-overlay">
+                <TitleTime />
                 <div className="login-wrap">
                     <div className="login-html">
                         <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked/>

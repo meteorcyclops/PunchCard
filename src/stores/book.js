@@ -6,7 +6,7 @@ import writeBook from './writeBook'
 const bookStore = observable({
     uid: localStorage.getItem('uid') || "",
     pwd: localStorage.getItem('pwd') || "",
-    locked: localStorage.getItem('locked') || false,
+    locked: localStorage.getItem('locked')=='true' || false,
     status: "",
     emergency:  false,
 
