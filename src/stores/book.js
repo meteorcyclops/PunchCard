@@ -3,16 +3,39 @@ import {observable, action} from 'mobx'
 
 import writeBook from './writeBook'
 
+let rawBackendTime = moment()
+
 const bookStore = observable({
     uid: localStorage.getItem('uid') || "",
     pwd: localStorage.getItem('pwd') || "",
     locked: localStorage.getItem('locked')=='true' || false,
     status: "",
     emergency:  false,
+    backendTime: moment().format('hhmmss'),
 
     setObs: action(
         (key, value)=>{
             bookStore[key] = value
+        }
+    ),
+
+    getBackendTime: action(
+        ()=>{
+            const uri = 'https://gateway.kfsyscc.org/Gateway/a/CardClient/ClockTimeStamp'
+            fetch(uri)
+            .then( res=>res.json() )
+            .then( backdata=>{
+                if(backdata.TimeStamp){
+                    rawBackendTime = moment(backdata.TimeStamp)
+                    setInterval(
+                        ()=>{
+                            rawBackendTime = rawBackendTime.add(1, 'seconds')
+                            bookStore.setObs('backendTime', rawBackendTime.format('hhmmss'))
+                        },
+                        1000
+                    )
+                }
+            } )
         }
     ),
 

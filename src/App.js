@@ -9,6 +9,10 @@ import bookStore from './stores/book'
 import './css/App.css'
 
 class App extends Component {
+    componentWillMount(){
+        bookStore.getBackendTime()
+    }
+
     render() {
         return (
             <div className="for-the-overlay">
