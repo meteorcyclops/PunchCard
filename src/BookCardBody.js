@@ -97,11 +97,11 @@ class BookCardBody extends React.Component {
                         />
                     </FlexRowDiv>
                 </div>
-                <UpdownDiv>
+                <div className="group">
                     <UpdownButton onClick={bookFunction}>
                         {inOrOut ? '上班' : '下班'}
                     </UpdownButton>
-                </UpdownDiv>
+                </div>
                 <div className="hr"/>
                 <div className="foot-lnk">
                     <div style={{
@@ -128,17 +128,13 @@ class BookCardBody extends React.Component {
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
+            this.styledDiv.upDownButton = !locked?this.styledDiv.fatButton:this.styledDiv.thinButton
 
-            this.styledDiv.upDownButton = styled.button.attrs({
-                className:'button'
-            })`
-            
-            `
             this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
-                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} 0.2s linear;
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} .5s linear;
                 animation-fill-mode: forwards;
+                animation-delay: .5s;
             `
-
         }
     }
 
@@ -166,48 +162,58 @@ class BookCardBody extends React.Component {
             to{ height:140px; }
         `,
         inputDiv: styled.div`
-           
         `,
-        upDowndiv: styled.div.attrs({
-            className:'group'
-        })`
-            
-        `,
-        upDownButton: styled.button.attrs({
-            className:'button'
-        })`
-            
-        `,
-        makeItBigger: keyframes`
-            from{height: 31px;
-            font-size: 12px;
-            width: 100%;
-            margin: 0 auto;                 
-            }
-            to{
+        upDownButton: styled.button.attrs({ className:'button' })`
+        `
+        ,
+        // 胖按鈕
+        fatButton: styled.button.attrs({ className:'button' })`
             font-size: 60px;
-            height:105px;
-            width: 170px;
+            height: 105px;
+            width: 170px!important;
             margin: 0 auto;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                         
-            }
         `,
-        makeItSmaller: keyframes`
-            from{
-            font-size: 60px;
-            height:105px;
-            width: 170px;
-            margin: 0 auto;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
-            }
-            to{
+        // 瘦按鈕
+        thinButton: styled.button.attrs({ className:'button' })`
             height: 31px;
             font-size: 12px;
             width: 100%;
-            margin: 0 auto; 
+            margin: 0 auto;
+        `,
+        // 變胖
+        makeItBigger: keyframes`
+            from{
+                height: 31px;
+                font-size: 12px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            to{
+                font-size: 60px;
+                height:105px;
+                width: 170px;
+                margin: 0 auto;
+                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            }
+        `,
+        // 變瘦
+        makeItSmaller: keyframes`
+            from{
+                font-size: 60px;
+                height:105px;
+                width: 170px;
+                margin: 0 auto;
+                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            }
+            to{
+                height: 31px;
+                font-size: 12px;
+                width: 100%;
+                margin: 0 auto; 
             }
         `
 
