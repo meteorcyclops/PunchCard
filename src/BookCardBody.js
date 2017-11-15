@@ -12,20 +12,11 @@ import bookStore from './stores/book'
 class BookCardBody extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            first: true
-        }
         this.handleChange = this.handleChange.bind(this)
         this.handleBool = this.handleBool.bind(this)
     }
 
     componentDidUpdate(){
-        console.log('upd')
-        if(this.state.first){
-            this.setState({
-                first:false
-            })
-        }
     }
 
     handleChange(prop) {
@@ -44,27 +35,15 @@ class BookCardBody extends React.Component {
         const className = this.props.className
         const bookFunction = this.props.onClick
         const inOrOut = this.props.in
-
+        const locked = this.props.locked
+        
         const uid = bookStore.uid
-        const locked = bookStore.locked
         const pwd = bookStore.pwd
         const msg = bookStore.status
-
+        
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
-
-        const isFirst = this.state.first
-
-        let InputDiv = styled.div`
-            overflow: hidden;
-            height:${locked?'0px':'120px'};
-        `
-
-        if (!isFirst){
-            InputDiv = InputDiv.extend`
-                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
-            `
-        }
+        const InputDiv = this.styledDiv.inputDiv
 
         return (
             <div className={className}>
@@ -131,6 +110,21 @@ class BookCardBody extends React.Component {
         )
     }
 
+    componentWillReceiveProps(newProp){
+        const oldLocked = this.props.locked
+        const locked    = newProp.locked
+
+        if (oldLocked!=locked){
+            this.styledDiv.inputDiv = styled.div`
+                overflow: hidden;
+                height:${locked?'0px':'120px'};
+            `
+            this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
+                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
+            `
+        }
+    }
+
     styledDiv = {
         boxLabel: styled.span`
             color: #d8d8d8;
@@ -152,6 +146,10 @@ class BookCardBody extends React.Component {
         bouncedDown: keyframes`
             from{ height:0; }
             to{ height:120px; }
+        `,
+        inputDiv: styled.div`
+            overflow: hidden;
+            height: 120px;
         `
     }
 }

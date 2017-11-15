@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 // import green from 'material-ui/colors/green'
+import {observer} from 'mobx-react'
 
 import TitleTime    from './TitleTime'
 import BookCardBody from './BookCardBody'
@@ -14,6 +15,8 @@ class App extends Component {
     }
 
     render() {
+        const locked = bookStore.locked
+        console.log(locked);
         return (
             <div className="for-the-overlay">
                 {/*<TitleTime />*/}
@@ -29,10 +32,12 @@ class App extends Component {
                                 className="sign-in-htm"
                                 onClick={bookStore.onBoard}
                                 in
+                                locked={locked}
                             />
                             <BookCardBody
                                 className="sign-up-htm"
                                 onClick={bookStore.offBoard}
+                                locked={locked}
                             />
                         </div>
                     </div>
@@ -42,4 +47,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default observer(App)
