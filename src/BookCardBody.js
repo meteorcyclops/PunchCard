@@ -36,14 +36,17 @@ class BookCardBody extends React.Component {
         const bookFunction = this.props.onClick
         const inOrOut = this.props.in
         const locked = this.props.locked
-        
+
         const uid = bookStore.uid
         const pwd = bookStore.pwd
         const msg = bookStore.status
-        
+
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
         const InputDiv = this.styledDiv.inputDiv
+        const UpdownDiv = this.styledDiv.upDowndiv
+        const UpdownButton = this.styledDiv.upDownButton
+
 
         return (
             <div className={className}>
@@ -94,11 +97,11 @@ class BookCardBody extends React.Component {
                         />
                     </FlexRowDiv>
                 </div>
-                <div className="group">
-                    <button className='button' onClick={bookFunction}>
+                <UpdownDiv>
+                    <UpdownButton onClick={bookFunction}>
                         {inOrOut ? '上班' : '下班'}
-                    </button>
-                </div>
+                    </UpdownButton>
+                </UpdownDiv>
                 <div className="hr"/>
                 <div className="foot-lnk">
                     <div style={{color: "#fff"}}>
@@ -122,6 +125,9 @@ class BookCardBody extends React.Component {
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
+            this.styledDiv.upDownButton = styled.button`
+                animation: ${this.styledDiv.makeItBigger} .5s;
+            `
         }
     }
 
@@ -138,6 +144,7 @@ class BookCardBody extends React.Component {
             display: flex;
             flex-flow: row;
             align-items: center;
+            flex-wrap: wrap;
         `,
         bouncedUp: keyframes`
             from { height:120px; }
@@ -150,7 +157,23 @@ class BookCardBody extends React.Component {
         inputDiv: styled.div`
             overflow: hidden;
             height: 120px;
-        `
+        `,
+        upDowndiv: styled.div.attrs({
+            className:'group'
+        })`
+            
+        `,
+        upDownButton: styled.button.attrs({
+            className:'button'
+        })`
+            text-align: center;
+            height: 500px;
+        `,
+        makeItBigger: keyframes`
+            from{height: 0px}
+            to{height: 500px}
+`
+
     }
 }
 
