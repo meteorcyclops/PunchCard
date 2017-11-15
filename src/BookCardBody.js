@@ -56,7 +56,7 @@ class BookCardBody extends React.Component {
 
         let InputDiv = styled.div`
             overflow: hidden;
-            height:${locked?'120px':'0px'};
+            height:${locked?'0px':'120px'};
         `
 
         if (!isFirst){
