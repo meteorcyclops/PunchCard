@@ -12,7 +12,7 @@ class App extends Component {
     render() {
         return (
             <div className="for-the-overlay">
-                <TitleTime />
+                {/*<TitleTime />*/}
                 <div className="login-wrap">
                     <div className="login-html">
                         <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked/>

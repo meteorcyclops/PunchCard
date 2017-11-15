@@ -4,6 +4,7 @@ import * as mobx from 'mobx'
 import styled, {keyframes} from 'styled-components'
 import Switch from 'material-ui/Switch'
 import Checkbox from 'material-ui/Checkbox'
+import TitleTime    from './TitleTime'
 import {FormGroup, FormControlLabel} from 'material-ui/Form'
 
 import bookStore from './stores/book'
@@ -56,12 +57,12 @@ class BookCardBody extends React.Component {
 
         let InputDiv = styled.div`
             overflow: hidden;
-            height:${locked?'120px':'0px'};
+            height:${locked?'0px':'120px'};
         `
 
         if (!isFirst){
             InputDiv = InputDiv.extend`
-                animation: ${locked?this.styledDiv.bouncedDown:this.styledDiv.bouncedUp} .5s;
+                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
         }
 
@@ -124,6 +125,7 @@ class BookCardBody extends React.Component {
                     <div style={{color: "#fff"}}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
+                    <TitleTime />
                 </div>
             </div>
         )
