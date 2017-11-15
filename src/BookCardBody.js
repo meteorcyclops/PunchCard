@@ -104,7 +104,10 @@ class BookCardBody extends React.Component {
                 </UpdownDiv>
                 <div className="hr"/>
                 <div className="foot-lnk">
-                    <div style={{color: "#fff"}}>
+                    <div style={{
+                        color: "#fff", textAlign: 'justify',
+                        textJustify: 'inter-ideographic'
+                    }}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
                     <TitleTime />
@@ -120,7 +123,7 @@ class BookCardBody extends React.Component {
         if (oldLocked!=locked){
             this.styledDiv.inputDiv = styled.div`
                 overflow: hidden;
-                height:${locked?'0px':'120px'};
+                height:${locked?'0px':'140px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
@@ -155,12 +158,12 @@ class BookCardBody extends React.Component {
             flex-wrap: wrap;
         `,
         bouncedUp: keyframes`
-            from { height:120px; }
+            from { height:140px; }
             to { height:0; }
         `,
         bouncedDown: keyframes`
             from{ height:0; }
-            to{ height:120px; }
+            to{ height:140px; }
         `,
         inputDiv: styled.div`
            
