@@ -36,14 +36,17 @@ class BookCardBody extends React.Component {
         const bookFunction = this.props.onClick
         const inOrOut = this.props.in
         const locked = this.props.locked
-        
+
         const uid = bookStore.uid
         const pwd = bookStore.pwd
         const msg = bookStore.status
-        
+
         const BoxLabel = this.styledDiv.boxLabel
         const FlexRowDiv = this.styledDiv.flexRowDiv
         const InputDiv = this.styledDiv.inputDiv
+        const UpdownDiv = this.styledDiv.upDowndiv
+        const UpdownButton = this.styledDiv.upDownButton
+
 
         return (
             <div className={className}>
@@ -80,7 +83,7 @@ class BookCardBody extends React.Component {
                                     checked={locked}
                                 />
                             }
-                            label={<BoxLabel>鎖定帳密</BoxLabel>}
+                            label={<BoxLabel>帳密鎖定</BoxLabel>}
                         />
                         <FormControlLabel
                             control={
@@ -94,14 +97,17 @@ class BookCardBody extends React.Component {
                         />
                     </FlexRowDiv>
                 </div>
-                <div className="group">
-                    <button className='button' onClick={bookFunction}>
+                <UpdownDiv>
+                    <UpdownButton onClick={bookFunction}>
                         {inOrOut ? '上班' : '下班'}
-                    </button>
-                </div>
+                    </UpdownButton>
+                </UpdownDiv>
                 <div className="hr"/>
                 <div className="foot-lnk">
-                    <div style={{color: "#fff"}}>
+                    <div style={{
+                        color: "#fff", textAlign: 'justify',
+                        textJustify: 'inter-ideographic'
+                    }}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
                     <TitleTime />
@@ -117,11 +123,22 @@ class BookCardBody extends React.Component {
         if (oldLocked!=locked){
             this.styledDiv.inputDiv = styled.div`
                 overflow: hidden;
-                height:${locked?'0px':'120px'};
+                height:${locked?'0px':'140px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
-                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
+                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
+
+            this.styledDiv.upDownButton = styled.button.attrs({
+                className:'button'
+            })`
+            
+            `
+            this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} 0.2s linear;
+                animation-fill-mode: forwards;
+            `
+
         }
     }
 
@@ -138,19 +155,63 @@ class BookCardBody extends React.Component {
             display: flex;
             flex-flow: row;
             align-items: center;
+            flex-wrap: wrap;
         `,
         bouncedUp: keyframes`
-            from { height:120px; }
+            from { height:140px; }
             to { height:0; }
         `,
         bouncedDown: keyframes`
             from{ height:0; }
-            to{ height:120px; }
+            to{ height:140px; }
         `,
         inputDiv: styled.div`
-            overflow: hidden;
-            height: 120px;
+           
+        `,
+        upDowndiv: styled.div.attrs({
+            className:'group'
+        })`
+            
+        `,
+        upDownButton: styled.button.attrs({
+            className:'button'
+        })`
+            
+        `,
+        makeItBigger: keyframes`
+            from{height: 31px;
+            font-size: 12px;
+            width: 100%;
+            margin: 0 auto;                 
+            }
+            to{
+            font-size: 60px;
+            height:105px;
+            width: 170px;
+            margin: 0 auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                         
+            }
+        `,
+        makeItSmaller: keyframes`
+            from{
+            font-size: 60px;
+            height:105px;
+            width: 170px;
+            margin: 0 auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+            }
+            to{
+            height: 31px;
+            font-size: 12px;
+            width: 100%;
+            margin: 0 auto; 
+            }
         `
+
+
     }
 }
 
