@@ -123,7 +123,7 @@ class BookCardBody extends React.Component {
                 height:${locked?'0px':'120px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
-                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
+                animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
 
             this.styledDiv.upDownButton = styled.button.attrs({
@@ -132,7 +132,7 @@ class BookCardBody extends React.Component {
             
             `
             this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
-                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} 5s 0s cubic-bezier(.28,-0.8,.74,1.59);
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} 0.2s linear;
                 animation-fill-mode: forwards;
             `
 
@@ -176,18 +176,35 @@ class BookCardBody extends React.Component {
             
         `,
         makeItBigger: keyframes`
-            from{background-color: #1161ee;
-                            
+            from{height: 31px;
+            font-size: 12px;
+            width: 100%;
+            margin: 0 auto;                 
             }
-            to{background-color: #aa495c;
+            to{
+            font-size: 60px;
+            height:105px;
+            width: 170px;
+            margin: 0 auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                          
             }
         `,
         makeItSmaller: keyframes`
-            from{background-color: #aaaaaa;
-                            
+            from{
+            font-size: 60px;
+            height:105px;
+            width: 170px;
+            margin: 0 auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
             }
-            to{background-color: #40ee0e;
+            to{
+            height: 31px;
+            font-size: 12px;
+            width: 100%;
+            margin: 0 auto; 
             }
         `
 
