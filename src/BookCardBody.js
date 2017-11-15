@@ -83,7 +83,7 @@ class BookCardBody extends React.Component {
                                     checked={locked}
                                 />
                             }
-                            label={<BoxLabel>鎖定帳密</BoxLabel>}
+                            label={<BoxLabel>帳密鎖定</BoxLabel>}
                         />
                         <FormControlLabel
                             control={
@@ -125,9 +125,17 @@ class BookCardBody extends React.Component {
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} .5s 0s cubic-bezier(.28,-0.8,.74,1.59);
             `
-            this.styledDiv.upDownButton = styled.button`
-                animation: ${this.styledDiv.makeItBigger} .5s;
+
+            this.styledDiv.upDownButton = styled.button.attrs({
+                className:'button'
+            })`
+            
             `
+            this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} 5s 0s cubic-bezier(.28,-0.8,.74,1.59);
+                animation-fill-mode: forwards;
+            `
+
         }
     }
 
@@ -155,8 +163,7 @@ class BookCardBody extends React.Component {
             to{ height:120px; }
         `,
         inputDiv: styled.div`
-            overflow: hidden;
-            height: 120px;
+           
         `,
         upDowndiv: styled.div.attrs({
             className:'group'
@@ -166,13 +173,24 @@ class BookCardBody extends React.Component {
         upDownButton: styled.button.attrs({
             className:'button'
         })`
-            text-align: center;
-            height: 500px;
+            
         `,
         makeItBigger: keyframes`
-            from{height: 0px}
-            to{height: 500px}
-`
+            from{background-color: #1161ee;
+                            
+            }
+            to{background-color: #aa495c;
+                         
+            }
+        `,
+        makeItSmaller: keyframes`
+            from{background-color: #aaaaaa;
+                            
+            }
+            to{background-color: #40ee0e;
+            }
+        `
+
 
     }
 }
