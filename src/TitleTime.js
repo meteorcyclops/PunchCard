@@ -11,7 +11,7 @@ class TitleTime extends React.Component {
     render() {
         const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDhhmmss')
         return (
-            <div>
+            <div  style={{fontSize:'24px',color:'rgba(255,255,255,0.15)'}}>
                 現在時間: 
                 <span>
                     {nowTimeM.format('hh')}
