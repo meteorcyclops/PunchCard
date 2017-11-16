@@ -2,6 +2,7 @@ import moment from 'moment'
 import {observable, action} from 'mobx'
 
 import writeBook from './writeBook'
+import checkBook from './checkBook'
 
 class BookStore {
     @observable
@@ -15,7 +16,7 @@ class BookStore {
     @observable
     emergency=  false
     @observable
-    backendTime= moment().format('hhmmss')
+    backendTime= moment().format('YYYYMMDDhhmmss')
 
     @action
     setObs(key, value){
@@ -33,7 +34,7 @@ class BookStore {
                 setInterval(
                     ()=>{
                         this.rawBackendTime = this.rawBackendTime.add(1, 'seconds')
-                        this.setObs('backendTime', this.rawBackendTime.format('hhmmss'))
+                        this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDhhmmss'))
                     },
                     1000
                 )
@@ -42,32 +43,16 @@ class BookStore {
     }
 
     check = (type) => {
-        writeBook(type, bookStore.uid, bookStore.pwd).then((res) => {
-            let status = res.ErrorMessage
-            if (status === "") {
-                let ts = res.TimeStamp;
-                let dt = moment(ts).format("YYYY/MM/DD hh:mm:ss")
-                let username = res.UserName;
-                if (type === 1) {
-                    status = `${username} 上班打卡成功(${dt})`;
-                }
-                if (type === 2) {
-                    status = `${username} 緊急上班打卡成功(${dt})`
-                }
-                if (type === 3) {
-                    status = `${username} 緊急下班打卡成功(${dt})`
-                }
-                if (type === 9) {
-                    status = `${username} 下班打卡成功(${dt})`
-                }
-
-                localStorage.setItem('uid', this.uid)
-                localStorage.setItem('pwd', this.pwd)
-                localStorage.setItem('locked', this.locked)
-            }   
-            this.setObs('status', status)
-        })
+        if (type != 2 && type != 3 ){
+            const check = checkBook.checkPunch(type)
+            if(check){
+                writeBook(type, bookStore.uid, bookStore.pwd)
+            }
+        }else{
+            writeBook(type, bookStore.uid, bookStore.pwd)
+        }
     }
+    
     onBoard= () => {
         if (this.emergency) {
             this.check(2);

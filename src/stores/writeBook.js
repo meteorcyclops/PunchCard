@@ -1,4 +1,7 @@
 import Encrypt from 'jsencrypt'
+import moment from 'moment'
+
+import bookStore from './book'
 
 const url = "https://gateway.kfsyscc.org/Gateway/a/CardClient/CardCheckVerify/"
 let headers = new Headers();
@@ -26,6 +29,30 @@ const writeBook = (cardtype, username, password) => {
         body: data
     }).then((res) => {
         return res.json()
+    }).then((res) => {
+        let status = res.ErrorMessage
+        if (status === "") {
+            let ts = res.TimeStamp;
+            let dt = moment(ts).format("YYYY/MM/DD hh:mm:ss")
+            let username = res.UserName;
+            if (cardtype === 1) {
+                status = `${username} 上班打卡成功(${dt})`;
+            }
+            if (cardtype === 2) {
+                status = `${username} 緊急上班打卡成功(${dt})`
+            }
+            if (cardtype === 3) {
+                status = `${username} 緊急下班打卡成功(${dt})`
+            }
+            if (cardtype === 9) {
+                status = `${username} 下班打卡成功(${dt})`
+            }
+
+            localStorage.setItem('uid', this.uid)
+            localStorage.setItem('pwd', this.pwd)
+            localStorage.setItem('locked', this.locked)
+        }   
+        bookStore.setObs('status', status)
     })
 }
 
