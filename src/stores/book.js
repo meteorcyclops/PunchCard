@@ -43,14 +43,7 @@ class BookStore {
     }
 
     check = (type) => {
-        if (type != 2 && type != 3 ){
-            const check = checkBook.checkPunch(type)
-            if(check){
-                writeBook(type, bookStore.uid, bookStore.pwd)
-            }
-        }else{
-            writeBook(type, bookStore.uid, bookStore.pwd)
-        }
+        writeBook(type, bookStore.uid, bookStore.pwd)
     }
     
     onBoard= () => {
