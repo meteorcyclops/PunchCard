@@ -132,9 +132,9 @@ class BookCardBody extends React.Component {
             this.styledDiv.upDownButton = !locked?this.styledDiv.fatButton:this.styledDiv.thinButton
 
             this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
-                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} .4s cubic-bezier(.17,.67,.83,.67);
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} .4s cubic-bezier(.28,-0.8,.74,1.59);
                 animation-fill-mode: forwards;
-                animation-delay: 0.6s;
+                animation-delay: 0.45s;
             `
         }
     }
@@ -181,9 +181,9 @@ class BookCardBody extends React.Component {
         ,
         // 胖按鈕
         fatButton: styled.button.attrs({ className:'button' })`
-            font-size: 60px;
+            font-size: 45px;
             height: 105px;
-            width: 170px;
+            width: 220px;
             margin: 0 auto;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -206,9 +206,9 @@ class BookCardBody extends React.Component {
                 text-shadow: none ;
             }
             to{
-                font-size: 60px;
+                font-size: 45px;
                 height:105px;
-                width: 170px;
+                width: 220px;
                 margin: 0 auto;
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
                 text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -217,9 +217,9 @@ class BookCardBody extends React.Component {
         // 變瘦
         makeItSmaller: keyframes`
             from{
-                font-size: 60px;
+                font-size: 45px;
                 height:105px;
-                width: 170px;
+                width: 220px;
                 margin: 0 auto;
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
                 text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
