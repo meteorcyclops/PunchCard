@@ -9,12 +9,12 @@ import bookStore from './stores/book'
 
 class TitleTime extends React.Component {
     render() {
-        const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDhhmmss')
+        const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
         return (
             <div  style={{fontSize:'24px',color:'rgba(255,255,255,0.15)'}}>
                 現在時間: 
                 <span>
-                    {nowTimeM.format('hh')}
+                    {nowTimeM.format('HH')}
                 </span>
                 時
                 <span>

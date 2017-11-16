@@ -2,7 +2,6 @@ import moment from 'moment'
 import {observable, action} from 'mobx'
 
 import writeBook from './writeBook'
-import checkBook from './checkBook'
 
 class BookStore {
     @observable
@@ -16,7 +15,7 @@ class BookStore {
     @observable
     emergency=  false
     @observable
-    backendTime= moment().format('YYYYMMDDhhmmss')
+    backendTime= moment().format('YYYYMMDDHHmmss')
 
     @action
     setObs(key, value){
@@ -31,10 +30,11 @@ class BookStore {
         .then( backdata=>{
             if(backdata.TimeStamp){
                 this.rawBackendTime = moment(backdata.TimeStamp)
+                
                 setInterval(
                     ()=>{
                         this.rawBackendTime = this.rawBackendTime.add(1, 'seconds')
-                        this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDhhmmss'))
+                        this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
                     },
                     1000
                 )
