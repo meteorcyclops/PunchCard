@@ -2,7 +2,7 @@ import moment from 'moment'
 import {observable, action} from 'mobx'
 
 import writeBook from './writeBook'
-import checkBook from './checkBook'
+// import checkBook from './checkBook'
 
 class BookStore {
     @observable
