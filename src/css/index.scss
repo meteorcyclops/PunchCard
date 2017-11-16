@@ -1,3 +1,4 @@
+@charset "UTF-8";
 
 * {
   outline: none;
@@ -110,9 +111,14 @@ a {
 }
 
 .login-form .group .label,
-.login-form .group .input,
-.login-form .group .button {
+.login-form .group .input{
   width: 100%;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+
+.login-form .group .button{
   color: #fff;
   display: block;
 }
@@ -207,4 +213,10 @@ a {
 
 input, button{
   height:31px;
+}
+
+// 緊急狀態 打勾框框
+
+.MuiButtonBase-root-24,.MuiIconButton-root-15,.MuiSwitchBase-root-60,.MuiSwitchBase-default-62,.MuiCheckbox-default-57{
+  color:#7deca5!important;
 }

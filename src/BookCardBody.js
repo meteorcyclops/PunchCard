@@ -41,7 +41,8 @@ class BookCardBody extends React.Component {
         const pwd = bookStore.pwd
         const msg = bookStore.status
 
-        const BoxLabel = this.styledDiv.boxLabel
+        const BoxLabelLock = this.styledDiv.boxLabelLock
+        const BoxLabelEmer = this.styledDiv.boxLabelEmergency
         const FlexRowDiv = this.styledDiv.flexRowDiv
         const InputDiv = this.styledDiv.inputDiv
         const UpdownDiv = this.styledDiv.upDowndiv
@@ -83,7 +84,7 @@ class BookCardBody extends React.Component {
                                     checked={locked}
                                 />
                             }
-                            label={<BoxLabel>帳密鎖定</BoxLabel>}
+                            label={<BoxLabelLock>帳密鎖定</BoxLabelLock>}
                         />
                         <FormControlLabel
                             control={
@@ -93,7 +94,7 @@ class BookCardBody extends React.Component {
                                     style={{margin: '0px 7px'}}
                                 />
                             }
-                            label={<BoxLabel>緊急狀態</BoxLabel>}
+                            label={<BoxLabelEmer>緊急狀態</BoxLabelEmer>}
                         />
                     </FlexRowDiv>
                 </div>
@@ -131,18 +132,26 @@ class BookCardBody extends React.Component {
             this.styledDiv.upDownButton = !locked?this.styledDiv.fatButton:this.styledDiv.thinButton
 
             this.styledDiv.upDownButton = this.styledDiv.upDownButton.extend`
-                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} .5s linear;
+                animation: ${locked?this.styledDiv.makeItBigger:this.styledDiv.makeItSmaller} .4s cubic-bezier(.17,.67,.83,.67);
                 animation-fill-mode: forwards;
-                animation-delay: .5s;
+                animation-delay: 0.6s;
             `
         }
     }
 
     styledDiv = {
-        boxLabel: styled.span`
+        boxLabelLock: styled.span`
             color: #d8d8d8;
-            left: -6px;
-            top: 1px;
+            left: -4px;
+            top: -1px;
+            position: relative;
+            font-weight: normal;
+            font-size: '15px'
+        `,
+        boxLabelEmergency: styled.span`
+            color: #d8d8d8;
+            left: -9px;
+            top: -1px;
             position: relative;
             font-weight: normal;
             font-size: '15px'
@@ -152,6 +161,7 @@ class BookCardBody extends React.Component {
             flex-flow: row;
             align-items: center;
             flex-wrap: wrap;
+            //justify-content: center;
         `,
         bouncedUp: keyframes`
             from { height:140px; }
@@ -164,31 +174,36 @@ class BookCardBody extends React.Component {
         inputDiv: styled.div`
         `,
         upDownButton: styled.button.attrs({ className:'button' })`
+            width: 95%;
+            height:45px;
+            margin:0 auto;
         `
         ,
         // 胖按鈕
         fatButton: styled.button.attrs({ className:'button' })`
             font-size: 60px;
             height: 105px;
-            width: 170px!important;
+            width: 170px;
             margin: 0 auto;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         `,
         // 瘦按鈕
         thinButton: styled.button.attrs({ className:'button' })`
-            height: 31px;
             font-size: 12px;
-            width: 100%;
-            margin: 0 auto;
+            width: 95%;
+            height:45px;
+            margin:0 auto;
         `,
         // 變胖
         makeItBigger: keyframes`
             from{
-                height: 31px;
+                width: 95%;
+                height:45px;
+                margin:0 auto;
                 font-size: 12px;
-                margin: 0 auto;
-                width: 100%;
+                box-shadow: none;
+                text-shadow: none ;
             }
             to{
                 font-size: 60px;
@@ -210,10 +225,12 @@ class BookCardBody extends React.Component {
                 text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             }
             to{
-                height: 31px;
+                width: 95%;
+                height:45px;
+                margin:0 auto;
                 font-size: 12px;
-                width: 100%;
-                margin: 0 auto; 
+                box-shadow: none;
+                text-shadow: none ; 
             }
         `
 

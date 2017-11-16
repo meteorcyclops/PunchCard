@@ -22,10 +22,10 @@ class App extends Component {
                 {/*<TitleTime />*/}
                 <div className="login-wrap">
                     <div className="login-html">
-                        <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked style={{fontSize:'26px'}}/>
-                        <label htmlFor="tab-1" className="tab">上班</label>
-                        <input id="tab-2" type="radio" name="tab" className="sign-up" style={{fontSize:'26px'}}/>
-                        <label htmlFor="tab-2" className="tab">下班</label>
+                        <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked/>
+                        <label htmlFor="tab-1" className="tab" style={{fontSize:'26px'}}>上班</label>
+                        <input id="tab-2" type="radio" name="tab" className="sign-up"/>
+                        <label htmlFor="tab-2" className="tab" style={{fontSize:'26px'}}>下班</label>
 
                         <div className="login-form" style={{marginTop: '8%'}}>
                             <BookCardBody
