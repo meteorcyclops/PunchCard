@@ -176,12 +176,12 @@ class BookCardBody extends React.Component {
             //justify-content: center;
         `,
         bouncedUp: keyframes`
-            from { height:140px; }
+            from { height:200px; }
             to { height:0; }
         `,
         bouncedDown: keyframes`
             from{ height:0; }
-            to{ height:140px; }
+            to{ height:200px; }
         `,
         inputDiv: styled.div`
         `,
