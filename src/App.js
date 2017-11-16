@@ -16,7 +16,6 @@ class App extends Component {
 
     render() {
         const locked = bookStore.locked
-        console.log(locked);
         return (
             <div className="for-the-overlay">
                 {/*<TitleTime />*/}

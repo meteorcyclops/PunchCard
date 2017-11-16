@@ -10,21 +10,14 @@ import bookStore from './stores/book'
 class TitleTime extends React.Component {
     render() {
         const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
+        // 現在時間: 
         return (
-            <div  style={{fontSize:'24px',color:'rgba(255,255,255,0.15)'}}>
-                現在時間: 
-                <span>
+            <div style={{fontSize:'60px',color:'rgba(255,255,255,0.1)', textAlign: 'center'}}>
                     {nowTimeM.format('HH')}
-                </span>
-                時
-                <span>
+                :
                     {nowTimeM.format('mm')}
-                </span>
-                分
-                <span>
+                :
                     {nowTimeM.format('ss')}
-                </span>
-                秒
             </div>
         )
     }

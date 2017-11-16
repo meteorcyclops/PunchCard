@@ -53,17 +53,26 @@ class BookCardBody extends React.Component {
             <div className={className}>
                 <InputDiv>
                     <div className="group">
-                        <label htmlFor="uid" className="label">帳號</label>
+                        <label 
+                            htmlFor="uid" 
+                            className="label"
+                            style={{padding:'10px 0px', fontSize: 17}}
+                        >帳號</label>
                         <input
                             id="uid"
                             disabled={locked}
                             value={uid}
                             onChange={this.handleChange('uid')}
                             className="input"
+                            style={{ height: '40px', fontSize: 20 }}
                         />
                     </div>
                     <div className="group">
-                        <label htmlFor="pwd" className="label">密碼</label>
+                        <label 
+                            htmlFor="pwd" 
+                            className="label"
+                            style={{padding:'10px 0px', fontSize: 17}}
+                        >密碼</label>
                         <input
                             id="pwd"
                             disabled={locked}
@@ -71,14 +80,16 @@ class BookCardBody extends React.Component {
                             value={pwd}
                             onChange={this.handleChange('pwd')}
                             className='input'
+                            style={{ height: '40px', fontSize: 20 }}
                         />
                     </div>
                 </InputDiv>
-                <div className="group">
+                <div className="group" style={{ display: 'flex', justifyContent: 'center'}}>
                     <FlexRowDiv>
                         <FormControlLabel
                             control={
                                 <Switch
+                                    className='greenSwitch'
                                     onChange={this.handleBool('locked')}
                                     aria-label="locked"
                                     checked={locked}
@@ -89,6 +100,7 @@ class BookCardBody extends React.Component {
                         <FormControlLabel
                             control={
                                 <Checkbox
+                                    className='greenSwitch'
                                     onChange={this.handleBool('emergency')}
                                     value="emergency"
                                     style={{margin: '0px 7px'}}
@@ -111,8 +123,8 @@ class BookCardBody extends React.Component {
                     }}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
-                    <TitleTime />
                 </div>
+                <TitleTime />
             </div>
         )
     }
@@ -124,7 +136,7 @@ class BookCardBody extends React.Component {
         if (oldLocked!=locked){
             this.styledDiv.inputDiv = styled.div`
                 overflow: hidden;
-                height:${locked?'0px':'140px'};
+                height:${locked?'0px':'200px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
@@ -190,7 +202,7 @@ class BookCardBody extends React.Component {
         `,
         // 瘦按鈕
         thinButton: styled.button.attrs({ className:'button' })`
-            font-size: 12px;
+            font-size: 20px;
             width: 95%;
             height:45px;
             margin:0 auto;
@@ -201,7 +213,7 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                font-size: 20px;
                 box-shadow: none;
                 text-shadow: none ;
             }
@@ -228,7 +240,7 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                font-size: 20px;
                 box-shadow: none;
                 text-shadow: none ; 
             }

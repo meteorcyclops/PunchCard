@@ -168,7 +168,7 @@ a {
 
 .hr {
   height: 2px;
-  margin: 60px 0 50px 0;
+  margin: 35px 0 50px 0;
   background: rgba(255, 255, 255, 0.2); }
 
 .foot-lnk {
@@ -177,7 +177,9 @@ a {
 input, button {
   height: 31px; }
 
-.MuiButtonBase-root-24, .MuiIconButton-root-15, .MuiSwitchBase-root-60, .MuiSwitchBase-default-62, .MuiCheckbox-default-57 {
-  color: #7deca5 !important; }
+.greenSwitch{
+  color: #7deca5 }
+.greenSwitch>span{
+  color: #7deca5 }
 
 /*# sourceMappingURL=index.css.map */
