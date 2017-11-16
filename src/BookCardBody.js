@@ -105,13 +105,13 @@ class BookCardBody extends React.Component {
                 </div>
                 <div className="hr"/>
                 <div className="foot-lnk">
+                    <TitleTime />
                     <div style={{
                         color: "#fff", textAlign: 'justify',
                         textJustify: 'inter-ideographic'
                     }}>
                         <h3>{mobx.toJS(msg)}</h3>
                     </div>
-                    <TitleTime />
                 </div>
             </div>
         )
@@ -181,16 +181,16 @@ class BookCardBody extends React.Component {
         ,
         // 胖按鈕
         fatButton: styled.button.attrs({ className:'button' })`
-            font-size: 60px;
+            
             height: 105px;
-            width: 170px;
+            width: 95%;
             margin: 0 auto;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         `,
         // 瘦按鈕
         thinButton: styled.button.attrs({ className:'button' })`
-            font-size: 12px;
+            
             width: 95%;
             height:45px;
             margin:0 auto;
@@ -201,14 +201,14 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                
                 box-shadow: none;
                 text-shadow: none ;
             }
             to{
-                font-size: 60px;
+                
                 height:105px;
-                width: 170px;
+                
                 margin: 0 auto;
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
                 text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -217,9 +217,9 @@ class BookCardBody extends React.Component {
         // 變瘦
         makeItSmaller: keyframes`
             from{
-                font-size: 60px;
+                
                 height:105px;
-                width: 170px;
+                
                 margin: 0 auto;
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
                 text-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -228,7 +228,7 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                
                 box-shadow: none;
                 text-shadow: none ; 
             }
