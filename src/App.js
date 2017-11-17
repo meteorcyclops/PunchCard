@@ -85,14 +85,23 @@ class App extends Component {
         `
         return (
             <div className="for-the-overlay">
-                <Dialog open={bookStore.dialogOpen} onRequestClose={this.handleRequestClose.bind(this)}>
+                <Dialog 
+                    open={bookStore.dialogOpen} 
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    classes={{ 
+                        paper: "dialogPaper"
+                    }}
+                >
                     <DialogContent>
-                        <DialogContentText>
+                        <DialogContentText style = {{color: 'white'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleRequestClose} color="primary">
+                        <Button 
+                            onClick={this.handleRequestClose} 
+                            style = {{color: 'white'}}
+                        >
                             確認
                         </Button>
                     </DialogActions>
