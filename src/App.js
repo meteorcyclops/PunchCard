@@ -32,7 +32,7 @@ class App extends Component {
                         <input id="tab-2" type="radio" name="tab" className="sign-up"/>
                         <InputPounch htmlFor="tab-2" className="tab">下班</InputPounch>
 
-                        <div className="login-form" style={{marginTop: '8%'}}>
+                        <div className="login-form" style={{marginTop: '5%'}}>
                             <BookCardBody
                                 className="sign-in-htm"
                                 onClick={bookStore.onBoard}
