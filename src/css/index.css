@@ -36,6 +36,7 @@ a {
 
 .login-wrap {
   width: 100%;
+  max-width: 525px; 
   margin: auto;
   position: relative; }
 
