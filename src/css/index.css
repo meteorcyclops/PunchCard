@@ -47,14 +47,23 @@ a {
   padding: 50px 35px;
   background: transparent; }
 
-.login-html .sign-in-htm,
-.login-html .sign-up-htm {
+.login-html .sign-in-htm {
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
   transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+.login-html .sign-up-htm {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transform: rotateY(-180deg);
   backface-visibility: hidden;
   transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
