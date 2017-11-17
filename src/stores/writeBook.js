@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import bookStore from './book'
 
-const url = "http://localhost:8020/hrapi/card" //https://staff.kfsyscc.org/hrapi/card/
+const url = "https://staff.kfsyscc.org/hrapi/card" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
 headers.append("Content-Type", "application/json")
 headers.append("Accept", "application/json")
