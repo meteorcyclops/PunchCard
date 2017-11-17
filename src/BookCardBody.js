@@ -202,10 +202,12 @@ class BookCardBody extends React.Component {
         `,
         // 瘦按鈕
         thinButton: styled.button.attrs({ className:'button' })`
-            font-size: 20px;
             width: 95%;
             height:45px;
             margin:0 auto;
+            font-size: 20px;
+            box-shadow: none;
+            text-shadow: none ;
         `,
         // 變胖
         makeItBigger: keyframes`

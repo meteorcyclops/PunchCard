@@ -36,8 +36,8 @@ a {
 
 .login-wrap {
   width: 100%;
-  max-width: 525px; 
   margin: auto;
+  max-width: 525px;
   position: relative; }
 
 .login-html {
@@ -174,12 +174,13 @@ a {
   text-align: center; }
 
 input, button {
-  height: 31px; }
+  height: 31px;
+  font-size: 20px; }
 
-.greenSwitch{
-  color: #7deca5 ;
-}
-.greenSwitch>span{
-  color: #7deca5 }
+.greenSwitch {
+  color: #7deca5; }
+
+.greenSwitch > span {
+  color: #7deca5; }
 
 /*# sourceMappingURL=index.css.map */

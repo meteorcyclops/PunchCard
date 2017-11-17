@@ -2,6 +2,7 @@
 
 * {
   outline: none;
+  //font-family: Microsoft JhengHei;
 }
 
 .for-the-overlay {
@@ -48,7 +49,6 @@ a {
   width: 100%;
   margin: auto;
   max-width: 525px;
-  min-height: 670px;
   position: relative;
 }
 
@@ -56,7 +56,7 @@ a {
   width: 100%;
   height: 100%;
   position: absolute;
-  padding: 90px 50px 50px 50px;
+  padding: 50px 35px;
   background: transparent;
 }
 
@@ -111,14 +111,14 @@ a {
 }
 
 .login-form .group .label,
-.login-form .group .input{
+.login-form .group .input {
   width: 100%;
   color: #fff;
   display: block;
   margin: 0 auto;
 }
 
-.login-form .group .button{
+.login-form .group .button {
   color: #fff;
   display: block;
 }
@@ -203,7 +203,7 @@ a {
 
 .hr {
   height: 2px;
-  margin: 60px 0 50px 0;
+  margin: 35px 0 50px 0;
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -211,12 +211,15 @@ a {
   text-align: center;
 }
 
-input, button{
-  height:31px;
+input, button {
+  height: 31px;
+  font-size: 20px;
 }
 
-// 緊急狀態 打勾框框
+.greenSwitch {
+  color: #7deca5;
+}
 
-.MuiButtonBase-root-24,.MuiIconButton-root-15,.MuiSwitchBase-root-60,.MuiSwitchBase-default-62,.MuiCheckbox-default-57{
-  color:#7deca5!important;
+.greenSwitch > span {
+  color: #7deca5
 }
