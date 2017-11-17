@@ -67,6 +67,12 @@ a {
   backface-visibility: hidden;
   transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
+.touchSlideRight {
+  transform: rotateY(180deg); }
+
+.touchSlideLeft {
+  transform: rotateY(-180deg); }
+
 .login-html .sign-in,
 .login-html .sign-up,
 .login-form .group .check {
