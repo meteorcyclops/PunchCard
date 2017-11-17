@@ -7,6 +7,8 @@ import Dialog, {
     DialogContent,
     DialogContentText,
   } from 'material-ui/Dialog'
+import Rx from 'rxjs';
+import $ from 'jquery'
 
   
 import TitleTime from './TitleTime'
@@ -18,9 +20,13 @@ import styled, {keyframes} from 'styled-components'
 import './css/App.css'
 
 class App extends Component {
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.timeCount = false
+        this.ableBack = true
     }
+
     componentWillMount() {
         bookStore.getBackendTime()
         bookStore.getLastPunch()
@@ -28,6 +34,41 @@ class App extends Component {
 
     handleRequestClose(){
         bookStore.setObs('dialogOpen', false)
+    }
+
+    componentDidMount() {
+        const elementRoot = document.querySelector('body')
+        const touchStartEvent = Rx.Observable.fromEvent(elementRoot, 'touchstart')
+        const touchMoveEvent = Rx.Observable.fromEvent(elementRoot, 'touchmove')
+        const touchEndEvent = Rx.Observable.fromEvent(elementRoot, 'touchend')
+
+        const observerBackPage = touchStartEvent
+            .switchMap(
+                (e) => {
+                    this.x = e.touches[0].clientX
+                    this.timeCount = true
+                    _.delay(() => this.timeCount = false, 500)
+                    return touchMoveEvent.takeUntil(touchEndEvent)
+                })
+
+        observerBackPage.subscribe((e) => {
+            const startX = this.x
+            const endX = e.touches[0].clientX
+
+            if (((endX - startX) > 90) && this.timeCount && this.ableBack) {
+                this.timeCount = false
+                console.log('right')
+                // $( ".login-html, .sign-in-htm" ).addClass("touchSlideRight");
+                // $( ".login-html, .sign-in-htm" ).removeClass("touchSlideRight");
+
+            }
+            if (((endX - startX) < -90) && this.timeCount && this.ableBack) {
+                this.timeCount = false
+                // $( ".login-html, .sign-in-htm" ).addClass("touchSlideLeft");
+                // $( ".login-html, .sign-in-htm" ).removeClass("touchSlideLeft");
+                console.log('left')
+            }
+        })
     }
 
     render() {

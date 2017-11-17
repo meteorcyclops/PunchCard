@@ -79,6 +79,14 @@ a {
   @include login_transform(-180deg)
 }
 
+.touchSlideRight{
+  transform: rotateY(180deg);
+}
+
+.touchSlideLeft{
+  transform: rotateY(-180deg);
+}
+
 .login-html .sign-in,
 .login-html .sign-up,
 .login-form .group .check {
