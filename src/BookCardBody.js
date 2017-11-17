@@ -64,7 +64,7 @@ class BookCardBody extends React.Component {
                             value={uid}
                             onChange={this.handleChange('uid')}
                             className="input"
-                            style={{ height: '40px', fontSize: 20 }}
+                            style={{ height: '35px', fontSize: 20 }}
                         />
                     </div>
                     <div className="group">
@@ -80,7 +80,7 @@ class BookCardBody extends React.Component {
                             value={pwd}
                             onChange={this.handleChange('pwd')}
                             className='input'
-                            style={{ height: '40px', fontSize: 20 }}
+                            style={{ height: '35px', fontSize: 20 }}
                         />
                     </div>
                 </InputDiv>
@@ -96,6 +96,7 @@ class BookCardBody extends React.Component {
                                 />
                             }
                             label={<BoxLabelLock>帳密鎖定</BoxLabelLock>}
+                            // style={{margin:0}}
                         />
                         <FormControlLabel
                             control={
@@ -136,7 +137,7 @@ class BookCardBody extends React.Component {
         if (oldLocked!=locked){
             this.styledDiv.inputDiv = styled.div`
                 overflow: hidden;
-                height:${locked?'0px':'200px'};
+                height:${locked?'0px':'190px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
@@ -173,15 +174,14 @@ class BookCardBody extends React.Component {
             flex-flow: row;
             align-items: center;
             flex-wrap: wrap;
-            //justify-content: center;
         `,
         bouncedUp: keyframes`
-            from { height:200px; }
+            from { height:190px; }
             to { height:0; }
         `,
         bouncedDown: keyframes`
             from{ height:0; }
-            to{ height:200px; }
+            to{ height:190px; }
         `,
         inputDiv: styled.div`
         `,
