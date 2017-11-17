@@ -1,5 +1,6 @@
 import moment from 'moment'
 import {observable, action} from 'mobx'
+import _ from 'lodash'
 
 import writeBook from './writeBook'
 
@@ -16,6 +17,11 @@ class BookStore {
     emergency=  false
     @observable
     backendTime= moment().format('YYYYMMDDHHmmss')
+
+    @observable
+    defaultTab = 1
+    @observable
+    dialogOpen = false
 
     @action
     setObs(key, value){
@@ -42,8 +48,36 @@ class BookStore {
         } )
     }
 
+    @action
+    getLastPunch(){
+        const uri = "http://localhost:8020/hrapi/card"
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json")
+        headers.append("Accept", "application/json")
+        fetch(uri, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+              api: 'getLastPunch',
+              username: `${this.uid}`,
+              password: `${this.pwd}`
+            })
+        })
+        .then( res=>res.json() )
+        .then( backdata=>{
+            if ( !_.isEmpty(backdata) ){
+                const record = backdata.data
+                if (record.card_onoff == "1"){ //上一次是上班
+                    this.setObs('defaultTab', 0)
+                }else if(record.card_onoff == "9"){ //上一次是下班
+                    this.setObs('defaultTab', 1)
+                }
+            }
+        })
+    }
+
     check = (type) => {
-        writeBook(type, bookStore.uid, bookStore.pwd)
+        writeBook(type, this.uid, this.pwd)
     }
     
     onBoard= () => {

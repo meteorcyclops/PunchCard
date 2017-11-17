@@ -5,7 +5,7 @@ import styled, {keyframes} from 'styled-components'
 import Switch from 'material-ui/Switch'
 import Checkbox from 'material-ui/Checkbox'
 import TitleTime    from './TitleTime'
-import {FormGroup, FormControlLabel} from 'material-ui/Form'
+import {FormControlLabel} from 'material-ui/Form'
 
 import bookStore from './stores/book'
 
@@ -45,7 +45,6 @@ class BookCardBody extends React.Component {
         const BoxLabelEmer = this.styledDiv.boxLabelEmergency
         const FlexRowDiv = this.styledDiv.flexRowDiv
         const InputDiv = this.styledDiv.inputDiv
-        const UpdownDiv = this.styledDiv.upDowndiv
         const UpdownButton = this.styledDiv.upDownButton
 
 
@@ -117,14 +116,6 @@ class BookCardBody extends React.Component {
                     </UpdownButton>
                 </div>
                 <div className="hr"/>
-                <div className="foot-lnk">
-                    <div style={{
-                        color: "#fff", textAlign: 'justify',
-                        textJustify: 'inter-ideographic'
-                    }}>
-                        <h3>{mobx.toJS(msg)}</h3>
-                    </div>
-                </div>
                 <TitleTime />
             </div>
         )
