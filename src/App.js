@@ -57,23 +57,26 @@ class App extends Component {
 
             if (((endX - startX) > 90) && this.timeCount && this.ableBack) {
                 this.timeCount = false
-                console.log('right')
-                // $( ".login-html, .sign-in-htm" ).addClass("touchSlideRight");
-                // $( ".login-html, .sign-in-htm" ).removeClass("touchSlideRight");
-
+                bookStore.setObs('defaultTab', 1)
             }
             if (((endX - startX) < -90) && this.timeCount && this.ableBack) {
                 this.timeCount = false
-                // $( ".login-html, .sign-in-htm" ).addClass("touchSlideLeft");
-                // $( ".login-html, .sign-in-htm" ).removeClass("touchSlideLeft");
-                console.log('left')
+                bookStore.setObs('defaultTab', 0)
             }
         })
     }
 
+    handleOnChange(e){
+        if(e.target.id == 'tab-2'){
+            bookStore.setObs('defaultTab', 0)
+        }else{
+            bookStore.setObs('defaultTab', 1)
+        }
+    }
+
     render() {
         const locked = bookStore.locked
-        const defaultTab = this.props.tab
+        const defaultTab = bookStore.defaultTab
 
         const InputPounch = styled.label`
             font-size: 26px;
@@ -82,34 +85,47 @@ class App extends Component {
         `
         return (
             <div className="for-the-overlay">
-                <Dialog open={bookStore.dialogOpen} onRequestClose={this.handleRequestClose.bind(this)}>
+                <Dialog 
+                    open={bookStore.dialogOpen} 
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    classes={{ 
+                        paper: "dialogPaper"
+                    }}
+                >
                     <DialogContent>
-                        <DialogContentText>
+                        <DialogContentText style = {{color: 'white'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleRequestClose} color="primary">
+                        <Button 
+                            onClick={this.handleRequestClose} 
+                            style = {{color: 'white'}}
+                        >
                             確認
                         </Button>
                     </DialogActions>
                 </Dialog>
                 <div className="login-wrap">
                     <div className="login-html">
-                        <input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked={defaultTab} />
+                        <input id="tab-1" type="radio" name="tab" className="sign-in" 
+                               checked={defaultTab} onChange={this.handleOnChange} />
+                        
                         <InputPounch htmlFor="tab-1" className="tab">上班</InputPounch>
-                        <input id="tab-2" type="radio" name="tab" className="sign-up" defaultChecked={!defaultTab} />
+                        <input id="tab-2" type="radio" name="tab" className="sign-up" 
+                               checked={!defaultTab} onChange={this.handleOnChange} />
+                        
                         <InputPounch htmlFor="tab-2" className="tab">下班</InputPounch>
 
                         <div className="login-form" style={{marginTop: '5%'}}>
                             <BookCardBody
-                                className="sign-in-htm"
+                                className={"sign-in-htm"}
                                 onClick={bookStore.onBoard}
                                 in
                                 locked={locked}
                             />
                             <BookCardBody
-                                className="sign-up-htm"
+                                className={"sign-up-htm"}
                                 onClick={bookStore.offBoard}
                                 locked={locked}
                             />
