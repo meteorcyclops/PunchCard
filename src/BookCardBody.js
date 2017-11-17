@@ -16,7 +16,8 @@ class BookCardBody extends React.Component {
         this.handleBool = this.handleBool.bind(this)
     }
 
-    componentDidUpdate(){
+    componentWillMount(){
+        this.styledDiv.upDownButton = bookStore.locked?this.styledDiv.fatButton:this.styledDiv.thinButton
     }
 
     handleChange(prop) {
@@ -175,6 +176,8 @@ class BookCardBody extends React.Component {
             to{ height:190px; }
         `,
         inputDiv: styled.div`
+            overflow: hidden;
+            height:${bookStore.locked?'0px':'190px'};
         `,
         upDownButton: styled.button.attrs({ className:'button' })`
             width: 95%;
