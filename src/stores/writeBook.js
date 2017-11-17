@@ -22,9 +22,9 @@ const writeBook = (cardtype, username, password) => {
         return res.json()
     }).then((res) => {
         let status = res.message
-        localStorage.setItem('uid', this.uid)
-        localStorage.setItem('pwd', this.pwd)
-        localStorage.setItem('locked', this.locked)
+        localStorage.setItem('uid', bookStore.uid)
+        localStorage.setItem('pwd', bookStore.pwd)
+        localStorage.setItem('locked', bookStore.locked)
         bookStore.setObs('status', status)
     })
 }
