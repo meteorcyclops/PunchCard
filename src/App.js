@@ -34,6 +34,7 @@ class App extends Component {
 
     handleRequestClose(){
         bookStore.setObs('dialogOpen', false)
+        bookStore.getLastPunch()
     }
 
     componentDidMount() {
