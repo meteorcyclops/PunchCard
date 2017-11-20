@@ -77,6 +77,13 @@ class App extends Component {
     }
 
     render() {
+        const style = {
+        padding: '2.25em 1.6875em',
+        backgroundImage: 'repeating-linear-gradient(135deg, rgba(0,0,0,.3), rgba(0,0,0,.3) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.3) 3px)',
+        backgroundSize: '4px 4px'
+
+    };
+
         const locked = bookStore.locked
         const defaultTab = bookStore.defaultTab
 
@@ -87,7 +94,8 @@ class App extends Component {
         `
         return (
             <div className="for-the-overlay">
-                <Dialog 
+                <Dialog
+                    style={style}
                     open={bookStore.dialogOpen} 
                     onRequestClose={this.handleRequestClose.bind(this)}
                     classes={{ 
@@ -95,14 +103,14 @@ class App extends Component {
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style = {{color: 'white',whiteSpace:'pre-line'}}>
+                        <DialogContentText style = {{color: '#6a6f8c',whiteSpace:'pre-line'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button 
                             onClick={this.handleRequestClose} 
-                            style = {{color: 'white'}}
+                            style = {{color: '#6a6f8c'}}
                         >
                             確認
                         </Button>
