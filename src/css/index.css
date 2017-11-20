@@ -195,7 +195,8 @@ input, button {
   color: #7deca5; }
 
 .dialogPaper {
-  border-radius: 20px !important;
-  background-color: #8564ea !important; }
+  border-radius: 10px !important;
+  background: #fafafa !important;
+  border-left: 10px solid #a79ae6 !important; }
 
 /*# sourceMappingURL=index.css.map */
