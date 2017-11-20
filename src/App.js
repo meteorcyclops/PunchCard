@@ -103,14 +103,14 @@ class App extends Component {
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style = {{color: '#000',whiteSpace:'pre-line'}}>
+                        <DialogContentText style = {{color: '#6a6f8c',whiteSpace:'pre-line'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button 
                             onClick={this.handleRequestClose} 
-                            style = {{color: '#000'}}
+                            style = {{color: '#6a6f8c'}}
                         >
                             確認
                         </Button>
