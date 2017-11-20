@@ -13,11 +13,10 @@ html, body, #root, .login-wrap, .for-the-overlay {
 body {
   margin: 0px;
   color: #6a6f8c;
-  font: 600 16px/18px 'Open Sans', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   background: url("../pictures/kfsyscc_logo_big.jpg") no-repeat center;
   background-size: cover;
-  padding: 0px;
-  font-family: sans-serif; }
+  padding: 0px; }
 
 *, :after, :before {
   box-sizing: border-box; }
@@ -198,8 +197,4 @@ input, button {
 .greenSwitch > span {
   color: #7deca5; }
 
-.dialogPaper {
-  border-radius: 20px!important; 
-  background-color: #8564ea!important; 
-}
 /*# sourceMappingURL=index.css.map */
