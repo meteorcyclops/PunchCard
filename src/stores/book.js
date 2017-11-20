@@ -30,11 +30,20 @@ class BookStore {
     
     @action
     getBackendTime(){
-        const uri = 'https://gateway.kfsyscc.org/Gateway/a/CardClient/ClockTimeStamp'
-        fetch(uri)
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json")
+        headers.append("Accept", "application/json")
+        const uri = 'https://staff.kfsyscc.org/hrapi/card/'
+        fetch(uri, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+              api: 'getServerTime'
+            })
+        })
         .then( res=>res.json() )
         .then( backdata=>{
-            if(backdata.TimeStamp){
+            if(backdata.data){
                 this.rawBackendTime = moment(backdata.TimeStamp)
                 
                 setInterval(
