@@ -10,6 +10,7 @@ import Dialog, {
 import Rx from 'rxjs';
 import $ from 'jquery'
 
+import 'animate.css/animate.min.css'
   
 import TitleTime from './TitleTime'
 import BookCardBody from './BookCardBody'
@@ -94,7 +95,7 @@ class App extends Component {
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style = {{color: 'white'}}>
+                        <DialogContentText style = {{color: 'white',whiteSpace:'pre-line'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
