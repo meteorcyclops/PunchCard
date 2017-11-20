@@ -10,6 +10,7 @@ import Dialog, {
 import Rx from 'rxjs';
 import $ from 'jquery'
 
+import 'animate.css/animate.min.css'
   
 import TitleTime from './TitleTime'
 import BookCardBody from './BookCardBody'

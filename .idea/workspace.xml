@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9a29d0fe-6d74-4295-8144-a0e3f3ae4387" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/index.css" afterPath="$PROJECT_DIR$/src/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/index.css.map" afterPath="$PROJECT_DIR$/src/css/index.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/index.scss" afterPath="$PROJECT_DIR$/src/css/index.scss" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,14 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="110" column="46" lean-forward="false" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="46" />
+            <state relative-caret-position="525">
+              <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
-                <marker date="1511142893820" expanded="true" signature="2374:2483" ph="{...}" />
+                <marker date="1511144387824" expanded="true" signature="2411:2520" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -63,11 +60,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/index.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="2289">
               <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/animate.css/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="314">
+                <caret line="121" column="7" lean-forward="false" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
+                <folding>
+                  <marker date="1472831687000" expanded="true" signature="501:562" ph="..." />
+                  <marker date="1472831687000" expanded="true" signature="667:785" ph="..." />
+                  <marker date="1472831687000" expanded="true" signature="2701:2758" ph="..." />
+                  <marker date="1472831687000" expanded="true" signature="2855:2969" ph="..." />
+                  <marker date="1472831687000" expanded="true" signature="3892:4207" ph="{...}" />
+                  <marker date="1472831687000" expanded="true" signature="3935:4205" ph="{...}" />
+                  <marker date="1472831687000" expanded="true" signature="4124:4197" ph="{...}" />
+                  <marker date="1472831687000" expanded="true" signature="4423:4538" ph="{...}" />
+                  <marker date="1472831687000" expanded="true" signature="5122:5283" ph="{...}" />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="animate.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/animate.css/animate.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -175,6 +205,7 @@
       <find>msg</find>
       <find>font</find>
       <find>login-html</find>
+      <find>animate.css</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -194,8 +225,8 @@
         <option value="$PROJECT_DIR$/src/stores/book.js" />
         <option value="$PROJECT_DIR$/src/BookCardBody.js" />
         <option value="$PROJECT_DIR$/src/css/index.css" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/css/index.scss" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -236,6 +267,31 @@
             <path>
               <item name="card" type="b2602c69:ProjectViewProjectNode" />
               <item name="card" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="card" type="b2602c69:ProjectViewProjectNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="card" type="b2602c69:ProjectViewProjectNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="animate.css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="card" type="b2602c69:ProjectViewProjectNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="animate.css" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="card" type="b2602c69:ProjectViewProjectNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="animate.css" type="462c0819:PsiDirectoryNode" />
+              <item name="animate.css" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
               <item name="card" type="b2602c69:ProjectViewProjectNode" />
@@ -291,6 +347,7 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.standard" value="C:\work\card\node_modules\eslint" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/node_modules/animate.css/animate.css" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -481,14 +538,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59429000" />
+    <option name="totallyTimeSpent" value="59884000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-253" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13375461" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18114798" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -555,8 +612,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Validation.js" />
-    <entry file="file://$PROJECT_DIR$/src/App_old.js" />
     <entry file="file://$PROJECT_DIR$/src/Store.js" />
     <entry file="file://$PROJECT_DIR$/src/Validation.js" />
     <entry file="file://$PROJECT_DIR$/src/Store.js" />
@@ -593,7 +648,7 @@
           <caret line="430" column="46" lean-forward="true" selection-start-line="430" selection-start-column="46" selection-end-line="430" selection-end-column="46" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1511142893820" expanded="true" signature="2374:2483" ph="{...}" />
+            <marker date="1511144387824" expanded="true" signature="2411:2520" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -615,7 +670,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-            <marker date="1511142893820" expanded="true" signature="2374:2483" ph="{...}" />
+            <marker date="1511144387824" expanded="true" signature="2411:2520" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -818,22 +873,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/src/css/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="110" column="46" lean-forward="false" selection-start-line="110" selection-start-column="36" selection-end-line="110" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1511142893820" expanded="true" signature="2374:2483" ph="{...}" />
-          </folding>
+        <state relative-caret-position="2289">
+          <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/index.scss">
+    <entry file="file://$PROJECT_DIR$/node_modules/animate.css/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="314">
+            <caret line="121" column="7" lean-forward="false" selection-start-line="121" selection-start-column="7" selection-end-line="121" selection-end-column="7" />
+            <folding>
+              <marker date="1472831687000" expanded="true" signature="501:562" ph="..." />
+              <marker date="1472831687000" expanded="true" signature="667:785" ph="..." />
+              <marker date="1472831687000" expanded="true" signature="2701:2758" ph="..." />
+              <marker date="1472831687000" expanded="true" signature="2855:2969" ph="..." />
+              <marker date="1472831687000" expanded="true" signature="3892:4207" ph="{...}" />
+              <marker date="1472831687000" expanded="true" signature="3935:4205" ph="{...}" />
+              <marker date="1472831687000" expanded="true" signature="4124:4197" ph="{...}" />
+              <marker date="1472831687000" expanded="true" signature="4423:4538" ph="{...}" />
+              <marker date="1472831687000" expanded="true" signature="5122:5283" ph="{...}" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/animate.css/animate.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1511144387824" expanded="true" signature="2411:2520" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
