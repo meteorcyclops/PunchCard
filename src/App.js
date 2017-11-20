@@ -11,7 +11,8 @@ import Rx from 'rxjs';
 import $ from 'jquery'
 
 import 'animate.css/animate.min.css'
-  
+
+import HistoryTitle from './HistoryTitle'
 import TitleTime from './TitleTime'
 import BookCardBody from './BookCardBody'
 
@@ -116,6 +117,7 @@ class App extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <HistoryTitle />
                 <div className="login-wrap">
                     <div className="login-html">
                         <input id="tab-1" type="radio" name="tab" className="sign-in" 

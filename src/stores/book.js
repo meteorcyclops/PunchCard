@@ -17,6 +17,8 @@ class BookStore {
     emergency=  false
     @observable
     backendTime= moment().format('YYYYMMDDHHmmss')
+    @observable
+    lastPunch= {}
 
     @observable
     defaultTab = 1
@@ -76,9 +78,10 @@ class BookStore {
         .then( backdata=>{
             if ( !_.isEmpty(backdata) ){
                 const record = backdata.data
-                if (record.card_onoff == "1"){ //上一次是上班
+                this.lastPunch = record
+                if (record.card_onoff == "1"||record.card_onoff == "2"){ //上一次是上班
                     this.setObs('defaultTab', 0)
-                }else if(record.card_onoff == "9"){ //上一次是下班
+                }else if(record.card_onoff == "9"||record.card_onoff == "3"){ //上一次是下班
                     this.setObs('defaultTab', 1)
                 }
             }
