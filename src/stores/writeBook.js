@@ -34,6 +34,10 @@ const writeBook = (cardtype, username, password) => {
         }
         bookStore.setObs('dialogOpen', true)
     })
+    .catch((err)=>{
+        bookStore.setObs('status', '程式錯誤 ！\n請記下狀況後聯絡資訊部王傳道～3Q')
+        bookStore.setObs('dialogOpen', true)
+    })
 }
 
 export default writeBook
