@@ -94,7 +94,7 @@ class App extends Component {
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style = {{color: 'white'}}>
+                        <DialogContentText style = {{color: 'white',whiteSpace:'pre-line'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
