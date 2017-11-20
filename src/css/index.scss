@@ -75,19 +75,11 @@ a {
 }
 
 .login-html .sign-in-htm{
-  @include login_transform(180deg)
-}
-
-.login-html .sign-up-htm{
   @include login_transform(-180deg)
 }
 
-.touchSlideRight{
-  transform: rotateY(180deg);
-}
-
-.touchSlideLeft{
-  transform: rotateY(-180deg);
+.login-html .sign-up-htm{
+  @include login_transform(180deg)
 }
 
 .login-html .sign-in,
@@ -109,6 +101,10 @@ a {
   margin: 0 15px 10px 0;
   display: inline-block;
   border-bottom: 2px solid transparent;
+}
+
+.login-html{
+  padding-bottom: 5px;
 }
 
 .login-html .sign-in:checked + .tab,
