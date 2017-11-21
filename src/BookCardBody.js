@@ -116,7 +116,7 @@ class BookCardBody extends React.Component {
                         {inOrOut ? '上班' : '下班'}
                     </UpdownButton>
                 </div>
-                <div className="hr"/>
+                <div className="hr" style={{position:'relative',zIndex:'-99'}}/>
                 <TitleTime />
             </div>
         )
