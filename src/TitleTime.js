@@ -10,13 +10,14 @@ import bookStore from './stores/book'
 class TitleTime extends React.Component {
     render() {
         const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
+        const MainDiv = this.mainDiv
         // 現在時間:
         return (
-            <div style={{fontSize:'60px',color:'rgba(255,255,255,0.1)', textAlign: 'center',position:'relative'}}>
+            <MainDiv>
                 <span>{nowTimeM.format('HH')}:</span>
                 <span>{nowTimeM.format('mm')}:</span>
                 <span>{nowTimeM.format('ss')}</span>
-            </div>
+            </MainDiv>
         )
     }
 
@@ -24,6 +25,11 @@ class TitleTime extends React.Component {
         display: flex;
         flex-flow: row;
         align-items: center;
+        justify-content: center; 
+        height:65px; 
+        font-size:60px; 
+        color:rgba(255,255,255,0.1);  
+        margin-top: 5px 
     `
 }
 
