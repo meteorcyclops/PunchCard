@@ -196,7 +196,8 @@ input, button {
 
 .dialogPaper {
   border-radius: 10px !important;
-  background: #f6f6f6 !important;
-  border-left: 10px solid #a79ae6 !important; }
+  background: #a653fa !important;
+  border-left: 10px solid #7f68c9 !important;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.19), 0 6px 6px rgba(255, 255, 255, 0.23) !important; }
 
 /*# sourceMappingURL=index.css.map */

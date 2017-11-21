@@ -6,7 +6,7 @@ import Dialog, {
     DialogActions,
     DialogContent,
     DialogContentText,
-  } from 'material-ui/Dialog'
+} from 'material-ui/Dialog'
 import Rx from 'rxjs';
 import $ from 'jquery'
 
@@ -33,7 +33,7 @@ class App extends Component {
         bookStore.getLastPunch()
     }
 
-    handleRequestClose(){
+    handleRequestClose() {
         bookStore.setObs('dialogOpen', false)
         bookStore.getLastPunch()
     }
@@ -68,21 +68,28 @@ class App extends Component {
         })
     }
 
-    handleOnChange(e){
-        if(e.target.id == 'tab-2'){
+    handleOnChange(e) {
+        if (e.target.id == 'tab-2') {
             bookStore.setObs('defaultTab', 0)
-        }else{
+        } else {
             bookStore.setObs('defaultTab', 1)
         }
     }
 
     render() {
-        const style = {
-        padding: '2.25em 1.6875em',
-        backgroundImage: 'repeating-linear-gradient(135deg, rgba(0,0,0,.3), rgba(0,0,0,.3) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.3) 3px)',
-        backgroundSize: '4px 4px'
+        const stripe = {
+            padding: '2.25em 1.6875em',
+            backgroundImage: 'repeating-linear-gradient(135deg, rgba(0,0,0,.6), rgba(0,0,0,.6) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.6) 3px)',
+            backgroundSize: '4px 4px'
 
-    };
+        };
+
+        const dotted = {
+            padding: '2.25em 1.6875em',
+            backgroundImage: 'repeating-radial-gradient(center center, rgba(255,255,255,1), rgba(255,255,255,1) 1px, transparent 1px, transparent 100%)',
+            backgroundSize: '3px 3px'
+
+    }
 
         const locked = bookStore.locked
         const defaultTab = bookStore.defaultTab
@@ -95,38 +102,38 @@ class App extends Component {
         return (
             <div className="for-the-overlay">
                 <Dialog
-                    style={style}
-                    open={bookStore.dialogOpen} 
+                    style={stripe}
+                    open={bookStore.dialogOpen}
                     onRequestClose={this.handleRequestClose.bind(this)}
-                    classes={{ 
+                    classes={{
                         paper: "dialogPaper"
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style = {{color: '#6a6f8c',whiteSpace:'pre-line'}}>
+                        <DialogContentText style={{color: '#fff', whiteSpace: 'pre-line'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button
                             className='animated tada infinite'
-                            onClick={this.handleRequestClose} 
-                            style = {{color: '#bbbdd6',fontWeight:'400'}}
+                            onClick={this.handleRequestClose}
+                            style={{color: '#fff', fontWeight: '400'}}
                         >
                             確認
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <HistoryTitle />
+                <HistoryTitle/>
                 <div className="login-wrap">
                     <div className="login-html">
-                        <input id="tab-1" type="radio" name="tab" className="sign-in" 
-                               checked={defaultTab} onChange={this.handleOnChange} />
-                        
+                        <input id="tab-1" type="radio" name="tab" className="sign-in"
+                               checked={defaultTab} onChange={this.handleOnChange}/>
+
                         <InputPounch htmlFor="tab-1" className="tab">上班</InputPounch>
-                        <input id="tab-2" type="radio" name="tab" className="sign-up" 
-                               checked={!defaultTab} onChange={this.handleOnChange} />
-                        
+                        <input id="tab-2" type="radio" name="tab" className="sign-up"
+                               checked={!defaultTab} onChange={this.handleOnChange}/>
+
                         <InputPounch htmlFor="tab-2" className="tab">下班</InputPounch>
 
                         <div className="login-form" style={{marginTop: '5%'}}>
