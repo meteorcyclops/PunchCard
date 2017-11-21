@@ -50,10 +50,10 @@ class BookStore {
                 
                 setInterval(
                     ()=>{
-                        this.rawBackendTime = this.rawBackendTime.add(1, 'seconds')
+                        this.rawBackendTime = this.rawBackendTime.add(2, 'seconds')
                         this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
                     },
-                    1000
+                    2000
                 )
             }
         } )
