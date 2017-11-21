@@ -108,9 +108,10 @@ class App extends Component {
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button 
+                        <Button
+                            className='animated tada infinite'
                             onClick={this.handleRequestClose} 
-                            style = {{color: '#6a6f8c'}}
+                            style = {{color: '#bbbdd6',fontWeight:'400'}}
                         >
                             確認
                         </Button>
