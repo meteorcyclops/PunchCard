@@ -13,10 +13,7 @@ class TitleTime extends React.Component {
         // 現在時間:
         return (
             <div style={{
-                display: 'flex',
-                flexFlow: 'row',
-                alignItems: 'center',
-                justifyContent: 'center', 
+                textAlign: 'center',
                 height:'65px', 
                 fontSize:'60px', 
                 color:'rgba(255,255,255,0.1)',  
