@@ -10,6 +10,8 @@ headers.append("Accept", "application/json")
 
 
 const writeBook = (cardtype, username, password) => {
+    bookStore.setObs('status', '請稍後...')
+    bookStore.setObs('dialogOpen', true)
     localStorage.setItem('uid', bookStore.uid)
     localStorage.setItem('pwd', bookStore.pwd)
     localStorage.setItem('locked', bookStore.locked)
@@ -32,11 +34,14 @@ const writeBook = (cardtype, username, password) => {
         }else{
             bookStore.setObs('status', result.err)
         }
-        bookStore.setObs('dialogOpen', true)
     })
     .catch((err)=>{
-        bookStore.setObs('status', '程式錯誤 ！\n請記下狀況後聯絡資訊部王傳道～3Q')
-        bookStore.setObs('dialogOpen', true)
+        if (!navigator.onLine){
+            bookStore.setObs('status', '連線錯誤 ！\n請連上和信醫院 wifi 後使用。')
+        
+        }else{
+            bookStore.setObs('status', '連線錯誤 ！\n請記下狀況後聯絡資訊部王傳道～3Q')
+        }
     })
 }
 
