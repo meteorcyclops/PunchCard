@@ -5,7 +5,7 @@ import App from './App'
 
 import bookStore from './stores/book'
 
-import registerServiceWorker from './serviceWorker/registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
     <App />, 
