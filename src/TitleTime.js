@@ -13,11 +13,9 @@ class TitleTime extends React.Component {
         // 現在時間:
         return (
             <div style={{fontSize:'60px',color:'rgba(255,255,255,0.1)', textAlign: 'center',position:'relative'}}>
-                {nowTimeM.format('HH')}
-                :
-                {nowTimeM.format('mm')}
-                :
-                {nowTimeM.format('ss')}
+                <span>{nowTimeM.format('HH')}:</span>
+                <span>{nowTimeM.format('mm')}:</span>
+                <span>{nowTimeM.format('ss')}</span>
             </div>
         )
     }

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a29d0fe-6d74-4295-8144-a0e3f3ae4387" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BookCardBody.js" afterPath="$PROJECT_DIR$/src/BookCardBody.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TitleTime.js" afterPath="$PROJECT_DIR$/src/TitleTime.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/index.css" afterPath="$PROJECT_DIR$/src/css/index.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,10 +31,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BookCardBody.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="BookCardBody.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/BookCardBody.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="570">
+                <state relative-caret-position="-1007">
                   <caret line="124" column="39" lean-forward="true" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#25#0" expanded="true" />
@@ -65,16 +62,16 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TitleTime.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TitleTime.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/TitleTime.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="14" column="111" lean-forward="false" selection-start-line="14" selection-start-column="111" selection-end-line="14" selection-end-column="111" />
+                <state relative-caret-position="609">
+                  <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
                   <folding>
                     <element signature="e#0#40#0" expanded="true" />
-                    <marker date="1511228743351" expanded="true" signature="727:808" ph="{...}" />
-                    <marker date="1511228743351" expanded="true" signature="803:808" ph="{...}" />
-                    <marker date="1511228743351" expanded="true" signature="804:808" ph="{...}" />
+                    <marker date="1511229191601" expanded="true" signature="732:813" ph="{...}" />
+                    <marker date="1511229191601" expanded="true" signature="808:813" ph="{...}" />
+                    <marker date="1511229191601" expanded="true" signature="809:813" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -169,8 +166,8 @@
         <option value="$PROJECT_DIR$/src/css/index.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/css/index.scss" />
-        <option value="$PROJECT_DIR$/src/TitleTime.js" />
         <option value="$PROJECT_DIR$/src/BookCardBody.js" />
+        <option value="$PROJECT_DIR$/src/TitleTime.js" />
       </list>
     </option>
   </component>
@@ -482,7 +479,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62226000" />
+    <option name="totallyTimeSpent" value="62488000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-253" y="-1080" width="1920" height="1080" extended-state="0" />
@@ -780,22 +777,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TitleTime.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="111" lean-forward="false" selection-start-line="14" selection-start-column="111" selection-end-line="14" selection-end-column="111" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-            <marker date="1511228743351" expanded="true" signature="727:808" ph="{...}" />
-            <marker date="1511228743351" expanded="true" signature="803:808" ph="{...}" />
-            <marker date="1511228743351" expanded="true" signature="804:808" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BookCardBody.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
+        <state relative-caret-position="-1007">
           <caret line="124" column="39" lean-forward="true" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
@@ -818,6 +802,19 @@
             <marker date="1511228743339" expanded="true" signature="7978:8535" ph="..." />
             <marker date="1511228743339" expanded="true" signature="7995:8304" ph="{...}" />
             <marker date="1511228743339" expanded="true" signature="8319:8526" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TitleTime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+            <marker date="1511229191601" expanded="true" signature="732:813" ph="{...}" />
+            <marker date="1511229191601" expanded="true" signature="808:813" ph="{...}" />
+            <marker date="1511229191601" expanded="true" signature="809:813" ph="{...}" />
           </folding>
         </state>
       </provider>
