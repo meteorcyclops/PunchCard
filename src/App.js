@@ -19,7 +19,6 @@ import BookCardBody from './BookCardBody'
 import bookStore from './stores/book'
 
 import styled, {keyframes} from 'styled-components'
-import './css/App.css'
 
 class App extends Component {
     constructor(props) {
