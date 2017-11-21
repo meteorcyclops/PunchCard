@@ -10,27 +10,24 @@ import bookStore from './stores/book'
 class TitleTime extends React.Component {
     render() {
         const nowTimeM = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
-        const MainDiv = this.mainDiv
         // 現在時間:
         return (
-            <MainDiv>
+            <div style={{
+                display: 'flex',
+                flexFlow: 'row',
+                alignItems: 'center',
+                justifyContent: 'center', 
+                height:'65px', 
+                fontSize:'60px', 
+                color:'rgba(255,255,255,0.1)',  
+                marginTop: '5px', 
+            }}>
                 <span>{nowTimeM.format('HH')}:</span>
                 <span>{nowTimeM.format('mm')}:</span>
                 <span>{nowTimeM.format('ss')}</span>
-            </MainDiv>
+            </div>
         )
     }
-
-    mainDiv = styled.div`
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        justify-content: center; 
-        height:65px; 
-        font-size:60px; 
-        color:rgba(255,255,255,0.1);  
-        margin-top: 5px 
-    `
 }
 
 export default observer(TitleTime)
