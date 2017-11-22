@@ -8,6 +8,7 @@
   width: 100%; }
 
 html, body, #root, .login-wrap, .for-the-overlay {
+  overflow-y: auto;
   height: 100%; }
 
 body {
