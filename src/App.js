@@ -20,6 +20,29 @@ import bookStore from './stores/book'
 
 import styled, {keyframes} from 'styled-components'
 
+import platform from 'platform'
+
+const browser_name = platform.name
+const browser_version = platform.version
+let browser_not_support = false
+
+function browserNotSupport(){
+  window.alert("警告！您現在使用的瀏覽器『太舊』，網站可能會出現異常。請使用『新版』的 Chrome/Safari 瀏覽器！\n\nYour Browser may not support. Please use newest version of Chrome/Safari!\n\n\n\n" + '您的瀏覽器名稱：' + platform.name + ', 您的瀏覽器版本：' + platform.version)
+}
+
+if( (browser_name=="IE" && parseFloat(browser_version)>11.0) ||
+  (browser_name=="Chrome" && browser_version >= "47.0") ||
+  (browser_name=="Chrome Mobile" && browser_version > "51.0") ||
+  (browser_name=="Safari" && parseFloat(browser_version)>7.0)
+  ){
+}else{
+  browser_not_support = true
+}
+
+if (browser_not_support){
+  browserNotSupport();
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
