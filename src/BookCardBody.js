@@ -5,7 +5,7 @@ import styled, {keyframes} from 'styled-components'
 import Switch from 'material-ui/Switch'
 import Checkbox from 'material-ui/Checkbox'
 import TitleTime    from './TitleTime'
-import {FormGroup, FormControlLabel} from 'material-ui/Form'
+import {FormControlLabel} from 'material-ui/Form'
 
 import bookStore from './stores/book'
 
@@ -16,7 +16,8 @@ class BookCardBody extends React.Component {
         this.handleBool = this.handleBool.bind(this)
     }
 
-    componentDidUpdate(){
+    componentWillMount(){
+        this.styledDiv.upDownButton = bookStore.locked?this.styledDiv.fatButton:this.styledDiv.thinButton
     }
 
     handleChange(prop) {
@@ -45,7 +46,6 @@ class BookCardBody extends React.Component {
         const BoxLabelEmer = this.styledDiv.boxLabelEmergency
         const FlexRowDiv = this.styledDiv.flexRowDiv
         const InputDiv = this.styledDiv.inputDiv
-        const UpdownDiv = this.styledDiv.upDowndiv
         const UpdownButton = this.styledDiv.upDownButton
 
 
@@ -53,17 +53,26 @@ class BookCardBody extends React.Component {
             <div className={className}>
                 <InputDiv>
                     <div className="group">
-                        <label htmlFor="uid" className="label">帳號</label>
+                        <label 
+                            htmlFor="uid" 
+                            className="label"
+                            style={{padding:'10px 0px', fontSize: 17}}
+                        >帳號</label>
                         <input
                             id="uid"
                             disabled={locked}
                             value={uid}
                             onChange={this.handleChange('uid')}
                             className="input"
+                            style={{ height: '35px', fontSize: 20 }}
                         />
                     </div>
                     <div className="group">
-                        <label htmlFor="pwd" className="label">密碼</label>
+                        <label 
+                            htmlFor="pwd" 
+                            className="label"
+                            style={{padding:'10px 0px', fontSize: 17}}
+                        >密碼</label>
                         <input
                             id="pwd"
                             disabled={locked}
@@ -71,24 +80,28 @@ class BookCardBody extends React.Component {
                             value={pwd}
                             onChange={this.handleChange('pwd')}
                             className='input'
+                            style={{ height: '35px', fontSize: 20 }}
                         />
                     </div>
                 </InputDiv>
-                <div className="group">
+                <div className="group" style={{ display: 'flex', justifyContent: 'center'}}>
                     <FlexRowDiv>
                         <FormControlLabel
                             control={
                                 <Switch
+                                    className='greenSwitch'
                                     onChange={this.handleBool('locked')}
                                     aria-label="locked"
                                     checked={locked}
                                 />
                             }
                             label={<BoxLabelLock>帳密鎖定</BoxLabelLock>}
+                            // style={{margin:0}}
                         />
                         <FormControlLabel
                             control={
                                 <Checkbox
+                                    className='greenSwitch'
                                     onChange={this.handleBool('emergency')}
                                     value="emergency"
                                     style={{margin: '0px 7px'}}
@@ -103,16 +116,8 @@ class BookCardBody extends React.Component {
                         {inOrOut ? '上班' : '下班'}
                     </UpdownButton>
                 </div>
-                <div className="hr"/>
-                <div className="foot-lnk">
-                    <div style={{
-                        color: "#fff", textAlign: 'justify',
-                        textJustify: 'inter-ideographic'
-                    }}>
-                        <h3>{mobx.toJS(msg)}</h3>
-                    </div>
-                    <TitleTime />
-                </div>
+                <div className="hr" style={{position:'relative',zIndex:'-99'}}/>
+                <TitleTime />
             </div>
         )
     }
@@ -124,7 +129,7 @@ class BookCardBody extends React.Component {
         if (oldLocked!=locked){
             this.styledDiv.inputDiv = styled.div`
                 overflow: hidden;
-                height:${locked?'0px':'140px'};
+                height:${locked?'0px':'190px'};
             `
             this.styledDiv.inputDiv = this.styledDiv.inputDiv.extend`
                 animation: ${locked?this.styledDiv.bouncedUp:this.styledDiv.bouncedDown} 0.5s 0s cubic-bezier(.28,-0.8,.74,1.59);
@@ -161,17 +166,18 @@ class BookCardBody extends React.Component {
             flex-flow: row;
             align-items: center;
             flex-wrap: wrap;
-            //justify-content: center;
         `,
         bouncedUp: keyframes`
-            from { height:140px; }
+            from { height:190px; }
             to { height:0; }
         `,
         bouncedDown: keyframes`
             from{ height:0; }
-            to{ height:140px; }
+            to{ height:190px; }
         `,
         inputDiv: styled.div`
+            overflow: hidden;
+            height:${bookStore.locked?'0px':'190px'};
         `,
         upDownButton: styled.button.attrs({ className:'button' })`
             width: 95%;
@@ -190,10 +196,12 @@ class BookCardBody extends React.Component {
         `,
         // 瘦按鈕
         thinButton: styled.button.attrs({ className:'button' })`
-            font-size: 12px;
             width: 95%;
             height:45px;
             margin:0 auto;
+            font-size: 20px;
+            box-shadow: none;
+            text-shadow: none ;
         `,
         // 變胖
         makeItBigger: keyframes`
@@ -201,7 +209,7 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                font-size: 20px;
                 box-shadow: none;
                 text-shadow: none ;
             }
@@ -228,7 +236,7 @@ class BookCardBody extends React.Component {
                 width: 95%;
                 height:45px;
                 margin:0 auto;
-                font-size: 12px;
+                font-size: 20px;
                 box-shadow: none;
                 text-shadow: none ; 
             }
