@@ -14,6 +14,7 @@
 
 html, body, #root, .login-wrap, .for-the-overlay {
   height: 100%;
+  overflow-y: auto;
 }
 
 body {
