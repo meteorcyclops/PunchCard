@@ -28,6 +28,11 @@ class BookCardBody extends React.Component {
 
     handleBool(prop) {
         return (event, checked) => {
+            if(prop=='locked'&&checked==true){
+                localStorage.setItem('uid', bookStore.uid)
+                localStorage.setItem('pwd', bookStore.pwd)
+                localStorage.setItem('locked', bookStore.locked)
+            }
             bookStore.setObs(prop, checked)
         }
     }
