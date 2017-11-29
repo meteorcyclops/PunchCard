@@ -1,6 +1,5 @@
 import React from 'react' 
 import {observer} from 'mobx-react' 
-import mobx from 'mobx' 
 import _ from 'lodash' 
 import moment from 'moment'
 

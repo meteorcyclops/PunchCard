@@ -1,6 +1,5 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import * as mobx from 'mobx'
 import styled, {keyframes} from 'styled-components'
 import Switch from 'material-ui/Switch'
 import Checkbox from 'material-ui/Checkbox'

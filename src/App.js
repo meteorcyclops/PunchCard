@@ -7,8 +7,7 @@ import Dialog, {
     DialogContent,
     DialogContentText,
 } from 'material-ui/Dialog'
-import Rx from 'rxjs';
-import $ from 'jquery'
+import { Observable } from 'rxjs' 
 
 import 'animate.css/animate.min.css'
 
@@ -63,9 +62,9 @@ class App extends Component {
 
     componentDidMount() {
         const elementRoot = document.querySelector('body')
-        const touchStartEvent = Rx.Observable.fromEvent(elementRoot, 'touchstart')
-        const touchMoveEvent = Rx.Observable.fromEvent(elementRoot, 'touchmove')
-        const touchEndEvent = Rx.Observable.fromEvent(elementRoot, 'touchend')
+        const touchStartEvent = Observable.fromEvent(elementRoot, 'touchstart')
+        const touchMoveEvent = Observable.fromEvent(elementRoot, 'touchmove')
+        const touchEndEvent = Observable.fromEvent(elementRoot, 'touchend')
 
         const observerBackPage = touchStartEvent
             .switchMap(

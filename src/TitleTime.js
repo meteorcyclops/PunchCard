@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {observer} from 'mobx-react'
-import mobx from 'mobx'
 import styled from 'styled-components'
 import _ from 'lodash'
 import moment from 'moment'
