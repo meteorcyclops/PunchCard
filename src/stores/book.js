@@ -47,11 +47,11 @@ class BookStore {
         .then( res=>res.json() )
         .then( backdata=>{
             if(backdata.data){
-                this.rawBackendTime = moment.tz(backdata.TimeStamp, 'Asia/Taipei')
-                this.rawBackendTimeDelta = this.rawBackendTime.subtract(moment())
+                this.rawBackendTime = moment(backdata.data)
+                this.rawBackendTimeDelta = this.rawBackendTime.diff(moment())
                 setInterval(
                     ()=>{
-                        this.rawBackendTime = moment.tz(backdata.TimeStamp, 'Asia/Taipei').add(this.rawBackendTimeDelta)
+                        this.rawBackendTime = moment().add(this.rawBackendTimeDelta)
                         this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
                     },
                     1000
