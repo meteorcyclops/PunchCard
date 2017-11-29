@@ -1,4 +1,5 @@
 import moment from 'moment'
+import 'moment-timezone'
 import {observable, action} from 'mobx'
 import _ from 'lodash'
 
@@ -46,11 +47,11 @@ class BookStore {
         .then( res=>res.json() )
         .then( backdata=>{
             if(backdata.data){
-                this.rawBackendTime = moment(backdata.TimeStamp)
-                
+                this.rawBackendTime = moment.tz(backdata.TimeStamp, 'Asia/Taipei')
+                this.rawBackendTimeDelta = this.rawBackendTime.subtract(moment())
                 setInterval(
                     ()=>{
-                        this.rawBackendTime = this.rawBackendTime.add(1, 'seconds')
+                        this.rawBackendTime = moment().add(this.rawBackendTimeDelta)
                         this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
                     },
                     1000
