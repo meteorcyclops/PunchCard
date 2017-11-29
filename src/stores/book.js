@@ -51,7 +51,7 @@ class BookStore {
                 this.rawBackendTimeDelta = this.rawBackendTime.subtract(moment())
                 setInterval(
                     ()=>{
-                        this.rawBackendTime = moment().add(this.rawBackendTimeDelta)
+                        this.rawBackendTime = moment.tz(backdata.TimeStamp, 'Asia/Taipei').add(this.rawBackendTimeDelta)
                         this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
                     },
                     1000
