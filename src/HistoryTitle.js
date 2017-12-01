@@ -13,7 +13,7 @@ class HistoryTitle extends React.Component {
             return '昨天'
         }else if (day==2){
             return '前天'
-        }else{
+        }else {
             return '大於三天前'
         }
     }
@@ -47,10 +47,9 @@ class HistoryTitle extends React.Component {
             const lastTime = moment(lastPunch.card_time, 'HHmm').format('HH:mm')
 
             const todayDate = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
-                                    .format('YYYYMMDD')
             
-            const dayDelta = parseInt(todayDate) - parseInt(lastDate)
-            const dayTitle = this.pickDay( dayDelta )
+            const dayDelta = moment(todayDate).diff( moment(lastDate, 'YYYYMMDD'), 'days')
+            const dayTitle = this.pickDay( dayDelta)
             const dayFoot = this.pickType( lastPunch.card_onoff )
             return(
                 <div style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px'}}>
