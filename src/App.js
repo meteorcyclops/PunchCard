@@ -112,11 +112,11 @@ class App extends Component {
         const InputPounch = styled.label`
             font-size: 26px;
             transform: scale(1.1);
-            transform-origin: left;
+            transform-origin: left; 
         `
         return (
             <div className="for-the-overlay">
-                <Dialog
+                <Dialog 
                     style={style}
                     open={bookStore.dialogOpen}
                     onRequestClose={this.handleRequestClose.bind(this)}
