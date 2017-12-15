@@ -52,7 +52,10 @@ class HistoryTitle extends React.Component {
             const dayTitle = this.pickDay( dayDelta)
             const dayFoot = this.pickType( lastPunch.card_onoff )
             return(
-                <div style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px'}}>
+                <div 
+                    style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px', zIndex:'1'}}
+                    onClick={()=>{ bookStore.setObs('recordPageOpen', true)}}
+                >
                     {dayDelta<=2?`${dayTitle} ${lastTime} ${dayFoot}`:`${dayTitle}      `} 
                 </div>
             )

@@ -26,6 +26,9 @@ class BookStore {
     @observable
     dialogOpen = false
 
+    @observable
+    recordPageOpen = false
+
     @action
     setObs(key, value){
         this[key] = value

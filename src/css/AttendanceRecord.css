@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+.kfcc_background{
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-size:16px;
+  line-height: 18px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.container{
+  height: calc(100vh - 59px);
+  padding: 0 20px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+.for-the-overlay{
+  height: 100vh;
+  background-color: rgba(40,57,101,.9);
+
+
+}
+.tbody{
+
+  height:calc(100vh - 113px);
+  overflow-y: auto;
+  /* overflow-x: hidden; */
+}
+.tbody::-webkit-scrollbar{
+  width: 5px;
+}
+.tbody::-webkit-scrollbar-thumb{
+  width: 5px;
+  background-color: #7deca5;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+}
+.tbody::-webkit-scrollbar-track{
+  width: 5px;
+  background-color: transparent;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.date{
+  width:30%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 6vmin;
+}
+.Year{
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.28);
+  width: 100%;
+  height: 9px;
+  line-height: 13px;
+}
+.Month_and_Date{
+  width: 100%;
+  transform: translateY(-4px);
+
+}
+
+
+.time{
+  width:20%;
+  text-align: center;
+}
+.status{
+  width:30%;
+  text-align: center;
+}
+.detail{
+  width:20%;
+  text-align: center;
+}
+span{
+}
+.hint{
+  color: white;
+  background-color: #1161ee;
+  height: 40px;
+  margin-bottom: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  padding-left: 15px;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.10);
+  align-items: center;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-left: 0;
+  margin-right: 0;
+  border-left: 3px solid blue;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  height: 40px;
+  font-size: 18px;
+}
+.row:nth-child(1){
+  margin: 0;
+}
+.green{
+  border-left-color: #41a045;
+}
+.purple{
+  border-left-color: #ae30ba;
+}
+.yellow{
+  border-left-color: #baa639;
+}
+.blue{
+  border-left-color: #1a79b5;
+}
+.red{
+  border-left-color: #ba5230;
+}
+
+.header{
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.46);
+  display: flex;
+  text-align: center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  height: 14px;
+}
+
+.table{
+  /* width: 700px; */
+  margin-bottom: 0;
+}
+
+/* 下拉式選單的容器*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* 下拉式選單的按鈕 */
+.dropbtn {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  width: 40px;
+  height: 21px;
+  display: inline-block;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  color: white;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  width: 70px;
+  right: 15px;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 5px 7px;
+  /* word-wrap:  */
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-show {display:block;}
+
+/* modal 的 style */
+.modal_for-the-overlay{
+  background-color: rgba(40,57,101,.9);
+  /* height: 95vh; */
+  overflow-y: auto;
+}
+.modal-content{
+  font: 300 16px/18px "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  background-image: url('%PUBLIC_URL%/images/kfsyscc_logo_big.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* height: 100vh; */
+  color: white;
+}
+.modal_row{
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18px;
+  line-height: 21px;
+}
+.modal_time_block{
+  width: 30%;
+  text-align: right;
+  opacity: 0.5;
+}
+.divider{
+  width:20%;
+  text-align: center;
+  padding-top: 4px;
+}
+.modal_dot{
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: white;
+  margin: auto;
+}
+.vline{
+  width: 0px;
+  border: 1px solid #3fa9f5;
+  height: 53px;
+  margin: 5px auto;
+}
+.status_block{
+  /* width: 60%; */
+}
+.modal_container{
+  max-width: 700px;
+  margin: auto;
+  width: 100%;
+}
+.modal_status{
+  font-weight: 400;
+}
+.modal_location{
+  font-size: 12px;
+  opacity: 0.6;
+  padding-left: 2px;
+}
+
+.modal_row:last-of-type .divider .vline{
+  display: none;
+  background-color: red;
+}
