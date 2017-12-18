@@ -71,7 +71,7 @@ class DragPage extends React.Component {
     }
 
     render() {
-        let renderPage = <div key='slideNone' style={{display:'none'}} />
+        let renderPage = <div key='slideNone' style={{display:'none'}} />;
 
         if(this.state.open){
             renderPage=(
@@ -98,7 +98,7 @@ class DragPage extends React.Component {
                                 left:'0px',
                                 zIndex:'3',
                             }
-                        }/>
+                    }/>
                     {this.props.children}
                 </div>
             )

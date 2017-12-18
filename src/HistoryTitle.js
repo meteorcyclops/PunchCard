@@ -5,6 +5,7 @@ import moment from 'moment'
 
 import bookStore from './stores/book'
 
+import FontAwesome from 'react-fontawesome';
 class HistoryTitle extends React.Component {
     pickDay(day){
         if(day==0){
@@ -53,9 +54,9 @@ class HistoryTitle extends React.Component {
             const dayFoot = this.pickType( lastPunch.card_onoff )
             return(
                 <div 
-                    style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px', zIndex:'1'}}
+                    style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px', zIndex:'1', cursor: 'pointer', border:'1px solid', borderRadius:'6px', padding: '5px 10px'}}
                     onClick={()=>{ bookStore.setObs('recordPageOpen', true)}}
-                >
+                ><FontAwesome name='vcard' size='lg'/>{' '}
                     {dayDelta<=2?`${dayTitle} ${lastTime} ${dayFoot}`:`${dayTitle}      `} 
                 </div>
             )
