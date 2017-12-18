@@ -39,7 +39,7 @@ class AttendanceRecord extends Component {
 
         //抓最近2個月的打卡記錄
         // let twoMonthsAgo = moment().subtract(2, 'months').format('YYYYMMDD');
-        let twoMonthsAgo = moment().subtract(７, 'days').format('YYYYMMDD');
+        let twoMonthsAgo = moment().subtract(7, 'days').format('YYYYMMDD');
         this.getDataFrom(twoMonthsAgo);
     }
 
