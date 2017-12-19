@@ -10,6 +10,7 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import FontAwesome from 'react-fontawesome';
 import bgImg from '../pictures/kfsyscc_logo_big＿1920.jpg';
+import circle2 from '../pictures/circle2.svg';
 
 const m_style = {
     paper: {
@@ -71,11 +72,14 @@ const PopUpDialog = (props) => {
 
                         _.map(props.time_list, (time, idx) => {
                             let location_html = '';
+                            let circle = null;
                             if (time['from'] === '') {
                                 //若此元素是 「表訂上班時間」or「表訂下班時間」，則不顯示打卡主機的位置
                                 location_html = '';
+                                circle = <img src={circle2} width="37" />;
                             } else {
                                 location_html = <div className="modal_location"><i className="fa fa-map-marker" aria-hidden="true"></i> {time['from']}</div>;
+                                circle = <div className="modal_dot"></div>;
                             }
 
                             let modal_html =
@@ -87,7 +91,8 @@ const PopUpDialog = (props) => {
                                     </div>
 
                                     <div className="divider">
-                                        <div className="modal_dot"></div>
+                                        {circle}
+                                        {/* <div className="modal_dot"></div> */}
                                         <div className="vline"></div>
                                     </div>
 
