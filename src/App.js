@@ -120,7 +120,7 @@ class App extends Component {
                     open = {bookStore.recordPageOpen} 
                     closeFunc={()=>{ bookStore.setObs('recordPageOpen', false) }}
                 >
-                    <AttendanceRecord />
+                    <AttendanceRecord/>
                 </DragPage>
 
                 <HistoryTitle />

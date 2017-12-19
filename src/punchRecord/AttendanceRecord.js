@@ -5,7 +5,7 @@ import PopUpDialog from './PopUpDialog';
 import Rows from './Rows';
 
 import bookStore from '../stores/book'
-
+import FontAwesome from 'react-fontawesome';
 import '../css/AttendanceRecord.css';
 
 const styles = {
@@ -38,8 +38,9 @@ class AttendanceRecord extends Component {
     componentWillMount() {
 
         //抓最近2個月的打卡記錄
-        // let twoMonthsAgo = moment().subtract(2, 'months').format('YYYYMMDD');
-        let twoMonthsAgo = moment().subtract(7, 'days').format('YYYYMMDD');
+        // let twoMonthsAgo = moment().subtract(2, 'years').format('YYYYMMDD');
+        let twoMonthsAgo = moment().subtract(2, 'months').format('YYYYMMDD');
+        // let twoMonthsAgo = moment().subtract(7, 'days').format('YYYYMMDD');
         this.getDataFrom(twoMonthsAgo);
     }
 
@@ -245,8 +246,17 @@ class AttendanceRecord extends Component {
     render() {
         return (
             <div className="kfcc_background" style={styles.bg_img_style}>
-                <div>
-                    <div className="hint">{this.state.username} 的打卡紀錄</div>
+                <div className="ar_for-the-overlay">
+                    <span>
+                        <div className="hint" >
+                        <FontAwesome name='times-circle' 
+                            size='lg' 
+                            style={{ color: 'white', position:'absolute', left:'20px', cursor: 'pointer' }} 
+                            onClick={()=>{bookStore.setObs('recordPageOpen', false)}}
+                        />
+                            {this.state.username} 的打卡紀錄
+                        </div>
+                    </span>
                     <PopUpDialog
                         open={this.state.open_dialog}
                         onRequestClose={this.handleRequestClose}
@@ -259,6 +269,7 @@ class AttendanceRecord extends Component {
                         punch_list={this.state.punch_list}
                         AttendanceRecord={this}
                         showDetailOfDay={this.showDetailOfDay} />
+                    
                 </div>
             </div>
 

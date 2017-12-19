@@ -6,7 +6,7 @@ class TheRow extends Component {
     render() {
         let tmp_className = "row " + this.props.color;
         return (
-            <div className={tmp_className}>
+            <div className={tmp_className} onClick={() => { this.props.showDetail(this.props.date) }}>
                 <span className="date">
                     <span className="Year">{this.props.year}</span>
                     <span className="Month_and_Date">{this.props.Month_and_Date}</span>

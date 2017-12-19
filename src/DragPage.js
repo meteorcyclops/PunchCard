@@ -92,10 +92,14 @@ class DragPage extends React.Component {
                         id="leftDragColumnTao" 
                         style={
                             {            
-                                height:'100%',
+                                /* 把拖拉區塊的右上角去掉，讓 AttendanceRecord 元件的 左上角的 X 不會被遮住。 
+                                    所以把高度 減去40px，並設top:40px。 by 丁丁
+                                */
+                                height:'calc(100% - 40px)',
                                 width:'50px',
                                 position:'absolute',
                                 left:'0px',
+                                top:'40px',
                                 zIndex:'3',
                             }
                     }/>

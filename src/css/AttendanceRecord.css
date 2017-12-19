@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 .kfcc_background{
+  background: url("../pictures/kfsyscc_logo_big＿1920.jpg") no-repeat center;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -15,7 +16,7 @@
   max-width: 580px;
   margin: 0 auto;
 }
-.for-the-overlay{
+.ar_for-the-overlay{
   height: 100vh;
   background-color: rgba(40,57,101,.9);
 

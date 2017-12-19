@@ -54,9 +54,9 @@ class HistoryTitle extends React.Component {
             const dayFoot = this.pickType( lastPunch.card_onoff )
             return(
                 <div 
-                    style={{position:'absolute', right: '15px', top: '8px', fontSize: '12px', zIndex:'1', cursor: 'pointer', border:'1px solid', borderRadius:'6px', padding: '5px 10px'}}
+                    style={{position:'absolute', right: '7px', top: '8px', fontSize: '12px', zIndex:'1', cursor: 'pointer', border:'2px solid', borderRadius:'25px', padding: '5px 11px', color:'#7DECA5'}}
                     onClick={()=>{ bookStore.setObs('recordPageOpen', true)}}
-                ><FontAwesome name='vcard' size='lg'/>{' '}
+                >
                     {dayDelta<=2?`${dayTitle} ${lastTime} ${dayFoot}`:`${dayTitle}      `} 
                 </div>
             )

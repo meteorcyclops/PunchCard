@@ -9,9 +9,11 @@ import _ from 'lodash';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import FontAwesome from 'react-fontawesome';
+import bgImg from '../pictures/kfsyscc_logo_big＿1920.jpg';
 
 const m_style = {
     paper: {
+        backgroundImage: 'url(' + bgImg + ')',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         color: 'white',

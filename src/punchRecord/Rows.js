@@ -1,5 +1,20 @@
 import React from 'react';
 import TheRow from './TheRow';
+import Infinite from 'react-infinite';
+
+const viewportToPixels = (value)=>{
+    var parts = value.match(/([0-9\.]+)(vh|vw)/);
+    var q = Number(parts[1]);
+    var side = window[['innerHeight', 'innerWidth'][['vh', 'vw'].indexOf(parts[2])]];
+    return side * (q/100);
+  }
+const handleInfiniteLoad = ()=>{
+    // console.log('執行fucking function!!!!');
+    
+}
+const elementInfiniteLoad =()=>{
+    return null;
+}
 
 const Rows = (props) => {
     //props.punch_list
@@ -65,7 +80,8 @@ const Rows = (props) => {
 
     }); //each
 
-
+    const height = viewportToPixels('100vh') - 113;
+    
 
 
     return (
@@ -79,9 +95,18 @@ const Rows = (props) => {
                     <span className="detail">詳情</span>
 
                 </div>
-                <div className="tbody">
-                    {tmp_array}
-                </div>
+                {/* <div className="tbody"> */}
+                    <Infinite elementHeight={40}
+                            containerHeight={height}
+                            infiniteLoadBeginEdgeOffset={200}
+                            onInfiniteLoad={handleInfiniteLoad}
+                            isInfiniteLoading={false}
+                            loadingSpinnerDelegate={elementInfiniteLoad()}
+                            className="tbody"
+                        >
+                        {tmp_array}
+                    </Infinite>
+                {/* </div> */}
 
             </div>
 
