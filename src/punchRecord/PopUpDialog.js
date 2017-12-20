@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Dialog, {
     DialogActions,
     DialogContent,
@@ -42,8 +42,30 @@ const m_style = {
     },
     dialog_close_button: {
         backgroundColor: '#1161ee'
+    },
+    dialog_out_circle: {
+        border: '19px solid rgba(255,255,255,0.2)',
+        borderRadius: '50%',
+        width: '14px',
+        height: '14px',
+        position: 'relative',
+        left: '50%',
+        transform: 'translateX(-50%)'
+
+    },
+    dialog_inner_circle: {
+        border: '3px solid white',
+        borderRadius: '50%',
+        width: '12px',
+        height: '12px',
+        top: '50%',
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%)'
+
     }
+
 }
+
 
 
 const PopUpDialog = (props) => {
@@ -76,7 +98,10 @@ const PopUpDialog = (props) => {
                             if (time['from'] === '') {
                                 //若此元素是 「表訂上班時間」or「表訂下班時間」，則不顯示打卡主機的位置
                                 location_html = '';
-                                circle = <img src={circle2} width="37" />;
+                                // circle = <img src={circle2} width="37" />;
+                                circle = (<div style={m_style.dialog_out_circle}>
+                                     <div style={m_style.dialog_inner_circle}></div>
+                                </div>);
                             } else {
                                 location_html = <div className="modal_location"><i className="fa fa-map-marker" aria-hidden="true"></i> {time['from']}</div>;
                                 circle = <div className="modal_dot"></div>;
