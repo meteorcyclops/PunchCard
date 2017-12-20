@@ -209,7 +209,7 @@ span{
   width: 30%;
   text-align: right;
   opacity: 0.5;
-  margin-top:5px;
+  margin-top:7px;
 }
 .divider{
   width:20%;
@@ -220,7 +220,7 @@ span{
   height: 13px;
   border-radius: 50%;
   background-color: white;
-  margin: 9px auto 4px auto;
+  margin: 11px auto 4px auto;
 }
 .vline{
   width: 0px;
@@ -230,7 +230,7 @@ span{
 }
 .status_block{
   /* width: 60%; */
-  margin-top:5px;
+  margin-top:7px;
 }
 .modal_container{
   max-width: 700px;
