@@ -18,8 +18,12 @@ class DragPage extends React.Component {
     componentWillReceiveProps(nextProps){
         if (nextProps){
             this.setState({
-                open: nextProps.open
+                open: nextProps.open,
+                transX: nextProps.open?this.state.transX:0
             })
+            if (!nextProps.open){
+                this.first=true
+            }
         }
     }
 
