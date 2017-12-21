@@ -3,9 +3,10 @@ import {observer} from 'mobx-react'
 import _ from 'lodash' 
 import moment from 'moment'
 
+import styled from 'styled-components'
+
 import bookStore from './stores/book'
 
-import FontAwesome from 'react-fontawesome';
 class HistoryTitle extends React.Component {
     pickDay(day){
         if(day==0){
@@ -52,13 +53,26 @@ class HistoryTitle extends React.Component {
             const dayDelta = moment(todayDate).diff( moment(lastDate, 'YYYYMMDD'), 'days')
             const dayTitle = this.pickDay( dayDelta)
             const dayFoot = this.pickType( lastPunch.card_onoff )
+
+            const Div=styled.div`
+                position: absolute; 
+                right: 7px;
+                top: 8px;
+                font-size: 12px; 
+                z-index:1;
+                cursor: pointer;
+                border:2px solid;
+                border-radius:25px; 
+                padding: 5px 11px; 
+                color:rgba(106, 111, 140, 0.5)
+            `
+
             return(
-                <div 
-                    style={{position:'absolute', right: '7px', top: '8px', fontSize: '12px', zIndex:'1', cursor: 'pointer', border:'2px solid', borderRadius:'25px', padding: '5px 11px', color:'rgb(106, 111, 140)'}}
+                <Div 
                     onClick={()=>{ bookStore.setObs('recordPageOpen', true)}}
                 >
                     {dayDelta<=2?`${dayTitle} ${lastTime} ${dayFoot}`:`${dayTitle}      `} 
-                </div>
+                </Div>
             )
         }
         
