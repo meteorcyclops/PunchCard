@@ -176,7 +176,7 @@ class AttendanceRecord extends Component {
                         })
                         .catch((err) => {
                             console.warn('呼叫API：https://staff.kfsyscc.org/hrapi/card/，函數:getPunchList 發生錯誤：', err);
-                            alert('伺服器回報錯誤.\n\n可能的問題：' + err);
+                            alert('伺服器回報錯誤.\n\n請使用院內網路。\n\n可能的問題：' + err);
                         });
 
 
@@ -187,7 +187,7 @@ class AttendanceRecord extends Component {
             })
             .catch((err) => {
                 console.warn('呼叫API：https://staff.kfsyscc.org/hrapi/card/，函數:getScheList 發生錯誤：', err);
-                alert('伺服器回報錯誤.\n\n可能的問題：' + err);
+                alert('伺服器回報錯誤.\n\n請使用院內網路。\n\n可能的問題：' + err);
             });
 
 
@@ -239,7 +239,7 @@ class AttendanceRecord extends Component {
             })
             .catch((err) => {
                 console.warn('呼叫API：https://staff.kfsyscc.org/hrapi/card/，函數:getPunchList 發生錯誤：', err);
-                alert('伺服器回報錯誤.\n\n可能的問題：' + err);
+                alert('伺服器回報錯誤.\n\n請使用院內網路。\n\n可能的問題：' + err);
             })
     } //end of getData
 
