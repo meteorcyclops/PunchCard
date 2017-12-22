@@ -64,7 +64,7 @@ class HistoryTitle extends React.Component {
                 border:2px solid;
                 border-radius:25px; 
                 padding: 5px 11px; 
-                color:rgba(106, 111, 140, 0.5)
+                color:rgba(106, 111, 140, 1)
             `
 
             return(
