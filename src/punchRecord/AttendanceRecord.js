@@ -72,6 +72,7 @@ class AttendanceRecord extends Component {
         const uri = "https://staff.kfsyscc.org/hrapi/card/";
         fetch(uri, {
             method: "POST",
+            headers: new Headers({ 'Accept': 'application/json' }),
             body: JSON.stringify({
                 "username": this.state.username,
                 "password": this.state.password,
@@ -114,6 +115,7 @@ class AttendanceRecord extends Component {
                     const record_url = "https://staff.kfsyscc.org/hrapi/card/";
                     fetch(record_url, {
                         method: "POST",
+                        headers: new Headers({ 'Accept': 'application/json' }),
                         body: JSON.stringify({
                             "username": this.state.username,
                             "password": this.state.password,
@@ -208,6 +210,7 @@ class AttendanceRecord extends Component {
         const uri = "https://staff.kfsyscc.org/hrapi/card/";
         fetch(uri, {
             method: "POST",
+            headers: new Headers({ 'Accept': 'application/json' }),
             body: JSON.stringify({
                 "username": this.state.username,
                 "password": this.state.password,
