@@ -79,7 +79,10 @@ const PopUpDialog = (props) => {
 
         }
     }
-
+    let cross_day = null;
+    if(props.cross_day_work === true){
+        cross_day = <p>跨日班表(顯示2天所有打卡)</p>;
+    }
     return (
         <Dialog
             fullScreen={false}
@@ -93,6 +96,7 @@ const PopUpDialog = (props) => {
             <div style={styles.blue_overlay}>
                 <DialogTitle disableTypography={true} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span>{props.title}</span>
+                    {cross_day}
                     <Button fab  color="primary" style={styles.dialog_x_button} onClick={props.onRequestClose}>
                         <FontAwesome name='times' size='lg' style={{ color: 'white' }} />
                     </Button>

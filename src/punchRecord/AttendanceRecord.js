@@ -27,79 +27,14 @@ class AttendanceRecord extends Component {
             username: bookStore.uid,
             password: bookStore.pwd,
             schedule_list: 
-            [
-                {
-                    date:'20171214',
-                    time:'1600',
-                    status:'表訂上班時間',
-                    from: ''
-                },
-                {
-                    date:'20171214',
-                    time:'0000',
-                    status:'表訂下班時間',
-                    from: ''
-                },
-                {
-                    date:'20171215',
-                    time:'1600',
-                    status:'表訂上班時間',
-                    from: ''
-                },
-                {
-                    date:'20171215',
-                    time:'0000',
-                    status:'表訂下班時間',
-                    from: ''
-                },
-                {
-                    date:'20171216',
-                    time:'1600',
-                    status:'表訂上班時間',
-                    from: ''
-                },
-                {
-                    date:'20171216',
-                    time:'0000',
-                    status:'表訂下班時間',
-                    from: ''
-                }
-            ],
-            punch_list: [
-                {
-                    data_type : "1",
-                    card_onoff: "1",
-                    card_from: "ip",
-                    card_date: '20171215',
-                    card_time: "1530"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "9",
-                    card_from: "ip",
-                    card_date: '20171216',
-                    card_time: "0030"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "1",
-                    card_from: "ip",
-                    card_date: '20171216',
-                    card_time: "1533"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "9",
-                    card_from: "ip",
-                    card_date: '20171217',
-                    card_time: "0033"
-                },
-            ], //首頁的每一列打卡記錄(多天)
+            [],
+            punch_list: [], //首頁的每一列打卡記錄(多天)
             open_dialog: false,
 
             dialog_title: '',
             dialog_content: '',
-            time_list: []
+            time_list: [],
+            cross_day_work: false
         }
     }
 
@@ -113,8 +48,8 @@ class AttendanceRecord extends Component {
 
         //跨日班表會爆炸！
         // this.getDataFrom(twoMonthsAgo);
-        // this.getPage1From(twoMonthsAgo);
-        this.showDetailOfDay('20171215');
+        this.getPage1From(twoMonthsAgo);
+        // this.showDetailOfDay('20171215');
     }
 
     getFormateYear = (rawDate) => {
@@ -133,10 +68,10 @@ class AttendanceRecord extends Component {
     }
 
     showDetailOfDay = (date) => {
-     //先移到別的地方
+     
         let tmp_time_list = [];
-        console.log('punch list:',this.state.punch_list);
 
+        //取得 on_time 和 off_time 以判斷是否為「跨日班」
         let on_time = null;
         let off_time = null;
         for(let i=0;i<this.state.schedule_list.length; i++){
@@ -149,16 +84,16 @@ class AttendanceRecord extends Component {
                 }
             }
         }
+        
 
         if(off_time > on_time){
-            console.log('為正常班:');
+            //為正常班
             let record_list = _.filter(this.state.punch_list, (n) => {
                 if (n.card_date === date) {
                     return n;
                 }
             });
             //record_list: 整理後的打卡記錄
-            console.log('今天的記錄:',record_list);
 
             //把此天的打卡記錄寫入 tmp_time_list 中
             record_list.forEach((ele) => {
@@ -197,13 +132,11 @@ class AttendanceRecord extends Component {
             //time_list: 打卡記錄 + 班表 融合
 
 
-            this.setState({ time_list: tmp_time_list, open_dialog: true });
+            this.setState({ time_list: tmp_time_list, open_dialog: true, cross_day_work:false });
 
 
         }else{
-            // console.log('為跨日班:');
-            // console.log('on_time:',on_time);
-            // console.log('off_time:',off_time);
+            //為跨日班
 
             const nextDate = moment(date, 'YYYYMMDD').add(1, 'days').format("YYYYMMDD");
  
@@ -223,7 +156,7 @@ class AttendanceRecord extends Component {
                 }
             });
             //record_list: 整理後的打卡記錄
-            console.log('這此上班的記錄:',record_list);
+
             record_list.forEach((ele) => {
                 let tmp_status = '';
                 if (ele.card_onoff === '1') {
@@ -259,9 +192,8 @@ class AttendanceRecord extends Component {
 
         //依時間，從早到晚排序
         tmp_time_list = _.sortBy(tmp_time_list, ['date', 'time']);
-        console.log('tmp_time_list:',tmp_time_list);
 
-        this.setState({ time_list: tmp_time_list, open_dialog: true });
+        this.setState({ time_list: tmp_time_list, open_dialog: true, cross_day_work:true });
 
         }
 
@@ -272,6 +204,7 @@ class AttendanceRecord extends Component {
     }
 
     getPage1From = (minDate)=>{
+        //我不知道這個函數多抓了班表，有沒有辦法判斷。也可能根本沒用。
         const schedule_list =[];
         const schedule_uri = "https://staff.kfsyscc.org/hrapi/card/";
         fetch(schedule_uri, {
@@ -305,7 +238,6 @@ class AttendanceRecord extends Component {
                     });
 
                 });
-                console.log('先抓到班表:',schedule_list);
 
                 ////////////////////////
                 //接下來抓打卡記錄
@@ -329,7 +261,6 @@ class AttendanceRecord extends Component {
 
                             var order_data = _.orderBy(data.data, ['card_date', 'card_time'], ['desc', 'desc']);
 
-                            console.log('打卡記錄punch_list:',order_data);
 
                             //state.punch_list 有資料後，Rows就會開始顯示
                             this.setState({
@@ -369,7 +300,7 @@ class AttendanceRecord extends Component {
 
     getDataFrom__old = (minDate) => {
        
-
+        //只抓一支api的函數。先留著。
 
 
         const uri = "https://staff.kfsyscc.org/hrapi/card/";
@@ -387,10 +318,6 @@ class AttendanceRecord extends Component {
                 return res.json();
             })
             .then((data) => {
-                console.log('====================================');
-                console.log('所有記錄:', data.data);
-                console.log('====================================');
-                
                 if (data.status === true) {
 
                     var order_data = _.orderBy(data.data, ['card_date', 'card_time'], ['desc', 'desc']);
@@ -435,6 +362,7 @@ class AttendanceRecord extends Component {
                         time_list={this.state.time_list}
                         formatTime={this.getFormateTime}
                         formatDate={this.getFormateMonthDate}
+                        cross_day_work={this.state.cross_day_work}
                     />
 
                     <Rows
