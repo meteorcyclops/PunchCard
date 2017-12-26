@@ -32,6 +32,8 @@ const Rows = (props) => {
     let color = '';
 
     props.punch_list.forEach((element, idx) => {
+        //緊急修改
+        // 找element.card_time 跟 schedule_list的date一致的
         if (element.card_onoff === '1') {
             status = '上班';
         } else if (element.card_onoff === '9') {

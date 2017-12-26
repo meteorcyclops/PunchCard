@@ -125,7 +125,7 @@ const PopUpDialog = (props) => {
                                 <div className="modal_row" key={idx}>
 
                                     <div className="modal_time_block">
-                                        <div className="modal_time">{props.formatTime(time['time'])}</div>
+                                        <div className="modal_time">{props.formatDate(time['date'])} {props.formatTime(time['time'])}</div>
                                         <div className="modal_AMorPM"></div>
                                     </div>
 
