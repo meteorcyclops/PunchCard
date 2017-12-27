@@ -15,6 +15,9 @@ const handleInfiniteLoad = ()=>{
 const elementInfiniteLoad =()=>{
     return null;
 }
+const test = ()=>{
+    console.log('test:');
+}
 
 const Rows = (props) => {
     //props.punch_list
