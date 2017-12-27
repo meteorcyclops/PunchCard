@@ -14,7 +14,7 @@ class TheRow extends Component {
                 <span className="time">{this.props.time}</span>
                 <span className="status">{this.props.status}</span>
                 <span className="detail">
-                    <Button onClick={() => { this.props.showDetail(this.props.date) }} style={{ minWidth: '0' }}>
+                    <Button onClick={() => { this.props.showDetail(this.props.punch) }} style={{ minWidth: '0' }}>
                         <FontAwesome name='ellipsis-v' size='lg' style={{ color: 'white' }} />
                     </Button>
                 </span>

@@ -68,6 +68,7 @@ const Rows = (props) => {
 
         let eachRow = (<TheRow
             color={color}
+            punch={element}
             date={element.card_date}
             year={props.AttendanceRecord.getFormateYear(element.card_date)}
             Month_and_Date={props.AttendanceRecord.getFormateMonthDate(element.card_date)}
