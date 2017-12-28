@@ -202,11 +202,19 @@ span{
     font-size: 18px;
     line-height: 21px;
 }
+.modal_date{
+    font-size: 9px;
+    color: rgba(255,255,255, 0.5);
+    margin-right: 10px;
+}
 .modal_time_block{
     width: 30%;
     text-align: right;
     opacity: 0.5;
     margin-top:7px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 .divider{
     width:20%;

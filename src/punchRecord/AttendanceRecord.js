@@ -26,55 +26,8 @@ class AttendanceRecord extends Component {
         this.state = {
             username: bookStore.uid,
             password: bookStore.pwd,
-            schedule_list: 
-            [
-                {
-                    "on_time": '1600',
-                    "off_time": '0000',
-                    "sch_date": '20171215'
-                } ,
-                {
-                    "on_time": '1600',
-                    "off_time": '0000',
-                    "sch_date": '20171216'
-                } ,
-                {
-                    "on_time": '1600',
-                    "off_time": '0000',
-                    "sch_date": '20171217'
-                } ,
-
-            ],
-            punch_list: [
-                {
-                    data_type : "1",
-                    card_onoff: "1",
-                    card_from: "ip",
-                    card_date: '20171215',
-                    card_time: "1530"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "9",
-                    card_from: "ip",
-                    card_date: '20171216',
-                    card_time: "0030"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "1",
-                    card_from: "ip",
-                    card_date: '20171216',
-                    card_time: "1533"
-                },
-                {
-                    data_type : "1",
-                    card_onoff: "9",
-                    card_from: "ip",
-                    card_date: '20171217',
-                    card_time: "0033"
-                },
-            ], //首頁的每一列打卡記錄(多天)
+            schedule_list: [],
+            punch_list: [], //首頁的每一列打卡記錄(多天)
             open_dialog: false,
 
             dialog_title: '',
@@ -90,11 +43,10 @@ class AttendanceRecord extends Component {
         // let twoMonthsAgo = moment().subtract(2, 'years').format('YYYYMMDD');
         let twoMonthsAgo = moment().subtract(2, 'months').format('YYYYMMDD');
 
-        //跨日班表會爆炸！
-        // this.getPunchList(twoMonthsAgo);
-        // this.getScheduleList(twoMonthsAgo)
+        this.getPunchList(twoMonthsAgo);
+        this.getScheduleList(twoMonthsAgo);
 
-        this.showDetailOfDay(this.state.punch_list[1]);
+        // this.showDetailOfDay(this.state.punch_list[0]);
     }
 
     getFormateYear = (rawDate) => {
@@ -112,6 +64,19 @@ class AttendanceRecord extends Component {
         return d.format('HH:mm');
     }
 
+    getStatusTextFromScheduleCode = (code) =>{
+        if(code === '1'){
+            return '上班';
+        }else if(code === '9'){
+            return '下班';
+        }else if(code === '2'){
+            return '緊急上班';
+        }else if(code === '3'){
+            return '緊急下班';
+        }else{
+            return '';
+        }
+    }
     getScheduleList = (minDate) =>{
         const uri = "https://staff.kfsyscc.org/hrapi/card/";
         fetch(uri, {
@@ -139,83 +104,140 @@ class AttendanceRecord extends Component {
     }
 
     showDetailOfDay = (punch) => {
-        console.log('按了detail:',punch);
+        // console.log('按了ddd detail:',punch);
         //先判斷 punch 所屬的班表，是否為跨日
+        if(_.isEmpty(this.state.schedule_list)){
+            return false;
+        }
 
-
+        //取得今天班表
         let database_schedule_obj = (this.state.schedule_list.filter((el)=>el.sch_date === punch.card_date))[0];
-        //取得點擊的打卡時間，所屬的班表區段  (依點擊的是上班or下班，有不同天的取消)
 
         let graphic_time_list = []
         //從 schedule_list 判斷是不是「跨日班」
 
-        let schedule_on = moment(database_schedule_obj.sch_date + database_schedule_obj.on_time, "YYYYMMDDHHmm");
-        let schedule_off = moment(database_schedule_obj.sch_date + database_schedule_obj.off_time, "YYYYMMDDHHmm");
-        // if( parseInt(database_schedule_obj.on_time) > parseInt(database_schedule_obj.off_time) ){
-        //     console.log('為跨日班:');
-        //     schedule_off = moment(database_schedule_obj.sch_date + database_schedule_obj.off_time, "YYYYMMDDHHmm").add(1, 'days');
+    
+        let today_schedule_on = moment(database_schedule_obj.sch_date + database_schedule_obj.on_time, "YYYYMMDDHHmm");
+        let today_schedule_off = moment(database_schedule_obj.sch_date + database_schedule_obj.off_time, "YYYYMMDDHHmm");
+        let title = this.getFormateMonthDate(punch.card_date) + ' 打卡記錄';
+
+
+        // if(跨日班){
+        //     取得前一天班表的上下班
+        //     if(前一天不用上班)=>不顯示
+        //     把前1天的日期的打卡記錄抓出來
+        //     判斷前1天的班表上下班加入 graphic_time_list (要先判斷是否是跨日)
         // }
 
+        if( parseInt(database_schedule_obj.on_time) > parseInt(database_schedule_obj.off_time) ){
+            //為跨日班，顯示今天+前一天
+
+            //修正今天下班班表
+            today_schedule_off = moment(database_schedule_obj.sch_date + database_schedule_obj.off_time, "YYYYMMDDHHmm").add(1, 'days');
+
+            //取得前1天班表
+            let pre_day_schedule = this.state.schedule_list.filter(el=>{
+                if( moment(punch.card_date, "YYYYMMDD").subtract(1, 'days').format("YYYYMMDD") === el.sch_date){
+                    return true;
+                }
+            })[0];
+
+            if(!(pre_day_schedule.on_time === '0000' && 
+            pre_day_schedule.off_time ==='0000')){
+                //if(前一天不用上班)=>不顯示  => 要上班才顯示
+                
+                //取得前1天班表上班時刻
+                let pre_day_schedule_on = moment(pre_day_schedule.sch_date + pre_day_schedule.on_time, "YYYYMMDDHHmm");
+
+                title = this.getFormateMonthDate(pre_day_schedule_on.format('YYYYMMDD')) + ' ~ ' + this.getFormateMonthDate(punch.card_date) + ' 打卡記錄';
+                
+                //取得前1天班表下班時刻
+                let pre_day_schedule_off = null;
+                if( parseInt(pre_day_schedule.on_time) > parseInt(pre_day_schedule.off_time) ){
+                    pre_day_schedule_off = moment(pre_day_schedule.sch_date + pre_day_schedule.off_time, "YYYYMMDDHHmm").add(1, 'days');
+                }else{
+                    pre_day_schedule_off = moment(pre_day_schedule.sch_date + pre_day_schedule.off_time, "YYYYMMDDHHmm")
+                }
+
+                //把前1天上下班班表時刻加入 graphic_time_list 裡
+                graphic_time_list.push({
+                    date: pre_day_schedule_on.format("YYYYMMDD"),
+                    time: pre_day_schedule_on.format("HHmm"),
+                    status: "表訂上班時間",
+                    from: ''
+                });
+                graphic_time_list.push({
+                    date: pre_day_schedule_off.format("YYYYMMDD"),
+                    time: pre_day_schedule_off.format("HHmm"),
+                    status: "表訂下班時間",
+                    from: ''
+                }); 
 
 
-        if(! (schedule_on.format('HHmm') ==='0000' && schedule_off.format('HHmm') ==='0000')){
+                //把前1天的打卡記錄抓出來
+                let pre_day_punch_list = this.state.punch_list.filter(el=>{
+                    if( el.card_date === moment(punch.card_date, "YYYYMMDD").subtract(1, 'days').format("YYYYMMDD") ){
+                        return true;
+                    }
+                })
+
+                pre_day_punch_list.forEach(el=>{
+                    graphic_time_list.push({
+                        date: el.card_date,
+                        time: el.card_time,
+                        status: this.getStatusTextFromScheduleCode(el.card_onoff),
+                        from: el.card_from
+                    });
+                })
+
+            }
+        } // end 處理跨日班
+
+
+
+
+
+        if(! (today_schedule_on.format('HHmm') ==='0000' && today_schedule_off.format('HHmm') ==='0000')){
            
             //把此次上下班班表加入 graphic_time_list 裡
             graphic_time_list.push({
-                date: schedule_on.format("YYYYMMDD"),
-                time: schedule_on.format("HHmm"),
+                date: today_schedule_on.format("YYYYMMDD"),
+                time: today_schedule_on.format("HHmm"),
                 status: "表訂上班時間",
                 from: ''
             });
             graphic_time_list.push({
-                date: schedule_off.format("YYYYMMDD"),
-                time: schedule_off.format("HHmm"),
+                date: today_schedule_off.format("YYYYMMDD"),
+                time: today_schedule_off.format("HHmm"),
                 status: "表訂下班時間",
                 from: ''
             }); 
         }
 
 
-        let result1 = this.state.punch_list.filter(el=>{
+        let today_punch_list = this.state.punch_list.filter(el=>{
             if(el.card_date === punch.card_date){
                 return true;
             }
         })
 
-        result1.forEach(el=>{
-            let statusText = '';
-            switch(el.card_onoff){
-                case '1':
-                    statusText = '上班';
-                    break;
-                case '9':
-                    statusText = '下班';
-                    break;
-                case '2':
-                    statusText = '緊急上班';
-                    break;
-                case '3':
-                    statusText = '緊急下班';
-                    break;
-                default:
-                    statusText = '';
-            }
-
-
+        today_punch_list.forEach(el=>{
             graphic_time_list.push({
                 date: el.card_date,
                 time: el.card_time,
-                status: statusText,
+                status: this.getStatusTextFromScheduleCode(el.card_onoff),
                 from: el.card_from
             });
         })
 
         graphic_time_list = _.sortBy(graphic_time_list, ['date', 'time']);
         // console.log('有班表的graphic_time_list:',graphic_time_list);
-        this.setState({ time_list: graphic_time_list, 
+        this.setState({ 
+            time_list: graphic_time_list, 
             open_dialog: true, 
-            dialog_title: punch.card_date + '全天', 
-            cross_day_work:false });
+            dialog_title: title,
+            cross_day_work:false 
+        });
 
 
         
