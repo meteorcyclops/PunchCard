@@ -17,6 +17,7 @@ import bookStore from './stores/book'
 
 import 'animate.css/animate.min.css'
 import 'font-awesome/css/font-awesome.min.css'
+import 'whatwg-fetch'
 
 
 const browser_name = platform.name
