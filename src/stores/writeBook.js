@@ -39,7 +39,10 @@ const writeBook = (cardtype, username, password) => {
             bookStore.setObs('status', '連線錯誤 ！\n請連上和信醫院 wifi 後使用。')
         
         }else{
-            bookStore.setObs('status', '連線錯誤 ！\n請記下狀況後聯絡資訊部王傳道～3Q')
+            bookStore.setObs('status', `連線錯誤!
+            1. 請確定有使用和信醫院 wifi
+            2. 試試看把歷史紀錄跟 cookie 清掉後重開
+            3. 以上都沒用，記下狀況後聯絡資訊部王傳道#3469`)
         }
     })
 }
