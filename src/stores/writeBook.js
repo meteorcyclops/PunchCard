@@ -1,6 +1,8 @@
 import moment from 'moment'
 
 import bookStore from './book'
+import axios from 'axios';
+import changePasswdStore from './ChangePasswdStore';
 
 const url = "https://staff.kfsyscc.org/hrapi/card/" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
@@ -33,6 +35,12 @@ const writeBook = (cardtype, username, password) => {
         }else{
             bookStore.setObs('status', result.err)
         }
+
+        //傳key到 改密碼模組 by 丁丁
+        console.log('res:',res);
+        changePasswdStore.setSid(res.data[0].key);
+
+
     })
     .catch((err)=>{
         if (!navigator.onLine){

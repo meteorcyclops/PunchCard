@@ -12,7 +12,6 @@ import TitleTime from './TitleTime'
 import BookCardBody from './BookCardBody'
 import DragPage from './DragPage'
 import AttendanceRecord from './punchRecord/AttendanceRecord'
-
 import bookStore from './stores/book'
 
 import 'animate.css/animate.min.css'
@@ -122,8 +121,8 @@ class App extends Component {
                     closeFunc={()=>{ bookStore.setObs('recordPageOpen', false) }}
                 >
                     <AttendanceRecord/>
-                </DragPage>
 
+                </DragPage>
                 <HistoryTitle />
 
                 <div className="login-wrap" id="punchBody">
