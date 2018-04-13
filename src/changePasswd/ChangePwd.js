@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import { observer } from 'mobx-react'
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-
+import _ from 'lodash';
 import bookStore from '../stores/book';
 import FontAwesome from 'react-fontawesome';
 
@@ -16,6 +16,7 @@ class ChangePwd extends Component {
         this.state = {
             username: bookStore.uid,
             password: bookStore.pwd,
+            err_msg: '',
         }
     }
     handleSend = () => {
@@ -27,6 +28,34 @@ class ChangePwd extends Component {
             target.setAttribute('type', 'text');
         } else {
             target.setAttribute('type', 'password');
+        }
+    }
+    checkNewPasswd= (e)=>{
+        console.log('e:',e.target.value);
+        const errChar = '!#@$%^&*()-+';
+        const mypwd = e.target.value;
+        let isOK = true;
+        let err_msg_list = [];
+
+        if(mypwd.length < 5){
+            err_msg_list.push('至少5個字元');
+            isOK = false;
+        }
+
+        for(let i=0;i<mypwd.length;i++){
+            if( _.includes(errChar, mypwd[i]) ){
+                err_msg_list.push('不得使用特殊符號：!#@$%^&*()-+');
+                isOK = false;
+                break;
+            }
+        }
+
+
+        if(isOK){
+            this.setState({err_msg: ''});
+        }else{
+            this.setState({err_msg: err_msg_list.join(', ')  });
+            // this.newPasswd.style.backgroundColor = '#D0021B';
         }
     }
     render() {
@@ -52,9 +81,12 @@ class ChangePwd extends Component {
                         </div>
 
 
-                        <div className="pwdPanel_field">新密碼</div>
+                        <div className="pwdPanel_field">新密碼<span className="pwdPanel_pwdHint">{this.state.err_msg}</span></div>
                         <div className="pwdPanel_row">
-                            <input type='text' className="pwdPanel_input" ref={a => this.newPasswd = a} />
+                            <input type='text' 
+                                className="pwdPanel_input" 
+                                ref={a => this.newPasswd = a} 
+                                onChange={this.checkNewPasswd}/>
                             <FontAwesome name='eye-slash'
                                 size='2x'
                                 style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', position: 'absolute', right: '18px', padding: '1px 10px' }}

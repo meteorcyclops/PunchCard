@@ -13,7 +13,9 @@
 
 .pwdPanel_wrapper{
    width: 90%;
+   max-width:525px;
    margin: 0 auto;
+   height: 100%;
 }
 
 .pwdPanel_title{
@@ -29,6 +31,12 @@
    font-size: 22px;
    margin-bottom: 11px;
    color: #aaa;
+}
+.pwdPanel_pwdHint{
+   font-size: 13px;
+   color: red;
+   margin-left: 23px;
+
 }
 .pwdPanel_row{
    display: flex;
@@ -53,7 +61,7 @@
    border-radius: 10px;
    width: 48%;
    height: 40px;
-   letter-spacing: 2vw;
+   letter-spacing: 2px;
    font-size: 22px;
    cursor:pointer;
 }
@@ -64,7 +72,7 @@
    border-radius: 10px;
    width: 48%;
    height: 40px;
-   letter-spacing: 2vw;
+   letter-spacing: 2px;
    font-size: 22px;
    cursor:pointer;
 }
