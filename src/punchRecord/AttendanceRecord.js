@@ -304,11 +304,11 @@ class AttendanceRecord extends Component {
                         <div className="hint" >
                             <FontAwesome name='times-circle' 
                                 size='lg' 
-                                style={{ color: 'white', position:'absolute', left:'20px', cursor: 'pointer' }} 
+                                style={{ color: 'white', cursor: 'pointer' }} 
                                 onClick={()=>{bookStore.setObs('recordPageOpen', false)}}
                             />
-                            {this.state.username} 的打卡紀錄
-                            <button onClick={()=>{changePasswdStore.setPwdOpen(true);}}>修改密碼</button>
+                            <span>打卡紀錄</span>
+                            <div className="changePwdBtn" onClick={()=>{changePasswdStore.setPwdOpen(true);}}>改密碼</div>
                         </div>
                     </span>
                     <PopUpDialog
