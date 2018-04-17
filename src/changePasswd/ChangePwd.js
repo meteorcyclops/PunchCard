@@ -84,7 +84,20 @@ class ChangePwd extends Component {
                         </div>
 
 
-                        <div className="pwdPanel_field">新密碼<span className="pwdPanel_pwdHint">{this.state.err_msg}</span></div>
+                        <div className="pwdPanel_field">新密碼
+                            <sup><FontAwesome name='info-circle'
+                                size='lg'
+                                style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', fontSize:'0.933333em', marginLeft:'8px'}}
+                                onClick={()=>{ swal('密碼原則', `0. 至少5 個字元
+                                1. 英文大寫字元 (A 到 Z)
+                                2. 英文小寫字元 (a 到 z) 
+                                3. 10 進位數字 (0 到 9) 
+                                4. 底線( _ )`); }}
+                                title="密碼原則"
+                            /></sup>
+
+                            <span className="pwdPanel_pwdHint">{this.state.err_msg}</span>
+                        </div>
                         <div className="pwdPanel_row">
                             <input type={this.state.new_pwd_show? 'text' : 'password'}
                                 className="pwdPanel_input" 
