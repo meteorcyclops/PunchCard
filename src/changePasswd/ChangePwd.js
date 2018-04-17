@@ -17,23 +17,25 @@ class ChangePwd extends Component {
             username: bookStore.uid,
             password: bookStore.pwd,
             err_msg: '',
+            origin_pwd_show: false,
+            new_pwd_show: false,
         }
     }
     handleSend = () => {
+        if(this.adAccount.value.length === 0  || 
+            this.oldPasswd.value.length === 0 || 
+            this.newPasswd.value.length === 0 ||
+            this.checkNewPasswd(this.newPasswd.value) === false
+        ){
+            return false;
+        }
+
         changePasswdStore.sendToServer(this.adAccount.value, this.oldPasswd.value, this.newPasswd.value);
     }
 
-    togglePasswd = (target) => {
-        if (target.getAttribute("type") === 'password') {
-            target.setAttribute('type', 'text');
-        } else {
-            target.setAttribute('type', 'password');
-        }
-    }
-    checkNewPasswd= (e)=>{
-        console.log('e:',e.target.value);
-        const errChar = '!#@$%^&*()-+';
-        const mypwd = e.target.value;
+    checkNewPasswd= (value)=>{
+        const errChar = '!#@$%^&*()-+ ';
+        const mypwd = value;
         let isOK = true;
         let err_msg_list = [];
 
@@ -44,7 +46,7 @@ class ChangePwd extends Component {
 
         for(let i=0;i<mypwd.length;i++){
             if( _.includes(errChar, mypwd[i]) ){
-                err_msg_list.push('不得使用特殊符號：!#@$%^&*()-+');
+                err_msg_list.push('不得使用特殊符號：!#@$%^&*()-+ <空格>');
                 isOK = false;
                 break;
             }
@@ -53,9 +55,10 @@ class ChangePwd extends Component {
 
         if(isOK){
             this.setState({err_msg: ''});
+            return isOK;
         }else{
             this.setState({err_msg: err_msg_list.join(', ')  });
-            // this.newPasswd.style.backgroundColor = '#D0021B';
+            return isOK;
         }
     }
     render() {
@@ -67,31 +70,31 @@ class ChangePwd extends Component {
 
                         <div className="pwdPanel_field">帳號</div>
                         <div className="pwdPanel_row">
-                            <input type='text' className="pwdPanel_input" value={bookStore.uid} ref={a => this.adAccount = a} />
+                            <input type='text' className="pwdPanel_input" defaultValue={bookStore.uid} ref={a => this.adAccount = a} />
                         </div>
 
                         <div className="pwdPanel_field">原密碼</div>
                         <div className="pwdPanel_row">
-                            <input type='text' className="pwdPanel_input" ref={a => this.oldPasswd = a} />
-                            <FontAwesome name='eye-slash'
-                                size='2x'
-                                style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', position: 'absolute', right: '18px', padding: '1px 10px' }}
-                                onClick={() => { this.togglePasswd(this.oldPasswd) }}
-                            />
+                            <input type={this.state.origin_pwd_show? 'text' : 'password'} className="pwdPanel_input" ref={a => this.oldPasswd = a} />
+                            <span 
+                                onClick={() => {this.setState( (prevState)=>{return {origin_pwd_show: !prevState.origin_pwd_show}}   ) }}
+                                style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', position: 'absolute', right: '18px', padding: '1px 10px', fontWeight: '100' }}
+                            >{this.state.origin_pwd_show? '隱藏':'顯示'}</span>
+
                         </div>
 
 
                         <div className="pwdPanel_field">新密碼<span className="pwdPanel_pwdHint">{this.state.err_msg}</span></div>
                         <div className="pwdPanel_row">
-                            <input type='text' 
+                            <input type={this.state.new_pwd_show? 'text' : 'password'}
                                 className="pwdPanel_input" 
                                 ref={a => this.newPasswd = a} 
-                                onChange={this.checkNewPasswd}/>
-                            <FontAwesome name='eye-slash'
-                                size='2x'
-                                style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', position: 'absolute', right: '18px', padding: '1px 10px' }}
-                                onClick={() => { this.togglePasswd(this.newPasswd) }}
-                            />
+                                onChange={()=>{this.checkNewPasswd(this.newPasswd.value)}}/>
+                            <span 
+                                onClick={() => {this.setState( (prevState)=>{return {new_pwd_show: !prevState.new_pwd_show}}   ) }}
+                                style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer', position: 'absolute', right: '18px', padding: '1px 10px', fontWeight: '100' }}
+                            >{this.state.new_pwd_show? '隱藏':'顯示'}</span>
+
                         </div>
 
                         {/* 新密碼：<input type='text'  ref={a => this.newPasswdAgain = a}/><br /> */}

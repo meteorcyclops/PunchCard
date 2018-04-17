@@ -4,6 +4,7 @@ import { observable, action } from 'mobx'
 import _ from 'lodash'
 import axios from 'axios';
 import writeBook from './writeBook'
+import bookStore from './book';
 // import swal from 'sweetalert2'
 import swal from 'sweetalert';
 import '../css/ChangePasswd.css';
@@ -31,19 +32,30 @@ class ChangePasswdStore {
 			pwd: oldPwd,
 			new_pwd: newPwd
 		};
-		console.log('obj:',obj);
+		// console.log('obj:',obj);
+		const showFail = ()=>{
+			swal({
+				icon: "error",
+				title: `更改失敗`,
+				text: `可能失敗的原因：
+
+							●不能使用前3次密碼
+							●密碼長度至少5個字元
+							●舊帳號密碼錯誤`
+			});
+		}
 		axios.post('https://staff.kfsyscc.org/hrapi/change_pwd', obj)
 		.then(res=>{
 			console.log('res:',res);
 			if(res.status === 200 && res.data && res.data.status === true){
 				swal("修改密碼成功", "下次請使用新密碼", "success");
 			}else{
-				swal("動作失敗", "可能失敗的原因：不能使用前3次密碼、密碼長度至少6位數、舊帳號密碼錯誤", "error");
+				showFail();
 			}
 		})
 		.catch(err=>{
 			console.log('err:',err);
-			swal("動作失敗", "失敗的可能原因：不能使用前3次密碼 or 舊帳號密碼錯誤。\n錯誤訊息：" + err, "error");
+			showFail();
 		})
 	}
 
@@ -66,16 +78,18 @@ class ChangePasswdStore {
 						this.remainDays = pwdLockDeadline.diff(now, 'days');
 						//if 已經快到90天了，跳請更新密碼提示訊息
 						this.showHint = true;
+						let text = this.remainDays>=0 ? `您的密碼再過${this.remainDays}天到期` : `您的密碼已經到期`;
 						swal({
 							icon: "warning",
 							title: `請更換新密碼`,
-							text: `您的密碼再過${this.remainDays}天到期
+							text: `${text}
                         
-                        ●資安政策：每隔三個月(90天)必須更換新密碼，否則無法打卡
+                        ●資安政策：每隔三個月(90天)必須更換新密碼，否則到時候會無法打卡！
             
-                        記不住新密碼？
-                        最近用過的3組密碼，系統會鎖定不能再使用。但第4組密碼可以。
-                        所以可先連續改密碼3次，第4次再改回原本的密碼。`,
+                        想沿用舊密碼？
+								最近使用過的前3組密碼，系統會鎖住不能再使用。但第4組密碼可以。
+								→可先連續改密碼3次，第4次再改回原本的密碼。
+								例如：原密碼→改成密碼A→改成密碼B→改成密碼C→改成原密碼`,
 							buttons: { changeNow: "立即改密碼", cancel: "先不用" },
 							className: 'changePasswdHint'
 						})
@@ -85,7 +99,8 @@ class ChangePasswdStore {
 										this.showHint = false;
 										break;
 									case "changeNow":
-										swal('改密碼:');
+										bookStore.setObs('recordPageOpen', true);
+										changePasswdStore.setPwdOpen(true);
 										break;
 									default:
 										break;
