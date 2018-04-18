@@ -14,6 +14,7 @@ import DragPage from './DragPage'
 import AttendanceRecord from './punchRecord/AttendanceRecord'
 import bookStore from './stores/book'
 import HintChangePwd from './changePasswd/HintChangePwd'
+import ChangePwd from './changePasswd/ChangePwd'
 import 'animate.css/animate.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'whatwg-fetch'
@@ -122,7 +123,8 @@ class App extends Component {
                 >
                     <AttendanceRecord/>
                 </DragPage>
-                    <HintChangePwd />
+                <ChangePwd />
+                <HintChangePwd />
                 <HistoryTitle />
 
                 <div className="login-wrap" id="punchBody">
