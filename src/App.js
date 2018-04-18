@@ -13,7 +13,7 @@ import BookCardBody from './BookCardBody'
 import DragPage from './DragPage'
 import AttendanceRecord from './punchRecord/AttendanceRecord'
 import bookStore from './stores/book'
-
+import HintChangePwd from './changePasswd/HintChangePwd'
 import 'animate.css/animate.min.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'whatwg-fetch'
@@ -121,8 +121,8 @@ class App extends Component {
                     closeFunc={()=>{ bookStore.setObs('recordPageOpen', false) }}
                 >
                     <AttendanceRecord/>
-
                 </DragPage>
+                    <HintChangePwd />
                 <HistoryTitle />
 
                 <div className="login-wrap" id="punchBody">

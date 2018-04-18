@@ -8,6 +8,8 @@ import bookStore from './book';
 // import swal from 'sweetalert2'
 import swal from 'sweetalert';
 import '../css/ChangePasswd.css';
+import { Base64 } from 'js-base64';
+
 class ChangePasswdStore {
 	@observable
 	sid = "";
@@ -22,17 +24,22 @@ class ChangePasswdStore {
 	remainDays = '';
 
 	@observable
+	pwdLockDeadline = '';
+
+	@observable
 	openPwdChanging = false;
 
 	@action
 	sendToServer(account, oldPwd, newPwd) {
+		const base64Encode_oldPwd = Base64.encode(oldPwd);
+		const base64Encode_newPwd = Base64.encode(newPwd);
 
 		let obj = {
 			username: account,
-			pwd: oldPwd,
-			new_pwd: newPwd
+			pwd: base64Encode_oldPwd,
+			new_pwd: base64Encode_newPwd
 		};
-		// console.log('obj:',obj);
+		console.log('送到server的參數:',obj);
 		const showFail = ()=>{
 			swal({
 				icon: "error",
@@ -72,63 +79,23 @@ class ChangePasswdStore {
 					if (res.data.status === "ok") {
 						let pwdLastSet = res.data.pwdLastSet;
 						this.LastSet = moment(pwdLastSet, "YYYY-MM-DD");
-						let pwdLockDeadline = this.LastSet.add(90, 'days');
+						this.pwdLockDeadline = this.LastSet.add(90, 'days');
 						let now = moment();
 
-						this.remainDays = pwdLockDeadline.diff(now, 'days');
+						this.remainDays = this.pwdLockDeadline.diff(now, 'days');
 						//if 已經快到90天了，跳請更新密碼提示訊息
-						this.showHint = true;
-						let text = this.remainDays>=0 ? `您的密碼再過${this.remainDays}天到期` : `您的密碼已經到期`;
-						swal({
-							icon: "warning",
-							title: `請更換新密碼`,
-							text: `${text}
-                        
-                        ●資安政策：每隔三個月(90天)必須更換新密碼，否則到時候會無法打卡！
-            
-                        想沿用舊密碼？
-								最近使用過的前3組密碼，系統會鎖住不能再使用。但第4組密碼可以。
-								→可先連續改密碼3次，第4次再改回原本的密碼。
-								例如：原密碼→改成密碼A→改成密碼B→改成密碼C→改成原密碼`,
-							buttons: { changeNow: "立即改密碼", cancel: "先不用" },
-							className: 'changePasswdHint'
-						})
-							.then((value) => {
-								switch (value) {
-									case "cancel":
-										this.showHint = false;
-										break;
-									case "changeNow":
-										bookStore.setObs('recordPageOpen', true);
-										changePasswdStore.setPwdOpen(true);
-										break;
-									default:
-										break;
-								}
-							})
 
-
-
-						if (this.remainDays < 10) {
+						if (this.remainDays < 90) {
 							this.showHint = true;
-							// 再過{remainDays}天您的密碼就到期，請更換新密碼
-
-							// 資安政策：每隔三個月(90天)必須更換新密碼，否則無法打卡
-
-							// 記不住新密碼？
-
-							// 最近用過的3組密碼，系統會鎖定不能再使用。但第4組密碼可以。
-							// 所以可以先連續改密碼3次，第4次再改回原本的密碼。
-							// call-to-action: 『立即改密碼』『先不用』
+							// let text = this.remainDays>=0 ? `您的密碼再過${this.remainDays}天到期` : `您的密碼已經到期`;
 						}
 
-
 					} else if (res.data.status === "error") {
-						console.log('取得上次修改密碼日期發生錯誤:', res.data.message);
+						console.log('檢查是否需要改密碼，發生錯誤:', res.data.message);
 					}
 				})
 				.catch(err => {
-					console.log('err:', err);
+					console.log('檢查是否需要改密碼，發生錯誤:', err);
 				})
 		}
 	}
@@ -136,6 +103,10 @@ class ChangePasswdStore {
 	@action
 	setPwdOpen(newValue) {
 		this.openPwdChanging = newValue;
+	}
+	@action
+	setShowHint(newValue) {
+		this.showHint = newValue;
 	}
 }
 

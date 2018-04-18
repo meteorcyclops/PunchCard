@@ -78,3 +78,38 @@
    font-size: 22px;
    cursor:pointer;
 }
+
+
+/* ------------------------ */
+/* 改密碼提示 HintChangePwd */
+/* ------------------------ */
+
+.hintChangedPwd_card{
+   width: 90%;
+   position: absolute;
+   z-index: 2;
+   left: 50%;
+   background-color: rgba(255, 255, 255, 0.3);
+   border-radius: 5px;
+   transform: translate(-50%);
+}
+.hintChangePwd_warningIcon{
+   margin: 0 auto;
+   display: block;
+   width: 40%;
+
+}
+.hintChangePwd_main{
+   background-color: #1161EE;
+   color: white;
+   line-height: 1.5rem;
+   padding: 7px 9px;
+   text-align: center;
+   font-size: 0.8rem; /*  0.8rem; 2.2vmin*/
+   font-weight: 300;
+   letter-spacing: 1px;
+   width: 100%;
+   margin: 0 auto;
+   box-shadow: 1px 2px 7px #202020;
+
+}
