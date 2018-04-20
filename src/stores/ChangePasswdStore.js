@@ -78,7 +78,6 @@ class ChangePasswdStore {
 		if (!_.isEmpty(this.sid)) {
 			axios.get('https://staff.kfsyscc.org/api/python/passwd_last_set/' + this.sid)
 				.then(res => {
-					console.log('取得上次修改密碼日期:', res);
 					if (res.data.status === "ok") {
 						let pwdLastSet = res.data.pwdLastSet;
 						this.LastSet = moment(pwdLastSet, "YYYY-MM-DD");
