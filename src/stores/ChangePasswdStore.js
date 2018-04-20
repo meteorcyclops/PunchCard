@@ -29,8 +29,12 @@ class ChangePasswdStore {
 	@observable
 	openPwdChanging = false;
 
+	@observable
+	isBusy = false;
+
 	@action
 	sendToServer(account, oldPwd, newPwd) {
+		this.setIsBusy(true);
 		const base64Encode_oldPwd = Base64.encode(oldPwd);
 		const base64Encode_newPwd = Base64.encode(newPwd);
 
@@ -39,7 +43,6 @@ class ChangePasswdStore {
 			pwd: base64Encode_oldPwd,
 			new_pwd: base64Encode_newPwd
 		};
-		console.log('送到server的參數:',obj);
 		const showFail = ()=>{
 			swal({
 				icon: "error",
@@ -53,7 +56,7 @@ class ChangePasswdStore {
 		}
 		axios.post('https://staff.kfsyscc.org/hrapi/change_pwd', obj)
 		.then(res=>{
-			console.log('res:',res);
+			this.setIsBusy(false);
 			if(res.status === 200 && res.data && res.data.status === true){
 				swal("修改密碼成功", "下次請使用新密碼", "success");
 			}else{
@@ -62,6 +65,7 @@ class ChangePasswdStore {
 		})
 		.catch(err=>{
 			console.log('err:',err);
+			this.setIsBusy(false);
 			showFail();
 		})
 	}
@@ -69,7 +73,6 @@ class ChangePasswdStore {
 
 	@action
 	setSid(newValue) {
-		console.log('設新key:', newValue);
 		this.sid = newValue;
 
 		if (!_.isEmpty(this.sid)) {
@@ -85,9 +88,9 @@ class ChangePasswdStore {
 						this.remainDays = this.pwdLockDeadline.diff(now, 'days');
 						//if 已經快到90天了，跳請更新密碼提示訊息
 
-						if (this.remainDays < 90) {
+						//剩10天內到期，跳提示訊息
+						if (this.remainDays < 10) {
 							this.showHint = true;
-							// let text = this.remainDays>=0 ? `您的密碼再過${this.remainDays}天到期` : `您的密碼已經到期`;
 						}
 
 					} else if (res.data.status === "error") {
@@ -103,6 +106,11 @@ class ChangePasswdStore {
 	@action
 	setPwdOpen(newValue) {
 		this.openPwdChanging = newValue;
+	}
+
+	@action 
+	setIsBusy(newValue){
+		this.isBusy = newValue;
 	}
 	@action
 	setShowHint(newValue) {

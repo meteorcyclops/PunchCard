@@ -14,8 +14,6 @@ class ChangePwd extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // username: bookStore.uid  ,  /**************** */
-            // password: bookStore.pwd,
             err_msg: '',
             show_pwd_again_not_same: false,
 
@@ -24,26 +22,30 @@ class ChangePwd extends Component {
             new_pwd_again_show: false,
         }
 
-        this.adAccount = ''
+        this.adAccount = bookStore.uid;
         this.oldPasswd = ''
         this.newPasswd = ''
         this.newPasswdAgain = ''
     }
 
     handleSend = () => {
+
         if (
-            this.adAccount || this.oldPasswd || this.newPasswd || this.checkNewPasswd( this.newPasswd ) === false
+            this.adAccount.length === 0 || 
+            this.oldPasswd.length === 0 || 
+            this.checkNewPasswd( this.newPasswd ) === false
         ) {
             return false;
         }
-        console.log('this.newPasswdAgain:',this.newPasswdAgain);
-        console.log('this.newPasswd:',this.newPasswd);
+
         if( this.newPasswdAgain !== this.newPasswd){
             this.setState({show_pwd_again_not_same: true});
             return false;
+        }else{
+            this.setState({show_pwd_again_not_same: false});
         }
 
-        changePasswdStore.sendToServer(this.adAccount.value, this.oldPasswd.value, this.newPasswd.value);
+        changePasswdStore.sendToServer(this.adAccount, this.oldPasswd, this.newPasswd);
     }
 
     onChangeInput( e, key ){
@@ -154,7 +156,7 @@ class ChangePwd extends Component {
                     </div>
 
                     <div className="pwdPanel_row" style={{ justifyContent: 'space-between' }}>
-                        <button className="pwdPanel_submit" onClick={this.handleSend}>送出</button>
+                        <button className="pwdPanel_submit" onClick={this.handleSend}>送出{changePasswdStore.isBusy? '...':''}</button>
                         <button className="pwdPanel_cancel" onClick={() => { changePasswdStore.setPwdOpen(false); }}>放棄</button>
                     </div>
                 </div>
