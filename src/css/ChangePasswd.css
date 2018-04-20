@@ -105,14 +105,15 @@
    color: white;
    padding: 11px 0;
    text-align: center;
-   font-size: 23px; /*  0.8rem; 2.2vmin*/
+   font-size: 19px; /*  0.8rem; 2.2vmin*/
    line-height: 37px;
    font-weight: 300;
    letter-spacing: 1px;
    width: 100%;
    margin: 0 auto;
    
-   box-shadow: 0px 1px 20px darkslategrey;
+   box-shadow: 0px 1px 10px darkslategrey;
+   border-radius: 4px;
 
 }
 @media screen and (max-width:400px) {

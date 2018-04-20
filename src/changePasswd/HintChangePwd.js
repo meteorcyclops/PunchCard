@@ -27,7 +27,7 @@ const styles = {
         left: '50%',
         top: '50%',
         backgroundColor: 'rgba(255, 255,255, 0.12)',
-        padding: '6% 7%',
+        padding: '36px 41px',
         paddingTop: '3%',
         borderRadius: '14px',
         transform: 'translate(-50% ,-50%)',
