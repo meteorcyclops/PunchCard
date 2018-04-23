@@ -4,12 +4,21 @@
    font-size: 12px;
 }
 .changePwdPanel{
+   background: url("../pictures/kfsyscc_logo_big＿1920.jpg") no-repeat center;
+   background-size: cover;
    background-color: #283965 !important;
    width: 100vw;
+   min-width: 300px;
    min-height:100vh;
    position: absolute;
    z-index: 4;
    overflow: hidden;
+}
+.PwdPanel_overlay{
+   background: rgba(40, 57, 101, 0.9);
+   height: 100vh;
+   width: 100%; 
+   position: absolute;
 }
 
 .pwdPanel_wrapper{
@@ -25,7 +34,7 @@
    color: white;
    font-weight: 400;
    letter-spacing: 14px;  
-   margin-bottom: 60px;
+   margin-bottom: 6vh;
 }
 
 .pwdPanel_field{
@@ -43,7 +52,7 @@
    display: flex;
    align-items: center;
    position: relative;
-   margin-bottom: 30px;
+   margin-bottom: 3vh;
 }
 .pwdPanel_row > input{
    background-color: rgba(255, 255, 255, 0.1);
@@ -141,4 +150,5 @@ div .pwdPanel_info{
    .pwdPanel_cancel{
       font-size: 16px;
    }
+
 }
