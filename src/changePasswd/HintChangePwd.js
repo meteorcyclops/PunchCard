@@ -43,8 +43,8 @@ const HintChangePwd = observer(class HintChangePwd extends Component {
         const { classes } = this.props;
 
         if (changePasswdStore.showHint === true) {
-
-            let text = changePasswdStore.remainDays>=0 ? `您的密碼將在${changePasswdStore.remainDays}天後到期` : `您的密碼已經過期`;
+            let title_text = changePasswdStore.remainDays>=0 ? `您的密碼將在${changePasswdStore.remainDays}天後到期` : `您的密碼已經過期`;
+            let text = changePasswdStore.remainDays>=0 ? `請在 ${changePasswdStore.pwdLockDeadline.format("YYYY-MM-DD")} 前更新密碼`: `請更新密碼`;
 
 
             return (
@@ -55,8 +55,8 @@ const HintChangePwd = observer(class HintChangePwd extends Component {
                             <img src={warningIcon} alt="警告icon" className="hintChangePwd_warningIcon" />
                         </CardContent>
                         <CardContent style={{padding: '0', marginTop: '15px'}}>
-                            <div className="hintChangePwd_main">{text}<br />
-                                請在 {changePasswdStore.pwdLockDeadline.format("YYYY-MM-DD")} 前更新密碼<br />
+                            <div className="hintChangePwd_main">{title_text}<br />
+                                {text}<br />
                                 否則無法打卡<br />
                             </div>
                         </CardContent>
