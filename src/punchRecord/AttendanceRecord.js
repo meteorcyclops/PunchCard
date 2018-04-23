@@ -5,6 +5,9 @@ import PopUpDialog from './PopUpDialog';
 import Rows from './Rows';
 
 import bookStore from '../stores/book'
+import changePasswdStore from '../stores/ChangePasswdStore';
+import ChangePwd from '../changePasswd/ChangePwd';
+
 import FontAwesome from 'react-fontawesome';
 import '../css/AttendanceRecord.css';
 
@@ -295,15 +298,17 @@ class AttendanceRecord extends Component {
     render() {
         return (
             <div className="kfcc_background" style={styles.bg_img_style}>
+                <ChangePwd />
                 <div className="ar_for-the-overlay">
                     <span>
                         <div className="hint" >
-                        <FontAwesome name='times-circle' 
-                            size='lg' 
-                            style={{ color: 'white', position:'absolute', left:'20px', cursor: 'pointer' }} 
-                            onClick={()=>{bookStore.setObs('recordPageOpen', false)}}
-                        />
-                            {this.state.username} 的打卡紀錄
+                            <FontAwesome name='times-circle' 
+                                size='lg' 
+                                style={{ color: 'white', cursor: 'pointer' }} 
+                                onClick={()=>{bookStore.setObs('recordPageOpen', false)}}
+                            />
+                            <span>打卡紀錄</span>
+                            <div className="changePwdBtn" onClick={()=>{changePasswdStore.setPwdOpen(true);}}>改密碼</div>
                         </div>
                     </span>
                     <PopUpDialog

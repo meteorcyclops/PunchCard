@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+.changePasswdHint .swal-text{
+   font-size: 12px;
+}
+.changePwdPanel{
+   background-color: #283965 !important;
+   width: 100vw;
+   min-height:100vh;
+   position: absolute;
+   z-index: 4;
+   overflow: hidden;
+}
+
+.pwdPanel_wrapper{
+   width: 90%;
+   max-width:525px;
+   margin: 0 auto;
+   height: 100%;
+}
+
+.pwdPanel_title{
+   font-size: 31px;
+   text-align: center;
+   color: white;
+   font-weight: 400;
+   letter-spacing: 14px;  
+   margin-bottom: 60px;
+}
+
+.pwdPanel_field{
+   font-size: 22px;
+   margin-bottom: 11px;
+   color: #aaa;
+}
+.pwdPanel_pwdHint{
+   font-size: 13px;
+   color: red;
+   margin-left: 23px;
+
+}
+.pwdPanel_row{
+   display: flex;
+   align-items: center;
+   position: relative;
+   margin-bottom: 30px;
+}
+.pwdPanel_row > input{
+   background-color: rgba(255, 255, 255, 0.1);
+   border: none;
+   border-radius: 23px;
+   color: white;
+   padding-left: 13px;
+   padding-right: 73px;
+   width: 100%;
+   height: 40px;  
+}
+.pwdPanel_row > .pwdPanel_showOrHide{
+   color: rgba(255, 255, 255, 0.7);
+   cursor: pointer;
+   position: absolute;
+   right: 18px;
+   padding: 1px 10px;
+   font-weight: 100;
+}
+div .pwdPanel_info{
+   color: rgba(255, 255, 255, 0.7);
+   cursor: pointer;
+   font-size: 0.933333em;
+   margin-left: 8px;
+   font-size: smaller;
+   vertical-align: text-top;
+}
+
+.pwdPanel_submit{
+   background-color: #1161EE;
+   color: white;
+   border: none;
+   border-radius: 10px;
+   width: 48%;
+   height: 40px;
+   letter-spacing: 2px;
+   font-size: 22px;
+   cursor:pointer;
+}
+.pwdPanel_cancel{
+   background-color: transparent;
+   color: #7DECA5;
+   border: 2px solid #7DECA5;
+   border-radius: 10px;
+   width: 48%;
+   height: 40px;
+   letter-spacing: 2px;
+   font-size: 22px;
+   cursor:pointer;
+}
+
+
+/* ------------------------ */
+/* 改密碼提示 HintChangePwd */
+/* ------------------------ */
+
+.hintChangedPwd_card{
+   width: 90%;
+   position: absolute;
+   z-index: 2;
+   left: 50%;
+   background-color: rgba(255, 255, 255, 0.3);
+   border-radius: 5px;
+   transform: translate(-50%);
+}
+.hintChangePwd_warningIcon{
+   margin: 0 auto;
+   display: block;
+   width: 40%;
+
+}
+.hintChangePwd_main{
+
+   background-color: #58956E;
+   color: white;
+   padding: 11px 0;
+   text-align: center;
+   font-size: 19px; /*  0.8rem; 2.2vmin*/
+   line-height: 37px;
+   font-weight: 300;
+   letter-spacing: 1px;
+   width: 100%;
+   margin: 0 auto;
+   
+   box-shadow: 0px 1px 10px darkslategrey;
+   border-radius: 4px;
+
+}
+@media screen and (max-width:400px) {
+   .hintChangePwd_main{
+      font-size: 16px;
+   }
+   .pwdPanel_cancel{
+      font-size: 16px;
+   }
+}

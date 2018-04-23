@@ -155,7 +155,7 @@ class BookCardBody extends React.Component {
             top: -1px;
             position: relative;
             font-weight: normal;
-            font-size: '15px'
+            font-size: 15px;
         `,
         boxLabelEmergency: styled.span`
             color: #d8d8d8;
@@ -163,7 +163,7 @@ class BookCardBody extends React.Component {
             top: -1px;
             position: relative;
             font-weight: normal;
-            font-size: '15px'
+            font-size: 15px;
         `,
         flexRowDiv: styled.div`
             display: flex;
