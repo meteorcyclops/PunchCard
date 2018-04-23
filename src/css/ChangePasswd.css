@@ -82,6 +82,7 @@ div .pwdPanel_info{
    letter-spacing: 2px;
    font-size: 22px;
    cursor:pointer;
+   user-select: none;
 }
 .pwdPanel_cancel{
    background-color: transparent;
@@ -93,6 +94,7 @@ div .pwdPanel_info{
    letter-spacing: 2px;
    font-size: 22px;
    cursor:pointer;
+   user-select: none;
 }
 
 
