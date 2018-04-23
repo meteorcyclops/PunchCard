@@ -53,7 +53,7 @@ class HistoryTitle extends React.Component {
                 padding: 5px 11px; 
             `;
             return (
-                <Div className="changePwdBtn" onClick={()=>{console.log('sss');changePasswdStore.setPwdOpen(true);}}>改密碼</Div>
+                <Div className="changePwdBtn" onClick={()=>{ changePasswdStore.setPwdOpen(true);}}>改密碼</Div>
             )
         }else{
 
