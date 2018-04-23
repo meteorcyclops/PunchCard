@@ -29,7 +29,6 @@ class ChangePwd extends Component {
     }
 
     handleSend = () => {
-
         if (
             this.adAccount.length === 0 || 
             this.oldPasswd.length === 0 || 
@@ -156,7 +155,7 @@ class ChangePwd extends Component {
                     </div>
 
                     <div className="pwdPanel_row" style={{ justifyContent: 'space-between' }}>
-                        <button className="pwdPanel_submit" onClick={this.handleSend}>送出{changePasswdStore.isBusy? '...':''}</button>
+                        <button className="pwdPanel_submit" disabled={changePasswdStore.isBusy? true: false} onClick={this.handleSend}>送出{changePasswdStore.isBusy? '中...':''}</button>
                         <button className="pwdPanel_cancel" onClick={() => { changePasswdStore.setPwdOpen(false); }}>放棄</button>
                     </div>
                 </div>

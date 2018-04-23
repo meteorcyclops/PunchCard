@@ -51,14 +51,20 @@ class ChangePasswdStore {
 
 							●不能使用前3次密碼
 							●密碼長度至少5個字元
-							●舊帳號密碼錯誤`
+							●舊帳號密碼錯誤`,
+				closeOnClickOutside: false,
 			});
 		}
 		axios.post('https://staff.kfsyscc.org/hrapi/change_pwd', obj)
 		.then(res=>{
 			this.setIsBusy(false);
 			if(res.status === 200 && res.data && res.data.status === true){
-				swal("修改密碼成功", "下次請使用新密碼", "success");
+				swal({
+					title: "修改密碼成功", 
+					text: "下次請使用新密碼", 
+					icon:"success",
+					closeOnClickOutside: false
+				});
 			}else{
 				showFail();
 			}
