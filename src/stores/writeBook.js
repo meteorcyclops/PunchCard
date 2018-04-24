@@ -16,7 +16,7 @@ const writeBook = (cardtype, username, password) => {
     localStorage.setItem('uid', bookStore.uid)
     localStorage.setItem('pwd', bookStore.pwd)
     localStorage.setItem('locked', bookStore.locked)
-
+    
     return fetch(url, {
       method: "POST",
       headers: headers,
@@ -39,7 +39,11 @@ const writeBook = (cardtype, username, password) => {
         /* ---------------------------------------- */
         /* 打卡成功後，得到key，傳 key 到改密碼模組 by 丁丁 */
         /* -----------------------------------------*/
-        changePasswdStore.setSid(res.data[0].key);
+
+        //如果後端沒有傳回 data[0].key ，就不要檢查密碼到期了
+        if(res.data && res.data[0]){
+            changePasswdStore.setSid(res.data[0].key);
+        }
 
 
     })
