@@ -11,9 +11,14 @@ headers.append("Accept", "application/json")
 const writeBook = (cardtype, username, password) => {
     bookStore.setObs('status', '請稍後...')
     bookStore.setObs('dialogOpen', true)
-    localStorage.setItem('uid', bookStore.uid)
-    localStorage.setItem('pwd', bookStore.pwd)
-    localStorage.setItem('locked', bookStore.locked)
+
+    try {
+        localStorage.setItem('uid', bookStore.uid)
+        localStorage.setItem('pwd', bookStore.pwd)
+        localStorage.setItem('locked', bookStore.locked)
+    }catch(err) {
+        console.log('無法寫入local storage')
+    }
 
     return fetch(url, {
       method: "POST",
