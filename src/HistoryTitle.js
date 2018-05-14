@@ -6,7 +6,7 @@ import moment from 'moment'
 import styled from 'styled-components'
 
 import bookStore from './stores/book'
-
+import changePasswdStore from './stores/ChangePasswdStore';
 class HistoryTitle extends React.Component {
     pickDay(day){
         if(day==0){
@@ -40,8 +40,20 @@ class HistoryTitle extends React.Component {
         const lastPunch = bookStore.lastPunch
 
         if ( _.isEmpty(lastPunch) ){
+            //如果沒有歷史記錄(使用者的密碼已過期，無法打卡了，就直接秀改密碼的按鈕。 by 丁丁
+            const Div=styled.div`
+                position: absolute; 
+                right: 7px;
+                top: 8px;
+                font-size: 12px; 
+                z-index:1;
+                cursor: pointer;
+                border:2px solid;
+                border-radius:25px; 
+                padding: 5px 11px; 
+            `;
             return (
-                <div></div>
+                <Div className="changePwdBtn" onClick={()=>{ changePasswdStore.setPwdOpen(true);}}>改密碼</Div>
             )
         }else{
 
