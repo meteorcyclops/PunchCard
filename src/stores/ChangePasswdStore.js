@@ -39,11 +39,11 @@ class ChangePasswdStore {
 		const base64Encode_newPwd = Base64.encode(newPwd);
 
 		bookStore.setObs('pwd', newPwd)
-		
+
 		try {
 			localStorage.setItem('pwd', newPwd)
 		}
-		catch{
+		catch(err){
 
 		}
 
