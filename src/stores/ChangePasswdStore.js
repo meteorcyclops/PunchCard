@@ -38,6 +38,13 @@ class ChangePasswdStore {
 		const base64Encode_oldPwd = Base64.encode(oldPwd);
 		const base64Encode_newPwd = Base64.encode(newPwd);
 
+		try {
+			localStorage.setItem('pwd', newPwd)
+		}
+		catch{
+
+		}
+
 		let obj = {
 			username: account,
 			pwd: base64Encode_oldPwd,
