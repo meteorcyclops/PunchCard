@@ -40,6 +40,7 @@ class ChangePasswdStore {
 
 		try {
 			localStorage.setItem('pwd', newPwd)
+			bookStore.setObs('pwd', newPwd)
 		}
 		catch{
 
