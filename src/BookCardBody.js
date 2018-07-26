@@ -63,7 +63,6 @@ class BookCardBody extends React.Component {
                             style={{padding:'10px 0px', fontSize: 17}}
                         >帳號</label>
                         <input
-                            id="uid"
                             disabled={locked}
                             value={uid}
                             onChange={this.handleChange('uid')}
@@ -78,7 +77,6 @@ class BookCardBody extends React.Component {
                             style={{padding:'10px 0px', fontSize: 17}}
                         >密碼</label>
                         <input
-                            id="pwd"
                             disabled={locked}
                             type="password"
                             value={pwd}
