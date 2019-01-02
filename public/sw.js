@@ -48,67 +48,71 @@ function showNotification() {
 function getScheData (data){
 
     if (Notification.permission === 'granted') {
-        registration.showNotification('和信醫院打卡系統', {
-            body: '提醒您五分鐘後上班！',
-            vibrate: [200, 100, 200, 100, 200, 100, 200],
-            tag: 'vibration-sample'
-        });
+        // registration.showNotification('和信醫院打卡系統', {
+        //     body: '提醒您五分鐘後上班！',
+        //     vibrate: [200, 100, 200, 100, 200, 100, 200],
+        //     tag: 'vibration-sample'
+        // });
     }
+    // console.log(data)
 
-    if ( data.api === 'punch' ){
-        console.log('punch');
+    // if ( data.api === 'punch' ){
+    //     console.log('punch');
 
-        // var uid = localStorage.getItem('uid') || ""
-        // var pwd = localStorage.getItem('pwd') || ""
+    //     // var uid = localStorage.getItem('uid') || ""
+    //     // var pwd = localStorage.getItem('pwd') || ""
 
-        var uid = data.username || ''
-        var pwd = data.password || ''
+    //     var uid = data.username || ''
+    //     var pwd = data.password || ''
 
-        if (!uid || !pwd ){
-            console.log( 'no login info' )
-            return false
-        }
+    //     if (!uid || !pwd ){
+    //         console.log( 'no login info' )
+    //         return false
+    //     }
 
-        var nowDate = new Date();
-        var tomorrowDate = new Date().addDays(1)
+    //     var nowDate = new Date();
+    //     var tomorrowDate = new Date().addDays(1)
 
-        var nowDateStr = nowDate.toISOString().slice(0,10).replace(/-/g, '')
-        var tomorrowDateStr = tomorrowDate.toISOString().slice(0,10).replace(/-/g, '')
+    //     var nowDateStr = nowDate.toISOString().slice(0,10).replace(/-/g, '')
+    //     var tomorrowDateStr = tomorrowDate.toISOString().slice(0,10).replace(/-/g, '')
 
-        fetch(
-            `https://staff.kfsyscc.org/hrapi/card/`, 
-            {
-                method: "POST",
-                headers: new Headers({ 'Accept': 'application/json' }),
-                body: JSON.stringify({
-                    "api": "getScheList", //取得班表
-                    "username": uid,
-                    "password": pwd,
-                    "minDate": nowDateStr,
-                    "maxDate": tomorrowDateStr,
-                })
-            }
-        )
-        .then((res) => {
-            return res.json();
-        })
-        .then( ( data ) => {
+    //     console.log('1')
+    //     fetch(
+    //         `https://staff.kfsyscc.org/hrapi/card/`, 
+    //         {
+    //             method: "POST",
+    //             headers: new Headers({ 'Accept': 'application/json' }),
+    //             body: JSON.stringify({
+    //                 "api": "getScheList", //取得班表
+    //                 "username": uid,
+    //                 "password": pwd,
+    //                 "minDate": nowDateStr,
+    //                 "maxDate": tomorrowDateStr,
+    //             })
+    //         }
+    //     )
+    //     .then((res) => {
+    //         return res.json();
+    //     })
+    //     .then( ( data ) => {
 
-            if (!data.status || data.data.length ==0 ){
-                return false
-            }
+    //         console.log(data)
+    //         if (!data.status || data.data.length ==0 ){
+    //             return false
+    //         }
 
-            var tx    = db.transaction('schedule', 'readwrite');
-            var store = tx.objectStore('schedule');
+    //         var tx    = db.transaction('schedule', 'readwrite');
+    //         var store = tx.objectStore('schedule');
 
-            data.data.forEach(element => {
-                store.put(element)
-            });
 
-            tx.complete()
+    //         data.data.forEach(element => {
+    //             store.put(element)
+    //         });
 
-        })
-    }
+    //         tx.complete()
+
+    //     })
+    // }
     // {"api":"punch","cardtype":"1","username":"flyingpath","password":"1221221"}
 }
 
