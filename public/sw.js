@@ -149,6 +149,7 @@ self.addEventListener('install', function (event) {
     console.log('sw installed')
 });
 
+
 self.addEventListener('fetch',   function (event) {
     
     event.request.clone().text()

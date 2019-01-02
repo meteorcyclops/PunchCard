@@ -44,6 +44,11 @@
               console.log('ServiceWorker registration failed: ', err);
             });
           });
+
+          window.addEventListener('beforeinstallprompt', (e) => {
+            e.prompt();
+          });
+
         }
       </script>
   </body>
