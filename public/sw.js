@@ -4,9 +4,9 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
       caches.open('KfsysccCard').then(function(cache) {
         return cache.addAll([
-          '/',
-          '/index.html',
-          '/static/js/bundle.js'
+          './',
+          './index.html',
+          './static/js/bundle.js'
         ]);
       })
     );
