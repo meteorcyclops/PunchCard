@@ -1,14 +1,13 @@
-import moment from 'moment'
+import _ from 'lodash'
 
 import bookStore from './book'
-import axios from 'axios';
 import changePasswdStore from './ChangePasswdStore';
+import { checkOvertimeOrHasNightFee } from './utils'
 
 const url = "https://staff.kfsyscc.org/hrapi/card/" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
 headers.append("Content-Type", "application/json")
 headers.append("Accept", "application/json")
-
 
 const writeBook = (cardtype, username, password) => {
     bookStore.setObs('status', '請稍後...')
@@ -37,6 +36,14 @@ const writeBook = (cardtype, username, password) => {
         let result = res
         if (result.status){
             bookStore.setObs('status', result.msg)
+            if (cardtype == '9') { // 打下班卡才需判斷
+                try {
+                    checkOvertimeOrHasNightFee(username, password)
+                }
+                catch (err){
+                    console.log(err)
+                }
+            }
         }else{
             bookStore.setObs('status', result.err)
         }
@@ -49,8 +56,6 @@ const writeBook = (cardtype, username, password) => {
         if(res.data && res.data[0]){
             changePasswdStore.setSid(res.data[0].key);
         }
-
-
     })
     .catch((err)=>{
         if (!navigator.onLine){
