@@ -8,10 +8,11 @@ headers.append("Content-Type", "application/json")
 headers.append("Accept", "application/json")
 
 const sendToFlow = (type, data) => {
-    const { emp_no, boss_id, on_time, off_time, ot_time, ot_hours } = data
-    
+    const { emp_no, name, boss_id, on_time, off_time, ot_time, ot_hours } = data
+
     let inpuItem = {
         user_id: emp_no,
+        boss_id: boss_id,
         startDate: off_time,
         endDate: ot_time,
         add_thingsay: '新排班測試',
@@ -41,31 +42,30 @@ const sendToFlow = (type, data) => {
         accumulationDistance: '',
     }
 
-    inpuItem['salaryWeekdays']       = '' // 平日 計薪
+    inpuItem['salaryWeekdays'] = '' // 平日 計薪
     inpuItem['accumulationWeekdays'] = '' // 平日 積假
-    inpuItem['typeName']             = '「加班費」'
+    inpuItem['typeName'] = '「加班費」'
 
     if (type == 'dayoff') {
         inpuItem['accumulationWeekdays'] = ot_hours
-        inpuItem['typeName']             = '「積休」'
+        inpuItem['typeName'] = '「積休」'
     } else {
-        inpuItem['salaryWeekdays']       = ot_hours
+        inpuItem['salaryWeekdays'] = ot_hours
     }
-    
-    const sendData = _.reduce(inpuItem, function(result, value, key) {
-        if ( result !== ''){
+
+    const sendData = _.reduce(inpuItem, function (result, value, key) {
+        if (result !== '') {
             result += '&'
         }
         result = result + `${key}=${value}`
         return result;
     }, '')
 
-    // const sendData = `user_id=${user_id}&startDate=${startDate}&endDate=${endDate}&boss_id=${boss_id}&add_thingsay=${add_thingsay}&salaryWeekdays=${salaryWeekdays}&salaryRest=${salaryRest}&salaryEmptyClass=${salaryEmptyClass}&salaryTeacherTraining=${salaryTeacherTraining}&salaryReward=${salaryReward}&salaryCountrySetting=${salaryCountrySetting}&salarySpecialBreak=${salarySpecialBreak}&salaryTyphoon${salaryTyphoon}=&salarySpecialOvertime=${salarySpecialOvertime}&salarySpecialOvertimeInHoliday=${salarySpecialOvertimeInHoliday}&salarySpecialOvertimeInEvening=${salarySpecialOvertimeInEvening}&salaryDistance=${salaryDistance}&accumulationWeekdays=${accumulationWeekdays}&accumulationRest=${accumulationRest}&accumulationEmptyClass=${accumulationEmptyClass}&accumulationTeacherTraining=${accumulationTeacherTraining}&accumulationReward=${accumulationReward}&accumulationCountrySetting=${accumulationCountrySetting}&accumulationSpecialBreak=${accumulationSpecialBreak}&accumulationTyphoon=${accumulationTyphoon}&accumulationSpecialOvertime=${accumulationSpecialOvertime}&accumulationSpecialOvertimeInHoliday=${accumulationSpecialOvertimeInHoliday}&accumulationSpecialOvertimeInEvening=${accumulationSpecialOvertimeInEvening}&accumulationDistance=${accumulationDistance}`
     const host = 'flow.kfsyscc.org'
     // 正式區網址： flow.kfsyscc.org 測試區網址： flow-test.kfcc.intra
 
     fetch(`http://${host}/flow/MyFlowWS/MyFlowWebService.asmx/sendWorkOvertime?${sendData}`)
-        .then(res => res.text() )
+        .then(res => res.text())
         .then(req => {
             console.warn(req)
             // <?xml version="1.0" encoding="utf-8"?><string xmlns="http://tempuri.org">{"status":false,"msg":"您申請的加班時間與之前記錄重疊！","data":{}}</string>
@@ -87,6 +87,10 @@ const sendToFlow = (type, data) => {
                 });
                 // console.warn(req['msg'])
             }
+
+            logSchedule({
+                emp_no, name, msg: req
+            })
         }).catch(err => console.log('sendToFlow 錯誤'))
 }
 
@@ -103,46 +107,71 @@ const checkOvertimeOrHasNightFee = (username, password) => {
             password: `${password}`
         })
     })
-    .then((res) => res.json())
-    .then((res) => {
-        const { status, data } = res
-        if (status) {
-            const { emp_no, on_time, off_time, ot_hours } = data
+        .then((res) => res.json())
+        .then((res) => {
+            const { status, data, err } = res
+            if (status) {
+                const { emp_no, on_time, off_time, ot_hours } = data
 
-            if (ot_hours >= 2) {
-                swal({
-                    title: '請選擇加班費或積休',
-                    text: '您今日延長工時預設加班是報加班費，如須積休請自行選擇。',
-                    icon: 'warning',
-                    buttons: {
-                        dayoff: '積休',
-                        money: '加班費'
-                    },
-                    dangerMode: true,
-                }).then((option) => {
-                    // console.log('option', option)
-                    switch (option) {
-                        case 'dayoff':
-                            swal('你選擇「積休」', {
-                                icon: 'success',
-                            })
-                            break
+                if (ot_hours >= 2) {
+                    swal({
+                        title: '請選擇加班費或積休',
+                        text: '您今日延長工時預設加班是報加班費，如須積休請自行選擇。',
+                        icon: 'warning',
+                        buttons: {
+                            dayoff: '積休',
+                            money: '加班費'
+                        },
+                        dangerMode: true,
+                    }).then((option) => {
+                        // console.log('option', option)
+                        switch (option) {
+                            case 'dayoff':
+                                swal('你選擇「積休」', {
+                                    icon: 'success',
+                                })
+                                break
 
-                        default:
-                            swal('你選擇「加班費」', {
-                                icon: 'success',
-                            })
-                            break
-                    }
+                            default:
+                                swal('你選擇「加班費」', {
+                                    icon: 'success',
+                                })
+                                break
+                        }
 
-                    sendToFlow(option, data)
-                })
+                        sendToFlow(option, data)
+                    })
+                }
+            } else {
+                // console.log(err)
+                logSchedule(data, err)
             }
-        }
-    })
-    .catch((err)=>{
-        console.log('checkOvertimeOrHasNightFee 錯誤')
-    })
+        })
+        .catch((err) => {
+            console.log('checkOvertimeOrHasNightFee 錯誤')
+        })
 }
 
-export {sendToFlow, checkOvertimeOrHasNightFee}
+const logSchedule = (data, err = {}) => {
+    let url = `https://emr.kfsyscc.org/mongo/logs/schedule`
+    console.log(data, err)
+    const body = {
+        ...data,
+        err,
+    }
+
+    const headers = new Headers({
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    })
+    return fetch(url, {
+        method: "POST",
+        headers: headers,
+        credentials: 'include',
+        body: JSON.stringify(body)
+    })
+        .then(res => { })
+        .catch(e => { })
+}
+
+export { sendToFlow, checkOvertimeOrHasNightFee }
