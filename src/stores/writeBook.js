@@ -171,7 +171,7 @@ const sendToFlow = (type, data) => {
     const accumulationSpecialOvertimeInEvening = ''
     const accumulationDistance = ''
     const sendData = `user_id=${user_id}&startDate=${startDate}&endDate=${endDate}&boss_id=${boss_id}&add_thingsay=${add_thingsay}&salaryWeekdays=${salaryWeekdays}&salaryRest=${salaryRest}&salaryEmptyClass=${salaryEmptyClass}&salaryTeacherTraining=${salaryTeacherTraining}&salaryReward=${salaryReward}&salaryCountrySetting=${salaryCountrySetting}&salarySpecialBreak=${salarySpecialBreak}&salaryTyphoon${salaryTyphoon}=&salarySpecialOvertime=${salarySpecialOvertime}&salarySpecialOvertimeInHoliday=${salarySpecialOvertimeInHoliday}&salarySpecialOvertimeInEvening=${salarySpecialOvertimeInEvening}&salaryDistance=${salaryDistance}&accumulationWeekdays=${accumulationWeekdays}&accumulationRest=${accumulationRest}&accumulationEmptyClass=${accumulationEmptyClass}&accumulationTeacherTraining=${accumulationTeacherTraining}&accumulationReward=${accumulationReward}&accumulationCountrySetting=${accumulationCountrySetting}&accumulationSpecialBreak=${accumulationSpecialBreak}&accumulationTyphoon=${accumulationTyphoon}&accumulationSpecialOvertime=${accumulationSpecialOvertime}&accumulationSpecialOvertimeInHoliday=${accumulationSpecialOvertimeInHoliday}&accumulationSpecialOvertimeInEvening=${accumulationSpecialOvertimeInEvening}&accumulationDistance=${accumulationDistance}`
-    const host = 'flow-test.kfcc.intra'
+    const host = 'flow.kfsyscc.org'
     // 正式區網址： flow.kfsyscc.org 測試區網址： flow-test.kfcc.intra
 
     fetch(`http://${host}/flow/MyFlowWS/MyFlowWebService.asmx/sendWorkOvertime?${sendData}`)
