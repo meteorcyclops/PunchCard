@@ -15,7 +15,7 @@ const sendToFlow = (type, data) => {
         boss_id: boss_id,
         startDate: off_time,
         endDate: ot_time,
-        add_thingsay: '新排班測試',
+        add_thingsay: '新排班系統自動申請加班',
         salaryWeekdays: '', // 平日 計薪
         salaryRest: '',
         salaryEmptyClass: '',
