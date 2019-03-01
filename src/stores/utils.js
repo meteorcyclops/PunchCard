@@ -67,7 +67,7 @@ const sendToFlow = (type, data) => {
     fetch(`http://${host}/flow/MyFlowWS/MyFlowWebService.asmx/sendWorkOvertime?${sendData}`)
         .then(res => res.text())
         .then(req => {
-            console.warn(req)
+            // console.warn(req)
             // <?xml version="1.0" encoding="utf-8"?><string xmlns="http://tempuri.org">{"status":false,"msg":"您申請的加班時間與之前記錄重疊！","data":{}}</string>
             req = req.replace(`<?xml version="1.0" encoding="utf-8"?>`, '')
                 .replace(`<string xmlns="http://${host}/MyFlowWebService">`, '')
