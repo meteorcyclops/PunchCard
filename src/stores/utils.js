@@ -174,4 +174,26 @@ const logSchedule = (data, err = {}) => {
         .catch(e => { })
 }
 
-export { sendToFlow, checkOvertimeOrHasNightFee }
+const loginStaff = (username, password) => {
+    fetch(
+        'https://staff.kfsyscc.org/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }
+    )
+    .then( d=>d.json() )
+    .then( data=>{
+        fetch(
+            `https://staff.kfsyscc.org/redirect?next=/LandingPage&token=${data.session_id}`
+        )
+    } )
+}
+
+
+export { sendToFlow, checkOvertimeOrHasNightFee, loginStaff }
