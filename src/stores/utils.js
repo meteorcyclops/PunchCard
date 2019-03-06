@@ -44,9 +44,9 @@ const sendToFlow = (ot_type, data) => {
                 // console.warn(msg)
             }
 
-            // logSchedule({
-            //     emp_no, name, msg: res
-            // })
+            logOvertime({
+                emp_no, msg: res, function: 'sendToFlow', error:err
+            })
         }).catch(err => console.log('sendToFlow 錯誤'))
 }
 
@@ -99,8 +99,10 @@ const checkOvertime = (username, password) => {
                     })
                 }
             } else {
-                console.log(err)
-                // logSchedule(data, err)
+                // console.log(err)
+                data['function'] = 'checkOvertime'
+                data['error'] = err
+                logOvertime(data)
             }
         })
         .catch((err) => {
@@ -108,26 +110,15 @@ const checkOvertime = (username, password) => {
         })
 }
 
-const logSchedule = (data, err = {}) => {
-    let url = `https://emr.kfsyscc.org/mongo/logs/schedule`
-    // console.log(data, err)
-    const body = {
-        ...data,
-        err,
-    }
-
-    const headers = new Headers({
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    })
-    return fetch(url, {
-        method: "POST",
+const logOvertime = (data, err = {}) => {
+    return fetch(urlStaffCard, {
+        method: 'POST',
         headers: headers,
-        credentials: 'include',
-        body: JSON.stringify(body)
+        body: JSON.stringify({
+            api: 'log_overtime',
+            data: data,
+        })
     })
-        .then(res => { })
-        .catch(e => { })
 }
 
 const loginStaff = (username, password) => {
