@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import bookStore from './book'
 import changePasswdStore from './ChangePasswdStore';
-import { checkOvertimeOrHasNightFee, loginStaff } from './utils'
+import { checkOvertime } from './utils'
 
 const url = "https://staff.kfsyscc.org/hrapi/card/" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
@@ -43,8 +43,11 @@ const writeBook = (cardtype, username, password) => {
 
             if (cardtype == '9') { // 打下班卡才需判斷
                 try {
-                    checkOvertimeOrHasNightFee(username, password)
-                } catch (err){ console.log(err) }
+                    checkOvertime(username, password)
+                }
+                catch (err){
+                    console.log(err)
+                }
             }
         }else{
             bookStore.setObs('status', result.err)
