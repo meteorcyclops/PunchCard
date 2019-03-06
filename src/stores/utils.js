@@ -28,7 +28,7 @@ const sendToFlow = (ot_type, data) => {
         .then((res) => {
             const { status, err, data } = res
 
-            console.log(res)
+            // console.log('sendToFlow', res)
             const formID = _.get(data, ['data', 'form_id'])
             if (status && isNumeric(formID) && formID.length === 10) {
                 const formName = ot_type === 'dayoff' ? '「積休」' : '「加班費」'
@@ -99,8 +99,8 @@ const checkOvertime = (username, password) => {
                     })
                 }
             } else {
-                // console.log(err)
-                logSchedule(data, err)
+                console.log(err)
+                // logSchedule(data, err)
             }
         })
         .catch((err) => {
@@ -110,7 +110,7 @@ const checkOvertime = (username, password) => {
 
 const logSchedule = (data, err = {}) => {
     let url = `https://emr.kfsyscc.org/mongo/logs/schedule`
-    console.log(data, err)
+    // console.log(data, err)
     const body = {
         ...data,
         err,
