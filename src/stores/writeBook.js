@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 import bookStore from './book'
 import changePasswdStore from './ChangePasswdStore';
-import { checkOvertime } from './utils'
+import { checkOvertime, loginStaff } from './utils'
 
 const url = "https://staff.kfsyscc.org/hrapi/card/" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
