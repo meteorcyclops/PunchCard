@@ -1,6 +1,6 @@
 // // install
 self.addEventListener('install', function (event) {
-    console.log('sw installed')
+    console.log('sw installed2')
     event.waitUntil(
       caches.open('KfsysccCard').then(function(cache) {
         return cache.addAll([

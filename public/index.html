@@ -20,7 +20,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>KfsysccPunch</title>
   </head>
   <body>
@@ -37,7 +39,7 @@
       -->
       <script>
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register( "sw.js" ).then(function(registration) {
+          navigator.serviceWorker.register( "sw.js?v1" ).then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
           }).catch(function(err) {
             console.log('ServiceWorker registration failed: ', err);

@@ -171,12 +171,12 @@ const logSchedule = (data, err = {}) => {
         body: JSON.stringify(body)
     })
         .then(res => { })
-        .catch(e => { })
+        .catch(e => { alert(e) })
 }
 
 const loginStaff = (username, password) => {
     fetch(
-        'https://staff.kfsyscc.org/token', {
+        'https://staff.kfsyscc.org/token', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
