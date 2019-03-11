@@ -1,6 +1,6 @@
 // // install
 self.addEventListener('install', function (event) {
-    console.log('sw installed2')
+    console.log('sw installed')
     // event.waitUntil(
     //   caches.open('KfsysccCard').then(function(cache) {
     //     return cache.addAll([
@@ -12,20 +12,16 @@ self.addEventListener('install', function (event) {
 
 // fetch
 self.addEventListener('fetch', function (event) {
-    console.log(event.request.url)
     if (
       event.request.url === 'https://staff.kfsyscc.org/card/' 
       || event.request.url ==='https://staff.kfsyscc.org/card/index.html' 
       || event.request.url ==='http://localhost:3000/' 
       // || event.request.url.indexOf('sw') > -1
     ){
-      console.log(event.request.url)
       event.respondWith(
         fetch(event.request)
           .then( function(res){
-            console.log(res.clone())
             if(res.status === 200) {
-              console.log(200)
               return (
                 caches.open( 'KfsysccCard' )
                 .then( function(cache) {
