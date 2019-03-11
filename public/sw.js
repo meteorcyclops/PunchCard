@@ -1,6 +1,7 @@
 // // install
 self.addEventListener('install', function (event) {
     console.log('sw installed')
+    self.skipWaiting();
     // event.waitUntil(
     //   caches.open('KfsysccCard').then(function(cache) {
     //     return cache.addAll([
@@ -12,16 +13,20 @@ self.addEventListener('install', function (event) {
 
 // fetch
 self.addEventListener('fetch', function (event) {
+    console.log(event.request.url)
     if (
       event.request.url === 'https://staff.kfsyscc.org/card/' 
       || event.request.url ==='https://staff.kfsyscc.org/card/index.html' 
       || event.request.url ==='http://localhost:3000/' 
       // || event.request.url.indexOf('sw') > -1
     ){
+      console.log('in', event.request.url)
       event.respondWith(
         fetch(event.request)
           .then( function(res){
             if(res.status === 200) {
+              console.log('return network')
+
               return (
                 caches.open( 'KfsysccCard' )
                 .then( function(cache) {
@@ -32,6 +37,7 @@ self.addEventListener('fetch', function (event) {
             } else {
               return caches.match(event.request).then( function (response){
                 if (response) {
+                  console.log('return cache')
                   return response;
                 } else {
                     return res
@@ -43,6 +49,7 @@ self.addEventListener('fetch', function (event) {
           e => {
             return caches.match(event.request).then( function (response){
               if (response) {
+                console.log('return cache')
                 return response;
               } else {
                 return e
@@ -51,7 +58,13 @@ self.addEventListener('fetch', function (event) {
           }
         ) 
       );
-    } else {
+    } 
+    
+    else if (
+      event.request.url.indexOf('hrapi') > -1
+    ){
+      return fetch(event.request)
+    }else {
       event.respondWith(
         caches.match(event.request).then( function (response){
           if (response) {
