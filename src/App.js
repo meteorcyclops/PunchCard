@@ -99,7 +99,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('v1')
+        console.log('v2')
 
         const style = {
             padding: '2.25em 1.6875em',
