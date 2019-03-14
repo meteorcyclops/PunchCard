@@ -99,8 +99,6 @@ class App extends Component {
     }
 
     render() {
-        console.log('v2')
-
         const style = {
             padding: '2.25em 1.6875em',
             backgroundImage: 'repeating-linear-gradient(135deg, rgba(0,0,0,.3), rgba(0,0,0,.3) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.3) 3px)',

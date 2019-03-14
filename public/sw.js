@@ -57,10 +57,7 @@ self.addEventListener('fetch', function (event) {
     else if (
       event.request.url.indexOf('hrapi') > -1
     ){
-      return fetch(event.request)
-              .then( function(res){
-                return  res
-              } )
+      continue
     } else {
       event.respondWith(
         caches.match(event.request).then( function (response){
