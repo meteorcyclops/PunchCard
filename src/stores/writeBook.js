@@ -34,7 +34,6 @@ const writeBook = (cardtype, username, password) => {
         return res.json()
     }).then((res) => {
         let result = res
-        console.log('punch')
         if (result.status){
             bookStore.setObs('status', result.msg)
             
