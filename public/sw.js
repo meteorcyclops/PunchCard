@@ -13,6 +13,9 @@ self.addEventListener('install', function (event) {
 
 // fetch
 self.addEventListener('fetch', function (event) {
+  if (
+    event.request.url.indexOf('hrapi') === -1
+  ){
     if (
       event.request.url === 'https://staff.kfsyscc.org/card/' 
       || event.request.url ==='https://staff.kfsyscc.org/card/index.html' 
@@ -52,12 +55,6 @@ self.addEventListener('fetch', function (event) {
           }
         ) 
       );
-    } 
-    
-    else if (
-      event.request.url.indexOf('hrapi') > -1
-    ){
-      continue
     } else {
       event.respondWith(
         caches.match(event.request).then( function (response){
@@ -80,8 +77,7 @@ self.addEventListener('fetch', function (event) {
         })
       );
     }
-
-
+  }
 });
 
 self.addEventListener('activate', function(event){
