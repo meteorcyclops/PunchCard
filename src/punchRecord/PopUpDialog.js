@@ -4,10 +4,10 @@ import Dialog, {
     DialogContent,
     DialogTitle
 
-} from 'material-ui/Dialog';
+} from '@material-ui/core/Dialog';
 import _ from 'lodash';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import FontAwesome from 'react-fontawesome';
 import bgImg from '../pictures/kfsyscc_logo_big＿1920.jpg';
 import circle2 from '../pictures/circle2.svg';

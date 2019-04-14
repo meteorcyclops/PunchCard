@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import changePasswdStore from '../stores/ChangePasswdStore';
 import { observer } from 'mobx-react'
 // import swal from 'sweetalert';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+import Card, { CardActions, CardContent, CardMedia } from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import warningIcon from '../pictures/warning.png';
 import bookStore from '../stores/book';
 import styled from 'styled-components';

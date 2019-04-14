@@ -5,6 +5,19 @@ import _ from 'lodash'
 
 import writeBook from './writeBook'
 
+import firebase from 'firebase'
+
+firebase.initializeApp({
+    apiKey: "AIzaSyB-mnAxpvri5O2NGtM4sP5Q89Bj5oeQxUg",
+    authDomain: "service-f8424.firebaseapp.com",
+    databaseURL: "https://service-f8424.firebaseio.com",
+    projectId: "service-f8424",
+    storageBucket: "service-f8424.appspot.com",
+    messagingSenderId: "371482619421"
+});
+  
+var db = firebase.firestore();
+
 class BookStore {
     @observable
     uid= localStorage.getItem('uid') || ""
@@ -60,6 +73,15 @@ class BookStore {
                     1000
                 )
             }
+        } )
+        .catch( ()=>{
+            setInterval(
+                ()=>{
+                    this.rawBackendTime = moment().add( 1000 )
+                    this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
+                },
+                1000
+            )
         } )
     }
 

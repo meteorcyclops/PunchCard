@@ -11,7 +11,7 @@ class DragPage extends React.Component {
             transX: 0,
             open: props.open
         }
-        this.x
+        this.x = undefined
         this.first = true
     }
 

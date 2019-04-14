@@ -1,10 +1,10 @@
 import React from 'react'
 import {observer} from 'mobx-react'
 import styled, {keyframes} from 'styled-components'
-import Switch from 'material-ui/Switch'
-import Checkbox from 'material-ui/Checkbox'
+import Switch from '@material-ui/core/Switch'
+import Checkbox from '@material-ui/core/Checkbox'
 import TitleTime    from './TitleTime'
-import {FormControlLabel} from 'material-ui/Form'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import bookStore from './stores/book'
 

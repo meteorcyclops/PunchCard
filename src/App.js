@@ -3,12 +3,11 @@ import { observer } from 'mobx-react'
 import platform from 'platform'
 import { Observable } from 'rxjs'
 import _ from 'lodash'
-import Button from 'material-ui/Button'
-import Dialog, { DialogActions, DialogContent, DialogContentText } from 'material-ui/Dialog'
-import styled, { keyframes } from 'styled-components'
+import Button from '@material-ui/core/Button'
+import { Dialog, DialogActions, DialogContent, DialogContentText } from '@material-ui/core'
+import styled from 'styled-components'
 
 import HistoryTitle from './HistoryTitle'
-import TitleTime from './TitleTime'
 import BookCardBody from './BookCardBody'
 import DragPage from './DragPage'
 import AttendanceRecord from './punchRecord/AttendanceRecord'
@@ -99,16 +98,8 @@ class App extends Component {
     }
 
     render() {
-        const style = {
-            padding: '2.25em 1.6875em',
-            backgroundImage: 'repeating-linear-gradient(135deg, rgba(0,0,0,.3), rgba(0,0,0,.3) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.3) 3px)',
-            backgroundSize: '4px 4px'
-
-        };
-
         const locked = bookStore.locked
         const defaultTab = bookStore.defaultTab
-
         const InputPounch = styled.label`
             font-size: 26px;
             transform: scale(1.1);
@@ -155,15 +146,15 @@ class App extends Component {
                 </div>
 
                 <Dialog
-                    style={style}
                     open={bookStore.dialogOpen}
                     onRequestClose={this.handleRequestClose.bind(this)}
                     classes={{
-                        paper: "dialogPaper"
+                        paper: "dialogPaper",
+                        root: 'mui-dialog'
                     }}
                 >
                     <DialogContent>
-                        <DialogContentText style={{ color: '#6a6f8c', whiteSpace: 'pre-line', minWidth: '150px' }}>
+                        <DialogContentText classes = {{root:'mui-dialogContentText'}}>
                             {bookStore.status}
                         </DialogContentText>
                     </DialogContent>
@@ -183,4 +174,4 @@ class App extends Component {
     }
 }
 
-export default observer(App)
+export default observer( App )

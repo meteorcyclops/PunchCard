@@ -3,8 +3,8 @@ import changePasswdStore from '../stores/ChangePasswdStore';
 import swal from 'sweetalert';
 
 import { observer } from 'mobx-react'
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import _ from 'lodash';
 import bookStore from '../stores/book';
 import FontAwesome from 'react-fontawesome';

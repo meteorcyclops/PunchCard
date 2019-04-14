@@ -202,3 +202,15 @@ input, button {
   border-left: 10px solid #a79ae6 !important; }
 
 /*# sourceMappingURL=index.css.map */
+
+.mui-dialog {
+  padding: 2.25em 1.6875em;
+  background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.3), rgba(0,0,0,.3) 1px, transparent 2px, transparent 2px, rgba(0,0,0,.3) 3px);
+  background-size: 4px 4px;
+}
+
+.mui-dialogContentText { 
+  color: #6a6f8c; 
+  white-space: pre-line;
+  min-width: 150px;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 class TheRow extends Component {
     render() {
