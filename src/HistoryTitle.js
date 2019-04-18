@@ -60,9 +60,10 @@ class HistoryTitle extends React.Component {
             const lastDate = lastPunch.card_date
             const lastTime = moment(lastPunch.card_time, 'HHmm').format('HH:mm')
 
-            const todayDate = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
+            // const todayDate = moment(bookStore.backendTime, 'YYYYMMDDHHmmss')
             
-            const dayDelta = moment(todayDate).diff( moment(lastDate, 'YYYYMMDD'), 'days')
+            const dayDelta = moment().diff( moment(lastDate, 'YYYYMMDD'), 'days')
+            // const dayDelta = moment(todayDate).diff( moment(lastDate, 'YYYYMMDD'), 'days')
             const dayTitle = this.pickDay( dayDelta)
             const dayFoot = this.pickType( lastPunch.card_onoff )
 

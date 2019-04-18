@@ -147,7 +147,7 @@ class App extends Component {
 
                 <Dialog
                     open={bookStore.dialogOpen}
-                    onRequestClose={this.handleRequestClose.bind(this)}
+                    onClose={this.handleRequestClose.bind(this)}
                     classes={{
                         paper: "dialogPaper",
                         root: 'mui-dialog'

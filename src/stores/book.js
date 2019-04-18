@@ -5,18 +5,7 @@ import _ from 'lodash'
 
 import writeBook from './writeBook'
 
-import firebase from 'firebase'
-
-firebase.initializeApp({
-    apiKey: "AIzaSyB-mnAxpvri5O2NGtM4sP5Q89Bj5oeQxUg",
-    authDomain: "service-f8424.firebaseapp.com",
-    databaseURL: "https://service-f8424.firebaseio.com",
-    projectId: "service-f8424",
-    storageBucket: "service-f8424.appspot.com",
-    messagingSenderId: "371482619421"
-});
-  
-var db = firebase.firestore();
+import { db } from './utils'
 
 class BookStore {
     @observable
@@ -49,32 +38,37 @@ class BookStore {
     
     @action
     getBackendTime(){
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json")
-        headers.append("Accept", "application/json")
-        const uri = 'https://staff.kfsyscc.org/hrapi/card/'
-        fetch(uri, {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify({
-              api: 'getServerTime'
-            })
-        })
-        .then( res=>res.json() )
-        .then( backdata=>{
-            if(backdata.data){
-                this.rawBackendTime = moment(backdata.data)
-                this.rawBackendTimeDelta = this.rawBackendTime.diff(moment())
-                setInterval(
-                    ()=>{
-                        this.rawBackendTime = moment().add(this.rawBackendTimeDelta)
-                        this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
-                    },
-                    1000
-                )
-            }
-        } )
-        .catch( ()=>{
+        // let headers = new Headers();
+        // headers.append("Content-Type", "application/json")
+        // headers.append("Accept", "application/json")
+        // const uri = 'https://staff.kfsyscc.org/hrapi/card/'
+        // fetch(uri, {
+        //     method: "POST",
+        //     headers: headers,
+        //     body: JSON.stringify({
+        //       api: 'getServerTime'
+        //     })
+        // })
+        console.log('11')
+        // db.collection("demo-PuncCard").doc("getServerTime")
+        //     .get()
+        //     .then((doc) => {
+        //         if (doc.exists){
+        //             const backdata = doc.data()
+        //             if( backdata.data ){
+        //                 this.rawBackendTime = moment(backdata.data)
+        //                 this.rawBackendTimeDelta = this.rawBackendTime.diff(moment())
+        //                 setInterval(
+        //                     ()=>{
+        //                         this.rawBackendTime = moment().add(this.rawBackendTimeDelta)
+        //                         this.setObs('backendTime', this.rawBackendTime.format('YYYYMMDDHHmmss'))
+        //                     },
+        //                     1000
+        //                 )
+        //             }
+        //         }
+        // })
+        // .catch( ()=>{
             setInterval(
                 ()=>{
                     this.rawBackendTime = moment().add( 1000 )
@@ -82,36 +76,54 @@ class BookStore {
                 },
                 1000
             )
-        } )
+        // } );
     }
 
     @action
     getLastPunch(){
-        const uri = "https://staff.kfsyscc.org/hrapi/card/"
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json")
-        headers.append("Accept", "application/json")
-        fetch(uri, {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify({
-              api: 'getLastPunch',
-              username: `${this.uid}`,
-              password: `${this.pwd}`
-            })
-        })
-        .then( res=>res.json() )
-        .then( backdata=>{
-            if ( !_.isEmpty(backdata) ){
-                const record = backdata.data
-                this.lastPunch = record
-                if (record.card_onoff == "1"||record.card_onoff == "2"){ //上一次是上班
-                    this.setObs('defaultTab', 0)
-                }else if(record.card_onoff == "9"||record.card_onoff == "3"){ //上一次是下班
-                    this.setObs('defaultTab', 1)
+        // const uri = "https://staff.kfsyscc.org/hrapi/card/"
+        // let headers = new Headers();
+        // headers.append("Content-Type", "application/json")
+        // headers.append("Accept", "application/json")
+
+        db.collection("demo-PuncCard").doc("getLastPunch")
+        .get()
+        .then((doc) => {
+            if (doc.exists){
+                const backdata = doc.data()
+                if ( !_.isEmpty(backdata) ){
+                    const record = backdata.data
+                    this.lastPunch = record
+                    if (record.card_onoff == "1"||record.card_onoff == "2"){ //上一次是上班
+                        this.setObs('defaultTab', 0)
+                    }else if(record.card_onoff == "9"||record.card_onoff == "3"){ //上一次是下班
+                        this.setObs('defaultTab', 1)
+                    }
                 }
             }
         })
+
+        // fetch(uri, {
+        //     method: "POST",
+        //     headers: headers,
+        //     body: JSON.stringify({
+        //       api: 'getLastPunch',
+        //       username: `${this.uid}`,
+        //       password: `${this.pwd}`
+        //     })
+        // })
+        // .then( res=>res.json() )
+        // .then( backdata=>{
+        //     if ( !_.isEmpty(backdata) ){
+        //         const record = backdata.data
+        //         this.lastPunch = record
+        //         if (record.card_onoff == "1"||record.card_onoff == "2"){ //上一次是上班
+        //             this.setObs('defaultTab', 0)
+        //         }else if(record.card_onoff == "9"||record.card_onoff == "3"){ //上一次是下班
+        //             this.setObs('defaultTab', 1)
+        //         }
+        //     }
+        // })
     }
 
     check = (type) => {

@@ -313,7 +313,7 @@ class AttendanceRecord extends Component {
                     </span>
                     <PopUpDialog
                         open={this.state.open_dialog}
-                        onRequestClose={this.handleRequestClose}
+                        // onRequestClose={this.handleRequestClose}
                         title={this.state.dialog_title}
                         time_list={this.state.time_list}
                         formatTime={this.getFormateTime}

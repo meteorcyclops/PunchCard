@@ -1,6 +1,7 @@
 
 import swal from 'sweetalert'
 import _ from 'lodash'
+import firebase from 'firebase'
 
 const urlStaffCard = "https://staff.kfsyscc.org/hrapi/card/" //https://staff.kfsyscc.org/hrapi/card/
 let headers = new Headers();
@@ -124,24 +125,35 @@ const logOvertime = (data, err = {}) => {
 }
 
 const loginStaff = (username, password) => {
-    fetch(
-        'https://staff.kfsyscc.org/token', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        }
-    )
-    .then( d=>d.json() )
-    .then( data=>{
-        fetch(
-            `https://staff.kfsyscc.org/redirect?next=/LandingPage&token=${data.session_id}`
-        )
-    } )
+    // fetch(
+    //     'https://staff.kfsyscc.org/token', { 
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             username: username,
+    //             password: password
+    //         })
+    //     }
+    // )
+    // .then( d=>d.json() )
+    // .then( data=>{
+    //     fetch(
+    //         `https://staff.kfsyscc.org/redirect?next=/LandingPage&token=${data.session_id}`
+    //     )
+    // } )
 }
 
-export { sendToFlow, checkOvertime, loginStaff }
+firebase.initializeApp({
+    apiKey: "AIzaSyB-mnAxpvri5O2NGtM4sP5Q89Bj5oeQxUg",
+    authDomain: "service-f8424.firebaseapp.com",
+    databaseURL: "https://service-f8424.firebaseio.com",
+    projectId: "service-f8424",
+    storageBucket: "service-f8424.appspot.com",
+    messagingSenderId: "371482619421"
+});
+  
+var db = firebase.firestore();
+
+export { sendToFlow, checkOvertime, loginStaff, db }

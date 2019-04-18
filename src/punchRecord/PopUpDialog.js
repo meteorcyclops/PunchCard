@@ -85,7 +85,7 @@ const PopUpDialog = (props) => {
             fullScreen={false}
             fullWidth={true}
             open={props.open} //this.state.open_dialog
-            onRequestClose={props.onRequestClose}
+            // onRequestClose={props.onRequestClose}
             classes={{
                 paper: props.classes.paper
             }}
