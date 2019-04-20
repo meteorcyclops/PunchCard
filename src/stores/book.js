@@ -49,7 +49,6 @@ class BookStore {
         //       api: 'getServerTime'
         //     })
         // })
-        console.log('11')
         // db.collection("demo-PuncCard").doc("getServerTime")
         //     .get()
         //     .then((doc) => {

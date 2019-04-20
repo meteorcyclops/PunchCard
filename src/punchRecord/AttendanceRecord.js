@@ -8,6 +8,8 @@ import bookStore from '../stores/book'
 import changePasswdStore from '../stores/ChangePasswdStore';
 import ChangePwd from '../changePasswd/ChangePwd';
 
+import {cardHistory, scheduleList} from '../stores/demoData'
+
 import FontAwesome from 'react-fontawesome';
 import '../css/AttendanceRecord.css';
 
@@ -81,28 +83,31 @@ class AttendanceRecord extends Component {
         }
     }
     getScheduleList = (minDate) =>{
-        const uri = "https://staff.kfsyscc.org/hrapi/card/";
-        fetch(uri, {
-            method: "POST",
-            headers: new Headers({ 'Accept': 'application/json' }),
-            body: JSON.stringify({
-                "username": this.state.username,
-                "password": this.state.password,
-                "minDate": minDate,
-                "api": "getScheList" //取得班表
-            })
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((result) => {
-                if (result.status === true) {
-                    this.setState({schedule_list: result.data});
-                }
-            })
-            .catch(err=>{
-                console.log('讀取班表發生錯誤:',err);
-            })
+
+        this.setState( {schedule_list: scheduleList.data} );
+
+        // const uri = "https://staff.kfsyscc.org/hrapi/card/";
+        // fetch(uri, {
+        //     method: "POST",
+        //     headers: new Headers({ 'Accept': 'application/json' }),
+        //     body: JSON.stringify({
+        //         "username": this.state.username,
+        //         "password": this.state.password,
+        //         "minDate": minDate,
+        //         "api": "getScheList" //取得班表
+        //     })
+        // })
+        //     .then((res) => {
+        //         return res.json();
+        //     })
+        //     .then((result) => {
+        //         if (result.status === true) {
+        //             this.setState({schedule_list: result.data});
+        //         }
+        //     })
+        //     .catch(err=>{
+        //         console.log('讀取班表發生錯誤:',err);
+        //     })
         
     }
 
@@ -256,40 +261,48 @@ class AttendanceRecord extends Component {
        
         //只抓一支api的函數。先留著。
 
+        const data = cardHistory
 
-        const uri = "https://staff.kfsyscc.org/hrapi/card/";
-        fetch(uri, {
-            method: "POST",
-            headers: new Headers({ 'Accept': 'application/json' }),
-            body: JSON.stringify({
-                "username": this.state.username,
-                "password": this.state.password,
-                "minDate": minDate,	//從minDate這一天抓到最新的資料
-                "api": "getPunchList"
-            })
-        })
-            .then((res) => {
-                return res.json();
-            })
-            .then((data) => {
-                if (data.status === true) {
+        let ordered_punch_list = _.orderBy(data.data, ['card_date', 'card_time'], ['desc', 'desc']);
+        // console.log(ordered_punch_list)
+        //state.punch_list 有資料後，Rows就會開始顯示
+        this.setState({
+            punch_list: ordered_punch_list
+        });
 
-                    let ordered_punch_list = _.orderBy(data.data, ['card_date', 'card_time'], ['desc', 'desc']);
+        // const uri = "https://staff.kfsyscc.org/hrapi/card/";
+        // fetch(uri, {
+        //     method: "POST",
+        //     headers: new Headers({ 'Accept': 'application/json' }),
+        //     body: JSON.stringify({
+        //         "username": this.state.username,
+        //         "password": this.state.password,
+        //         "minDate": minDate,	//從minDate這一天抓到最新的資料
+        //         "api": "getPunchList"
+        //     })
+        // })
+        //     .then((res) => {
+        //         return res.json();
+        //     })
+        //     .then((data) => {
+        //         if (data.status === true) {
 
-                    //state.punch_list 有資料後，Rows就會開始顯示
-                    this.setState({
-                        punch_list: ordered_punch_list
-                    });
+        //             let ordered_punch_list = _.orderBy(data.data, ['card_date', 'card_time'], ['desc', 'desc']);
 
-                } else {
-                    throw data.err;
-                }
+        //             //state.punch_list 有資料後，Rows就會開始顯示
+        //             this.setState({
+        //                 punch_list: ordered_punch_list
+        //             });
 
-            })
-            .catch((err) => {
-                console.warn('呼叫API：https://staff.kfsyscc.org/hrapi/card/，函數:getPunchList 發生錯誤：', err);
-                alert('伺服器回報錯誤.\n\n請使用院內網路。\n\n可能的問題：' + err);
-            })
+        //         } else {
+        //             throw data.err;
+        //         }
+
+        //     })
+        //     .catch((err) => {
+        //         console.warn('呼叫API：https://staff.kfsyscc.org/hrapi/card/，函數:getPunchList 發生錯誤：', err);
+        //         alert('伺服器回報錯誤.\n\n請使用院內網路。\n\n可能的問題：' + err);
+        //     })
     } //end of getData
 
 
