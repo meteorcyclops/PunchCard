@@ -1,5 +1,5 @@
 ### Introduction 
-Front-end demo Page that predict survival of cancer with data.
+Page for employee to book for work
 
 [DEMO page](https://flyingpath.github.io/PunchCard/)
 
